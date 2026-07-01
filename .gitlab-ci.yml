@@ -1,0 +1,25 @@
+# GitLab Pages — Deskless landing page
+#
+# NOTE: GitLab Pages requires this file at the REPOSITORY ROOT.
+# The site lives in the `deskless-site/` subdirectory, so this job copies the
+# static files up into `public/` (the directory GitLab Pages serves).
+#
+# To activate: move/copy this file to the repo root as `.gitlab-ci.yml`,
+# then push. Pages will publish at https://<group>.gitlab.io/<project>/
+# (or your custom domain once DNS is pointed). No new account or repo needed.
+
+pages:
+  stage: deploy
+  image: alpine:latest
+  script:
+    - mkdir -p public
+    - cp deskless-site/index.html public/
+    - cp deskless-site/scorecard.html public/
+    - cp deskless-site/styles.css public/
+    - cp deskless-site/.nojekyll public/
+  artifacts:
+    paths:
+      - public
+  rules:
+    # Only deploy from the default branch (manual go/no-go: change to `when: manual` if preferred)
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'

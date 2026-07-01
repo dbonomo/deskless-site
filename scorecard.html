@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Readiness Self-Assessment — Deskless Consulting</title>
+  <meta name="description" content="A free, self-scoring AI Readiness scorecard from Deskless Consulting. Score yourself in 15 minutes across 6 dimensions and find your single weak spot — no email required to be useful." />
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:title" content="AI Readiness Self-Assessment — Deskless" />
+  <meta property="og:description" content="Will AI actually pay off for your team? Score yourself in 15 minutes, honestly. Free self-scoring scorecard." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://desklessconsulting.com/scorecard.html" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+  <style>
+    /* ---- scorecard-specific styles (built on the shared palette/vars) ---- */
+    .sc-hero { padding: clamp(56px, 9vw, 96px) 0 clamp(80px, 12vw, 140px); }
+    .sc-hero .hero-headline { max-width: 18ch; }
+
+    .sc-intro p { font-size: 1.1rem; color: var(--ink-soft); }
+    .sc-intro .lead { color: var(--ink); }
+
+    /* scoring rubric mini-table */
+    .rubric {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+      margin: 1.4rem 0 0;
+    }
+    .rubric .rubric-row {
+      display: grid;
+      grid-template-columns: 2.4rem 1fr;
+      gap: 0.8rem;
+      align-items: baseline;
+      padding: 0.55rem 0.9rem;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-size: 0.98rem;
+      color: var(--ink-soft);
+    }
+    .rubric .rubric-score {
+      font-weight: 800;
+      color: var(--pine);
+      text-align: center;
+    }
+
+    /* dimension blocks */
+    .dimension {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.6rem 1.6rem 1.4rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 1.4rem;
+    }
+    .dimension > h3 { font-size: 1.25rem; margin-bottom: 0.2rem; }
+    .dimension .dim-tagline {
+      color: var(--pine);
+      font-weight: 700;
+      font-size: 0.98rem;
+      margin: 0 0 1rem;
+    }
+    .dimension .dim-subtotal {
+      margin-top: 0.6rem;
+      font-weight: 700;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      text-align: right;
+    }
+    .dimension .dim-subtotal strong { color: var(--pine); }
+
+    .question { margin: 0 0 1.1rem; }
+    .question:last-of-type { margin-bottom: 0.4rem; }
+    .question .q-text {
+      display: block;
+      color: var(--ink);
+      margin-bottom: 0.55rem;
+      line-height: 1.45;
+    }
+    .question .q-num { color: var(--pine); font-weight: 800; margin-right: 0.35em; }
+
+    /* 0-3 segmented selector */
+    .scale {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .scale label {
+      flex: 1 1 0;
+      min-width: 56px;
+      cursor: pointer;
+    }
+    .scale input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .scale .pill {
+      display: block;
+      text-align: center;
+      padding: 0.5em 0.4em;
+      border: 1.5px solid var(--line);
+      border-radius: 10px;
+      font-weight: 700;
+      color: var(--ink-soft);
+      background: var(--paper);
+      transition: background .12s ease, border-color .12s ease, color .12s ease;
+      line-height: 1.2;
+    }
+    .scale .pill small {
+      display: block;
+      font-weight: 500;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+    .scale label:hover .pill { border-color: var(--peak-mid); }
+    .scale input:checked + .pill {
+      background: var(--pine);
+      border-color: var(--pine);
+      color: #fff;
+    }
+    .scale input:checked + .pill small { color: rgba(255,255,255,0.85); }
+    .scale input:focus-visible + .pill { outline: 3px solid var(--pine); outline-offset: 2px; }
+
+    /* progress / sticky score note */
+    .sc-progress {
+      position: sticky;
+      top: 64px;
+      z-index: 5;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: saturate(140%) blur(8px);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.5rem 1.2rem;
+      margin: 0 auto 2rem;
+      max-width: 760px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-weight: 700;
+      color: var(--ink-soft);
+      box-shadow: var(--shadow);
+    }
+    .sc-progress .answered { color: var(--pine); }
+
+    /* email gate */
+    .gate {
+      background: var(--mist);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.8rem 1.6rem;
+      margin-top: 1.2rem;
+    }
+    .gate h3 { font-size: 1.3rem; }
+    .gate p { color: var(--ink-soft); }
+    .gate-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1rem;
+    }
+    .gate-form input[type="email"] {
+      flex: 1 1 240px;
+      padding: 0.85em 1.1em;
+      border: 1.5px solid var(--line);
+      border-radius: 999px;
+      font-size: 1rem;
+      font-family: var(--font);
+      color: var(--ink);
+    }
+    .gate-form input[type="email"]:focus-visible {
+      outline: 3px solid var(--pine);
+      outline-offset: 2px;
+      border-color: var(--pine);
+    }
+    .gate .field-hint { font-size: 0.85rem; color: var(--muted); margin: 0.7rem 0 0; }
+    .gate .error { color: #b3261e; font-weight: 600; }
+
+    /* results panel */
+    .results {
+      margin-top: 1.4rem;
+      background: var(--paper);
+      border: 2px solid var(--pine);
+      border-radius: var(--radius);
+      padding: 2rem 1.8rem;
+      box-shadow: var(--shadow-lg);
+    }
+    .results[hidden] { display: none; }
+    .result-total {
+      font-size: clamp(2.6rem, 8vw, 3.6rem);
+      font-weight: 800;
+      color: var(--pine);
+      line-height: 1;
+      margin: 0;
+    }
+    .result-total small { font-size: 1.1rem; color: var(--muted); font-weight: 600; }
+    .result-band-name {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin: 0.8rem 0 0.4rem;
+    }
+    .result-band-body { color: var(--ink-soft); }
+    .weak-spot {
+      margin-top: 1.4rem;
+      border-left: 4px solid var(--pine);
+      background: var(--mist);
+      padding: 1rem 1.2rem;
+      border-radius: 0 10px 10px 0;
+    }
+    .weak-spot .ws-label {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--pine);
+      margin: 0 0 0.3rem;
+    }
+    .weak-spot .ws-dim { font-weight: 800; color: var(--ink); font-size: 1.1rem; }
+    .weak-spot p { color: var(--ink-soft); margin: 0.4rem 0 0; }
+
+    .result-breakdown { margin-top: 1.4rem; }
+    .result-breakdown li {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--ink-soft);
+      list-style: none;
+    }
+    .result-breakdown ul { padding: 0; margin: 0.6rem 0 0; }
+    .result-breakdown li.is-low { color: var(--ink); font-weight: 700; }
+    .result-breakdown li.is-low .bd-score { color: var(--pine); }
+    .result-breakdown .bd-score { font-weight: 800; white-space: nowrap; }
+
+    .results .btn { margin-top: 1.6rem; }
+    .results-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.6rem; }
+
+    .results-actions .btn { margin-top: 0; }
+
+    .back-link { display: inline-block; margin-top: 1rem; font-weight: 600; }
+
+    @media (max-width: 600px) {
+      .scale label { min-width: 0; }
+      .scale .pill small { display: none; }
+      .gate-form .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====================== HEADER ====================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html#top" aria-label="Deskless Consulting home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 28" width="34" height="24" role="img" aria-hidden="true" focusable="false">
+            <path d="M0 28 L13 6 L20 16 L27 2 L40 28 Z" fill="currentColor"/>
+            <path d="M11 9.4 L13 6 L15 9.4 L13.5 9.4 L13 8.6 L12.5 9.4 Z" fill="#fff" opacity="0.85"/>
+            <path d="M25 5 L27 2 L29 5 L27.7 5 L27 3.9 L26.3 5 Z" fill="#fff" opacity="0.85"/>
+          </svg>
+        </span>
+        <span class="brand-name">Deskless</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html#services">Services</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#faq">FAQ</a>
+        <a class="nav-cta" href="mailto:dan@desklessconsulting.com?subject=Discovery%20Call">Book a Call</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ====================== HERO ====================== -->
+    <section class="hero sc-hero">
+      <div class="mountains" aria-hidden="true">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none" class="mountains-svg">
+          <path class="range range-back" d="M0 320 L0 200 L220 70 L380 170 L560 60 L760 180 L960 70 L1180 190 L1320 110 L1440 180 L1440 320 Z"/>
+          <path class="range range-mid" d="M0 320 L0 240 L180 150 L340 230 L520 130 L700 240 L900 150 L1120 250 L1300 170 L1440 240 L1440 320 Z"/>
+          <path class="range range-front" d="M0 320 L0 270 L260 180 L430 280 L640 190 L860 290 L1080 200 L1280 290 L1440 230 L1440 320 Z"/>
+          <path class="snow" d="M236 198 L260 180 L284 198 L272 196 L260 189 L248 196 Z"/>
+          <path class="snow" d="M616 208 L640 190 L664 208 L652 206 L640 199 L628 206 Z"/>
+          <path class="snow" d="M1056 218 L1080 200 L1104 218 L1092 216 L1080 209 L1068 216 Z"/>
+        </svg>
+      </div>
+
+      <div class="container hero-inner">
+        <p class="eyebrow">Free Self-Assessment · ~15 minutes</p>
+        <h1 class="hero-headline">Will AI actually pay off for your team?</h1>
+        <p class="hero-sub">
+          Score yourself — honestly — across the six things that actually predict whether
+          AI turns into recovered hours and real dollars. No email required to be useful.
+          It's the same lens we use on day one of a paid engagement.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#assessment">Start the self-check <span aria-hidden="true">&darr;</span></a>
+          <a class="btn btn-ghost" href="index.html#services">See the paid offer</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== INTRO + RUBRIC ====================== -->
+    <section class="section problem sc-intro">
+      <div class="container narrow">
+        <p class="lead">
+          Most companies have already "tried AI." Most of those experiments are still
+          sitting in a Notion doc nobody's opened in three months.
+        </p>
+        <p>
+          That's almost never a technology problem — the models are good enough. Teams
+          stall because they started <em>building</em> before they knew what was worth
+          building, and before the ground underneath them could support it. This is the
+          gut check you run <strong>before</strong> you spend a dollar.
+        </p>
+
+        <h2 class="section-title" style="margin-top:2rem;">How scoring works</h2>
+        <p>
+          Each of the <strong>six dimensions</strong> has <strong>three questions</strong>.
+          Score each 0–3. Be honest — a generous score helps no one. Max total = <strong>54</strong>.
+        </p>
+        <div class="rubric">
+          <div class="rubric-row"><span class="rubric-score">0</span><span>No / not at all / we have no idea</span></div>
+          <div class="rubric-row"><span class="rubric-score">1</span><span>Barely / only in one corner of the business / very fuzzy</span></div>
+          <div class="rubric-row"><span class="rubric-score">2</span><span>Mostly / for the important stuff / with some gaps</span></div>
+          <div class="rubric-row"><span class="rubric-score">3</span><span>Yes, clearly, and we could prove it</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== THE ASSESSMENT ====================== -->
+    <section class="section services" id="assessment">
+      <div class="container narrow">
+
+        <div class="sc-progress" id="progress" role="status" aria-live="polite">
+          <span><span class="answered" id="answeredCount">0</span> / 18 answered</span>
+          <span id="runningTotal" aria-hidden="true">0 / 54</span>
+        </div>
+
+        <form id="scorecardForm" novalidate>
+          <!-- Dimensions injected by JS so we keep one source of truth -->
+          <div id="dimensions"></div>
+
+          <!-- ============ EMAIL GATE ============ -->
+          <div class="gate">
+            <h3>Get your full results + the companion guide</h3>
+            <p>
+              Drop your email and we'll show your score, your single weak spot, and where
+              to start — plus we'll send the companion guide that walks through fixing each
+              dimension. No spam, no list-rental, just one human (Dan) on the other end.
+            </p>
+            <div class="gate-form">
+              <label for="email" class="visually-hidden" style="position:absolute;left:-9999px;">Your email address</label>
+              <input type="email" id="email" name="email" placeholder="you@yourcompany.com" autocomplete="email" />
+              <button type="submit" class="btn btn-primary">Show my results <span aria-hidden="true">&rarr;</span></button>
+            </div>
+            <p class="field-hint" id="formHint">
+              Prefer not to share your email? Just leave it blank and hit the button —
+              your score still computes right here, privately, in your browser.
+            </p>
+          </div>
+        </form>
+
+        <!-- ============ RESULTS PANEL ============ -->
+        <div class="results" id="results" hidden tabindex="-1" aria-live="polite">
+          <p class="result-total"><span id="totalScore">0</span><small> / 54</small></p>
+          <p class="result-band-name" id="bandName"></p>
+          <p class="result-band-body" id="bandBody"></p>
+
+          <div class="weak-spot">
+            <p class="ws-label">Your single weak spot — start here</p>
+            <p class="ws-dim" id="weakDim"></p>
+            <p id="weakBody"></p>
+          </div>
+
+          <div class="result-breakdown">
+            <p style="font-weight:700;color:var(--ink);margin:0;">Dimension breakdown</p>
+            <ul id="breakdownList"></ul>
+          </div>
+
+          <div class="results-actions">
+            <a class="btn btn-primary" id="emailResultsBtn" href="#">Email me the deep version <span aria-hidden="true">&rarr;</span></a>
+            <a class="btn btn-ghost" href="index.html#services">See the $3,500 Assessment</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================== BRIDGE TO PAID OFFER ====================== -->
+    <section class="section cta-band">
+      <div class="mountains-mini" aria-hidden="true">
+        <svg viewBox="0 0 1440 160" preserveAspectRatio="none">
+          <path class="range range-front" d="M0 160 L0 120 L300 50 L520 130 L760 40 L1020 130 L1260 50 L1440 120 L1440 160 Z"/>
+        </svg>
+      </div>
+      <div class="container narrow cta-inner">
+        <h2>Want the same lens applied deeply to your business?</h2>
+        <p>
+          The <strong>AI Readiness Assessment</strong> is a two-week, fixed-fee engagement
+          built around ~2 hours of your time. You get an Opportunity Map, a ranked shortlist
+          of your 3–5 highest-leverage use cases, a full Readiness &amp; Risk Scorecard, a
+          90-day roadmap, and an ROI summary in recoverable hours and real dollars. $3,500,
+          fixed — and if there's genuinely nothing worth building yet, we'll tell you that
+          and refund the unused portion.
+        </p>
+        <a class="btn btn-primary" href="mailto:dan@desklessconsulting.com?subject=AI%20Readiness%20Assessment%20(from%20the%20scorecard)">
+          Start an assessment <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====================== FOOTER ====================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">Deskless</span>
+        <p class="footer-tag">AI that works for the people doing the work.</p>
+      </div>
+      <div class="footer-contact">
+        <p><a href="mailto:dan@desklessconsulting.com">dan@desklessconsulting.com</a></p>
+        <p><span class="muted">desklessconsulting.com</span></p>
+      </div>
+    </div>
+    <p class="copyright container">&copy; <span id="year">2026</span> Deskless Consulting. Northern Colorado.</p>
+  </footer>
+
+  <script>
+    // keep the copyright year current
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ---------------------------------------------------------------------
+    // Single source of truth: 6 dimensions x 3 questions.
+    // Mirrors lead-magnet-ai-readiness-scorecard.md exactly.
+    // ---------------------------------------------------------------------
+    const DIMENSIONS = [
+      {
+        title: "Problem & Value Framing",
+        tagline: "Do you actually know what you're trying to fix, and what fixing it is worth?",
+        questions: [
+          "Can you name a specific, recurring pain in plain language — not “be more efficient,” but “our team spends ~10 hours a week re-keying intake forms”?",
+          "Do you know roughly what that pain costs you — in hours, dollars, errors, or lost deals — even as a back-of-napkin number?",
+          "Could you state, in one sentence, what “better” looks like and how you'd know you got there?"
+        ],
+        weakSpot: "You can't tell a good AI use case from an expensive distraction until you can frame the problem and its value. This is the cheapest thing to get right and the most expensive thing to get wrong — start by naming one specific, recurring pain and a back-of-napkin cost for it."
+      },
+      {
+        title: "Workflow Clarity",
+        tagline: "Is the work repeatable enough for a machine to help with it?",
+        questions: [
+          "Is there a workflow that runs frequently and in a fairly consistent way (weekly or more), rather than ad hoc every time?",
+          "Could someone write down the steps of that workflow on one page — inputs, decisions, outputs — without it being “well, it depends” at every step?",
+          "Is the workflow currently mostly manual or copy-paste, i.e. there are real human hours sitting in it today?"
+        ],
+        weakSpot: "Repeatability is where the recoverable hours live. A messy, undocumented process won't get cheaper with AI — it'll get a confusing new layer. Your first project is likely to write one frequent workflow down clearly on a single page."
+      },
+      {
+        title: "Data & Tools Readiness",
+        tagline: "Can the work actually reach the information it needs?",
+        questions: [
+          "Does the information the workflow needs live somewhere accessible — a system, a shared drive, an inbox, a tool — rather than only in one person's head?",
+          "Is that information reasonably consistent and trustworthy (a known format, not five conflicting spreadsheets), or at least fixable?",
+          "Do your current tools allow connection — an integration, an export, an API, or even a tolerable copy-paste — rather than being a sealed black box?"
+        ],
+        weakSpot: "“Our data isn't ready” is the most common honest finding — and it's a reason to sequence, not to quit. You can't automate around information a system can't reach, so fixing access is often the real first project."
+      },
+      {
+        title: "Team Capacity & Appetite",
+        tagline: "Are there real humans with the time and willingness to adopt this?",
+        questions: [
+          "Is there someone on the team with even a few hours to help shape, test, and shepherd a new way of working — not just a sponsor who'll never touch it?",
+          "Has the team shown they'll actually try new tools, rather than quietly reverting to the old spreadsheet the moment you look away?",
+          "Are the people doing the work at the table — or would this be designed for them, without them?"
+        ],
+        weakSpot: "AI has to work for the people doing the work. The best-mapped use case dies if the team has no slack to adopt it or wasn't asked. Secure a real owner with a few hours and bring the front line into the design before you build."
+      },
+      {
+        title: "Leadership Buy-In & “Good Enough”",
+        tagline: "Will the people who decide stick with it through an imperfect start?",
+        questions: [
+          "Does leadership have a realistic mental model — “this assists and accelerates people,” not “this replaces a department flawlessly overnight”?",
+          "Is there an owner with the authority to greenlight a small experiment and protect it from being defunded the first time it stumbles?",
+          "Can the organization tolerate “better, with a human checking the edges” rather than demanding perfect-or-nothing?"
+        ],
+        weakSpot: "The fastest-failing AI projects are the well-built ones with no air cover. Before building, get an owner with authority and a sane, patient definition of success from the top — a pilot needs to survive its first bad week."
+      },
+      {
+        title: "Risk & Constraint Awareness",
+        tagline: "Do you know what could go wrong before it does?",
+        questions: [
+          "Do you know what's sensitive in this workflow — customer data, regulated information, anything you can't pour into a random tool — and roughly what the rules are?",
+          "Is there a clear answer to “what happens when it's wrong?” — a review step, a fallback, a human in the loop where the stakes are high?",
+          "Have you thought about who's affected by the change and how you'd bring them along, rather than springing it on them?"
+        ],
+        weakSpot: "Unmanaged risk is the silent project-killer — it shows up in legal review or a frontline revolt, not the demo. Map what's sensitive, decide what happens when it's wrong, and plan who you'll bring along before you launch."
+      }
+    ];
+
+    const BANDS = [
+      {
+        min: 0, max: 18,
+        name: "0–18 — Not yet (and that's a real answer)",
+        body: "You're not behind; you're early. The honest move right now is not to buy an AI tool — it's to fix the foundation. Pick your two lowest dimensions and make those the project. Usually that means writing down one workflow clearly and getting its information out of someone's head into a place a system can reach. Do that and you'll be in a completely different position in 90 days."
+      },
+      {
+        min: 19, max: 35,
+        name: "19–35 — Ready in spots",
+        body: "You have at least one workflow that's a genuine candidate, and the ground under it is mostly solid — but there are gaps that will bite if you ignore them. This is the most common (and most promising) band for mid-market ops teams. The risk here isn't readiness; it's sequencing: picking the right first use case and not letting an unaddressed gap quietly sink it. Getting the order right is the whole game."
+      },
+      {
+        min: 36, max: 54,
+        name: "36–54 — Ready to build, deliberately",
+        body: "You know your problem, your data can reach it, your team has the appetite, and leadership won't panic at the first imperfect output. You should be moving — but “ready” doesn't mean “build everything.” Pick the single highest-leverage use case, ship one Quick Win, prove the value with real numbers, and earn the right to the next one. The trap at this level is overreach."
+      }
+    ];
+
+    // ---- render dimensions ----
+    const dimsContainer = document.getElementById('dimensions');
+    DIMENSIONS.forEach((dim, di) => {
+      const block = document.createElement('div');
+      block.className = 'dimension';
+      let html = '<h3>Dimension ' + (di + 1) + ' — ' + dim.title + '</h3>'
+        + '<p class="dim-tagline">' + dim.tagline + '</p>';
+      dim.questions.forEach((q, qi) => {
+        const name = 'd' + di + 'q' + qi;
+        html += '<div class="question">'
+          + '<span class="q-text"><span class="q-num">' + (qi + 1) + '.</span>' + q + '</span>'
+          + '<div class="scale" role="radiogroup" aria-label="Score 0 to 3">';
+        const labels = ['No', 'Barely', 'Mostly', 'Yes'];
+        for (let v = 0; v <= 3; v++) {
+          const id = name + 'v' + v;
+          html += '<label for="' + id + '">'
+            + '<input type="radio" id="' + id + '" name="' + name + '" value="' + v + '" data-dim="' + di + '" />'
+            + '<span class="pill">' + v + '<small>' + labels[v] + '</small></span>'
+            + '</label>';
+        }
+        html += '</div></div>';
+      });
+      html += '<p class="dim-subtotal">Subtotal: <strong><span id="sub' + di + '">0</span> / 9</strong></p>';
+      block.innerHTML = html;
+      dimsContainer.appendChild(block);
+    });
+
+    // ---- live scoring ----
+    const form = document.getElementById('scorecardForm');
+    const answeredCountEl = document.getElementById('answeredCount');
+    const runningTotalEl = document.getElementById('runningTotal');
+
+    function computeScores() {
+      const dimScores = new Array(DIMENSIONS.length).fill(0);
+      const dimAnswered = new Array(DIMENSIONS.length).fill(0);
+      let answered = 0;
+      const checked = form.querySelectorAll('input[type="radio"]:checked');
+      checked.forEach(input => {
+        const di = parseInt(input.dataset.dim, 10);
+        dimScores[di] += parseInt(input.value, 10);
+        dimAnswered[di] += 1;
+        answered += 1;
+      });
+      const total = dimScores.reduce((a, b) => a + b, 0);
+      return { dimScores, dimAnswered, answered, total };
+    }
+
+    function updateLive() {
+      const { dimScores, answered, total } = computeScores();
+      answeredCountEl.textContent = answered;
+      runningTotalEl.textContent = total + ' / 54';
+      dimScores.forEach((s, di) => {
+        document.getElementById('sub' + di).textContent = s;
+      });
+    }
+
+    form.addEventListener('change', updateLive);
+
+    // ---- band + weak-spot logic ----
+    function bandFor(total) {
+      return BANDS.find(b => total >= b.min && total <= b.max) || BANDS[BANDS.length - 1];
+    }
+
+    // Lowest single dimension = the weak spot. On ties, the earliest dimension wins
+    // (matches the doc: "look at your lowest dimension first").
+    function lowestDimension(dimScores) {
+      let lowIdx = 0;
+      for (let i = 1; i < dimScores.length; i++) {
+        if (dimScores[i] < dimScores[lowIdx]) lowIdx = i;
+      }
+      return lowIdx;
+    }
+
+    // ---- submit / reveal results ----
+    const results = document.getElementById('results');
+    const formHint = document.getElementById('formHint');
+    const emailInput = document.getElementById('email');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const { dimScores, dimAnswered, answered, total } = computeScores();
+
+      // require all 18 answered for an honest score
+      if (answered < 18) {
+        formHint.classList.add('error');
+        formHint.textContent = 'Please answer all 18 questions first (' + answered + ' of 18 done) — an incomplete score isn’t an honest one.';
+        const firstUnanswered = findFirstUnanswered();
+        if (firstUnanswered) firstUnanswered.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      formHint.classList.remove('error');
+
+      // optional email — validate only if provided
+      const email = emailInput.value.trim();
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        formHint.classList.add('error');
+        formHint.textContent = 'That email doesn’t look right — fix it, or leave it blank to see your score privately.';
+        return;
+      }
+
+      renderResults(total, dimScores, email);
+    });
+
+    function findFirstUnanswered() {
+      for (let di = 0; di < DIMENSIONS.length; di++) {
+        for (let qi = 0; qi < DIMENSIONS[di].questions.length; qi++) {
+          const name = 'd' + di + 'q' + qi;
+          if (!form.querySelector('input[name="' + name + '"]:checked')) {
+            return form.querySelector('input[name="' + name + '"]');
+          }
+        }
+      }
+      return null;
+    }
+
+    function renderResults(total, dimScores, email) {
+      document.getElementById('totalScore').textContent = total;
+
+      const band = bandFor(total);
+      document.getElementById('bandName').textContent = band.name;
+      document.getElementById('bandBody').textContent = band.body;
+
+      const lowIdx = lowestDimension(dimScores);
+      document.getElementById('weakDim').textContent =
+        'Dimension ' + (lowIdx + 1) + ' — ' + DIMENSIONS[lowIdx].title +
+        ' (' + dimScores[lowIdx] + ' / 9)';
+      document.getElementById('weakBody').textContent = DIMENSIONS[lowIdx].weakSpot;
+
+      // breakdown list, lowest dimension flagged
+      const list = document.getElementById('breakdownList');
+      list.innerHTML = '';
+      dimScores.forEach((s, di) => {
+        const li = document.createElement('li');
+        if (di === lowIdx) li.className = 'is-low';
+        li.innerHTML = '<span>' + (di + 1) + '. ' + DIMENSIONS[di].title + '</span>'
+          + '<span class="bd-score">' + s + ' / 9</span>';
+        list.appendChild(li);
+      });
+
+      // build the mailto for the "deep version" CTA, pre-filled with the score
+      const subject = 'AI Readiness scorecard — my score: ' + total + '/54';
+      const lowLine = 'Lowest dimension: ' + DIMENSIONS[lowIdx].title + ' (' + dimScores[lowIdx] + '/9)';
+      const bodyLines = [
+        'Hi Dan,',
+        '',
+        'I just ran the AI Readiness Self-Assessment. Here are my results:',
+        '',
+        'Total: ' + total + '/54',
+        lowLine,
+        '',
+        'Per-dimension:'
+      ];
+      dimScores.forEach((s, di) => {
+        bodyLines.push('  ' + (di + 1) + '. ' + DIMENSIONS[di].title + ': ' + s + '/9');
+      });
+      bodyLines.push('');
+      if (email) bodyLines.push('My email: ' + email);
+      bodyLines.push("I'd like the companion guide / a quick read on what this means for my business.");
+      const mailto = 'mailto:dan@desklessconsulting.com'
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(bodyLines.join('\n'));
+      document.getElementById('emailResultsBtn').setAttribute('href', mailto);
+
+      // confirmation copy in the hint
+      if (email) {
+        formHint.classList.remove('error');
+        formHint.textContent = 'Thanks — your results are below. Hit “Email me the deep version” to send them to Dan with one click.';
+      }
+
+      results.hidden = false;
+      results.focus();
+      results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // init the live counters at 0
+    updateLive();
+  </script>
+</body>
+</html>
