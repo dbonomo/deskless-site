@@ -12,8 +12,15 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://desklessconsulting.com/scorecard.html" />
 
-  <link rel="stylesheet" href="styles.css" />
+  <!-- Favicon: winged-desk mark -->
+  <link rel="icon" type="image/svg+xml" href="assets/deskless-mark-color.svg" />
+
+  <!-- Manrope (brand typeface) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+  <link rel="stylesheet" href="styles.css" />
 
   <style>
     /* ---- scorecard-specific styles (built on the shared palette/vars) ---- */
@@ -255,12 +262,8 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html#top" aria-label="Deskless Consulting home">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 40 28" width="34" height="24" role="img" aria-hidden="true" focusable="false">
-            <path d="M0 28 L13 6 L20 16 L27 2 L40 28 Z" fill="currentColor"/>
-            <path d="M11 9.4 L13 6 L15 9.4 L13.5 9.4 L13 8.6 L12.5 9.4 Z" fill="#fff" opacity="0.85"/>
-            <path d="M25 5 L27 2 L29 5 L27.7 5 L27 3.9 L26.3 5 Z" fill="#fff" opacity="0.85"/>
-          </svg>
+        <span class="brand-mark">
+          <img src="assets/deskless-mark-white.svg" alt="" width="30" height="26" />
         </span>
         <span class="brand-name">Deskless</span>
       </a>
@@ -268,7 +271,8 @@
         <a href="index.html#services">Services</a>
         <a href="index.html#about">About</a>
         <a href="index.html#faq">FAQ</a>
-        <a class="nav-cta" href="mailto:dan@desklessconsulting.com?subject=Discovery%20Call">Book a Call</a>
+        <!-- Booking link is set from the single BOOKING_URL const in the footer script. -->
+        <a class="nav-cta" data-book href="mailto:dan@desklessconsulting.com?subject=Discovery%20Call">Book a Call</a>
       </nav>
     </div>
   </header>
@@ -277,28 +281,23 @@
 
     <!-- ====================== HERO ====================== -->
     <section class="hero sc-hero">
-      <div class="mountains" aria-hidden="true">
-        <svg viewBox="0 0 1440 320" preserveAspectRatio="none" class="mountains-svg">
-          <path class="range range-back" d="M0 320 L0 200 L220 70 L380 170 L560 60 L760 180 L960 70 L1180 190 L1320 110 L1440 180 L1440 320 Z"/>
-          <path class="range range-mid" d="M0 320 L0 240 L180 150 L340 230 L520 130 L700 240 L900 150 L1120 250 L1300 170 L1440 240 L1440 320 Z"/>
-          <path class="range range-front" d="M0 320 L0 270 L260 180 L430 280 L640 190 L860 290 L1080 200 L1280 290 L1440 230 L1440 320 Z"/>
-          <path class="snow" d="M236 198 L260 180 L284 198 L272 196 L260 189 L248 196 Z"/>
-          <path class="snow" d="M616 208 L640 190 L664 208 L652 206 L640 199 L628 206 Z"/>
-          <path class="snow" d="M1056 218 L1080 200 L1104 218 L1092 216 L1080 209 L1068 216 Z"/>
-        </svg>
-      </div>
-
       <div class="container hero-inner">
-        <p class="eyebrow">Free Self-Assessment · ~15 minutes</p>
-        <h1 class="hero-headline">Will AI actually pay off for your team?</h1>
-        <p class="hero-sub">
-          Score yourself — honestly — across the six things that actually predict whether
-          AI turns into recovered hours and real dollars. No email required to be useful.
-          It's the same lens we use on day one of a paid engagement.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#assessment">Start the self-check <span aria-hidden="true">&darr;</span></a>
-          <a class="btn btn-ghost" href="index.html#services">See the paid offer</a>
+        <div class="hero-text">
+          <p class="eyebrow">Free Self-Assessment · ~15 minutes</p>
+          <h1 class="hero-headline">Will AI actually pay off for your team?</h1>
+          <p class="hero-tagline">Systems that launch. Strategy that soars.</p>
+          <p class="hero-sub">
+            Score yourself — honestly — across the six things that actually predict whether
+            AI turns into recovered hours and real dollars. No email required to be useful.
+            It's the same lens we use on day one of a paid engagement.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#assessment">Start the self-check <span aria-hidden="true">&darr;</span></a>
+            <a class="btn btn-ghost" href="index.html#services">See the paid offer</a>
+          </div>
+        </div>
+        <div class="hero-graphic" aria-hidden="true">
+          <img src="assets/deskless-mark-hero.svg" alt="" width="340" height="287" />
         </div>
       </div>
     </section>
@@ -392,11 +391,6 @@
 
     <!-- ====================== BRIDGE TO PAID OFFER ====================== -->
     <section class="section cta-band">
-      <div class="mountains-mini" aria-hidden="true">
-        <svg viewBox="0 0 1440 160" preserveAspectRatio="none">
-          <path class="range range-front" d="M0 160 L0 120 L300 50 L520 130 L760 40 L1020 130 L1260 50 L1440 120 L1440 160 Z"/>
-        </svg>
-      </div>
       <div class="container narrow cta-inner">
         <h2>Want the same lens applied deeply to your business?</h2>
         <p>
@@ -419,8 +413,12 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <span class="brand-name">Deskless</span>
+        <span class="brand-brandline footer-brandline">
+          <span class="brand-mark"><img src="assets/deskless-mark-white.svg" alt="" width="26" height="22" /></span>
+          <span class="brand-name">Deskless</span>
+        </span>
         <p class="footer-tag">AI that works for the people doing the work.</p>
+        <p class="footer-parent"><strong>A BTF4E Company</strong> — Building the future for everyone.</p>
       </div>
       <div class="footer-contact">
         <p><a href="mailto:dan@desklessconsulting.com">dan@desklessconsulting.com</a></p>
@@ -433,6 +431,13 @@
   <script>
     // keep the copyright year current
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ONE booking URL for the whole site (see index.html footer script).
+    // TODO[PLACEHOLDER:BOOKING_LINK]: swap this mailto for the real booking URL.
+    const BOOKING_URL = "mailto:dan@desklessconsulting.com?subject=Discovery%20Call";
+    document.querySelectorAll('a[data-book]').forEach(function (a) {
+      a.setAttribute('href', BOOKING_URL);
+    });
 
     // ---------------------------------------------------------------------
     // Single source of truth: 6 dimensions x 3 questions.

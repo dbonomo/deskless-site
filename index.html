@@ -13,8 +13,15 @@
   <!-- TODO[PLACEHOLDER]: set canonical URL once live -->
   <meta property="og:url" content="https://desklessconsulting.com" />
 
-  <link rel="stylesheet" href="styles.css" />
+  <!-- Favicon: winged-desk mark -->
+  <link rel="icon" type="image/svg+xml" href="assets/deskless-mark-color.svg" />
+
+  <!-- Manrope (brand typeface) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
@@ -22,12 +29,8 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="#top" aria-label="Deskless Consulting home">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 40 28" width="34" height="24" role="img" aria-hidden="true" focusable="false">
-            <path d="M0 28 L13 6 L20 16 L27 2 L40 28 Z" fill="currentColor"/>
-            <path d="M11 9.4 L13 6 L15 9.4 L13.5 9.4 L13 8.6 L12.5 9.4 Z" fill="#fff" opacity="0.85"/>
-            <path d="M25 5 L27 2 L29 5 L27.7 5 L27 3.9 L26.3 5 Z" fill="#fff" opacity="0.85"/>
-          </svg>
+        <span class="brand-mark">
+          <img src="assets/deskless-mark-white.svg" alt="" width="30" height="26" />
         </span>
         <span class="brand-name">Deskless</span>
       </a>
@@ -35,8 +38,8 @@
         <a href="#services">Services</a>
         <a href="#about">About</a>
         <a href="#faq">FAQ</a>
-        <!-- TODO[PLACEHOLDER:BOOKING_LINK] swap mailto for a real booking URL (Calendly/Cal.com) -->
-        <a class="nav-cta" href="mailto:dan@desklessconsulting.com?subject=Discovery%20Call">Book a Call</a>
+        <!-- Booking link is set from the single BOOKING_URL const in the footer script. -->
+        <a class="nav-cta" data-book href="mailto:dan@desklessconsulting.com?subject=Discovery%20Call">Book a Call</a>
       </nav>
     </div>
   </header>
@@ -45,35 +48,25 @@
 
     <!-- ====================== HERO ====================== -->
     <section class="hero">
-      <div class="mountains" aria-hidden="true">
-        <svg viewBox="0 0 1440 320" preserveAspectRatio="none" class="mountains-svg">
-          <!-- back range -->
-          <path class="range range-back" d="M0 320 L0 200 L220 70 L380 170 L560 60 L760 180 L960 70 L1180 190 L1320 110 L1440 180 L1440 320 Z"/>
-          <!-- mid range -->
-          <path class="range range-mid" d="M0 320 L0 240 L180 150 L340 230 L520 130 L700 240 L900 150 L1120 250 L1300 170 L1440 240 L1440 320 Z"/>
-          <!-- front range with snow caps -->
-          <path class="range range-front" d="M0 320 L0 270 L260 180 L430 280 L640 190 L860 290 L1080 200 L1280 290 L1440 230 L1440 320 Z"/>
-          <!-- snow cap accents -->
-          <path class="snow" d="M236 198 L260 180 L284 198 L272 196 L260 189 L248 196 Z"/>
-          <path class="snow" d="M616 208 L640 190 L664 208 L652 206 L640 199 L628 206 Z"/>
-          <path class="snow" d="M1056 218 L1080 200 L1104 218 L1092 216 L1080 209 L1068 216 Z"/>
-        </svg>
-      </div>
-
       <div class="container hero-inner">
-        <p class="eyebrow">Deskless Consulting</p>
-        <h1 class="hero-headline">Your team is ready for AI. We make sure it works.</h1>
-        <p class="hero-sub">
-          Deskless Consulting helps organizations move from AI experiments to AI
-          infrastructure — built for the people doing the actual work, not just the
-          people watching the dashboards.
-        </p>
-        <div class="hero-actions">
-          <!-- TODO[PLACEHOLDER:BOOKING_LINK] replace mailto with a real booking link -->
-          <a class="btn btn-primary" href="mailto:dan@desklessconsulting.com?subject=Free%20Discovery%20Call">
-            Book a Free Discovery Call <span aria-hidden="true">&rarr;</span>
-          </a>
-          <a class="btn btn-ghost" href="scorecard.html">Free: 15-min AI readiness self-check</a>
+        <div class="hero-text">
+          <p class="eyebrow">Deskless Consulting</p>
+          <h1 class="hero-headline">Your team is ready for AI. We make sure it works.</h1>
+          <p class="hero-tagline">Systems that launch. Strategy that soars.</p>
+          <p class="hero-sub">
+            Deskless Consulting helps organizations move from AI experiments to AI
+            infrastructure — built for the people doing the actual work, not just the
+            people watching the dashboards.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" data-book href="mailto:dan@desklessconsulting.com?subject=Free%20Discovery%20Call">
+              Book a Free Discovery Call <span aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="btn btn-ghost" href="scorecard.html">Free: 15-min AI readiness self-check</a>
+          </div>
+        </div>
+        <div class="hero-graphic" aria-hidden="true">
+          <img src="assets/deskless-mark-hero.svg" alt="" width="340" height="287" />
         </div>
       </div>
     </section>
@@ -154,6 +147,19 @@
       </div>
     </section>
 
+    <!-- ====================== RESULTS / CASE STUDIES ====================== -->
+    <!-- Placeholder. Unhide (remove the `hidden` attribute) once the VendingVault
+         case study is written with real, approved numbers. Do NOT invent claims. -->
+    <section class="section results-section" id="results" hidden>
+      <div class="container narrow">
+        <h2 class="section-title centered">Results</h2>
+        <div class="case-placeholder">
+          <!-- TODO: VendingVault case study — problem, what we built, measured outcome. -->
+          Case studies coming soon.
+        </div>
+      </div>
+    </section>
+
     <!-- ====================== ABOUT ====================== -->
     <section class="section about" id="about">
       <div class="container narrow">
@@ -213,19 +219,13 @@
 
     <!-- ====================== FOOTER CTA ====================== -->
     <section class="section cta-band">
-      <div class="mountains-mini" aria-hidden="true">
-        <svg viewBox="0 0 1440 160" preserveAspectRatio="none">
-          <path class="range range-front" d="M0 160 L0 120 L300 50 L520 130 L760 40 L1020 130 L1260 50 L1440 120 L1440 160 Z"/>
-        </svg>
-      </div>
       <div class="container narrow cta-inner">
         <h2>Ready to close the implementation gap?</h2>
         <p>
           Book a free 30-minute discovery call. We'll tell you honestly whether we can
           help — and if not, we'll point you in the right direction.
         </p>
-        <!-- TODO[PLACEHOLDER:BOOKING_LINK] replace mailto with a real booking link -->
-        <a class="btn btn-primary" href="mailto:dan@desklessconsulting.com?subject=Schedule%20a%20Call">
+        <a class="btn btn-primary" data-book href="mailto:dan@desklessconsulting.com?subject=Schedule%20a%20Call">
           Schedule a Call <span aria-hidden="true">&rarr;</span>
         </a>
       </div>
@@ -237,8 +237,12 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <span class="brand-name">Deskless</span>
+        <span class="brand-brandline footer-brandline">
+          <span class="brand-mark"><img src="assets/deskless-mark-white.svg" alt="" width="26" height="22" /></span>
+          <span class="brand-name">Deskless</span>
+        </span>
         <p class="footer-tag">AI that works for the people doing the work.</p>
+        <p class="footer-parent"><strong>A BTF4E Company</strong> — Building the future for everyone.</p>
       </div>
       <div class="footer-contact">
         <p><a href="mailto:dan@desklessconsulting.com">dan@desklessconsulting.com</a></p>
@@ -252,6 +256,17 @@
   <script>
     // tiny, no-framework: keep the copyright year current
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ------------------------------------------------------------------
+    // ONE booking URL for the whole site. Every CTA tagged data-book
+    // reads from here, so swapping to Calendly/Cal.com is a one-line edit.
+    // TODO[PLACEHOLDER:BOOKING_LINK]: replace this mailto with the real
+    // booking URL once it exists (e.g. "https://cal.com/deskless/discovery").
+    // ------------------------------------------------------------------
+    const BOOKING_URL = "mailto:dan@desklessconsulting.com?subject=Discovery%20Call";
+    document.querySelectorAll('a[data-book]').forEach(function (a) {
+      a.setAttribute('href', BOOKING_URL);
+    });
   </script>
 </body>
 </html>
