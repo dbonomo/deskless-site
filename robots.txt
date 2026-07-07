@@ -1,0 +1,6 @@
+# PRE-LAUNCH: Deskless Consulting is not ready to be indexed yet.
+# When ready to go public, delete these two Disallow lines (or replace with a
+# normal allow) AND remove the <meta name="robots" content="noindex, nofollow">
+# tags from index.html and scorecard.html.
+User-agent: *
+Disallow: /
