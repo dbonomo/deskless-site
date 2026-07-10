@@ -204,7 +204,7 @@
   .close-line::before{content:"→";color:var(--cyan)}
 
   /* ---------- services / spec sheets ---------- */
-  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;margin-bottom:3rem}
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1.3rem;margin-bottom:3rem}
   @media(max-width:900px){.cards{grid-template-columns:1fr}}
   .card{
     position:relative;background:linear-gradient(180deg,rgba(10,20,40,.6),rgba(6,15,34,.75));
@@ -351,16 +351,15 @@
 
     <div class="container hero-inner">
       <p class="eyebrow">Deskless Consulting</p>
-      <h1 class="hero-headline">Your team is ready for <span class="hl">AI</span>. We make sure it works.</h1>
-      <p class="hero-tagline">Systems that launch. Strategy that soars.</p>
+      <h1 class="hero-headline">You shipped <span class="hl">AI</span>. Half of it works. I'll tell you which half — and fix it.</h1>
+      <p class="hero-tagline">AI that works for the people doing the work.</p>
       <p class="hero-sub">
-        Deskless Consulting helps organizations move from AI experiments to AI
-        infrastructure — built for the people doing the actual work, not just the
-        people watching the dashboards.
+        Deskless is a one-person AI consultancy for teams past the hype. I measure what
+        your AI actually does, build the tools you've been waiting on, and install the
+        capability so your team can run it without me.
       </p>
       <div class="hero-actions">
-        <a class="btn btn-primary" data-book href="mailto:dan@desklessconsulting.com?subject=Free%20Discovery%20Call">Book a Free Discovery Call <span aria-hidden="true">→</span></a>
-        <a class="btn btn-ghost" href="scorecard.html">◇ Free: 15-min AI readiness self-check</a>
+        <a class="btn btn-primary" data-book href="mailto:dan@desklessconsulting.com?subject=Book%20a%20Call">Book a call <span aria-hidden="true">→</span></a>
       </div>
       <dl class="hero-readout">
         <div><b>POSITIONING</b><span>AI that works for the people doing the work.</span></div>
@@ -399,47 +398,69 @@
       <h2 class="section-title centered" style="margin-bottom:2.6rem">Services</h2>
 
       <div class="cards">
+        <article class="card">
+          <i class="tick a"></i><i class="tick b"></i><i class="tick c"></i><i class="tick d"></i>
+          <p class="card-tag">Start here</p>
+          <p class="spec-id">SPEC-01 · REALITY CHECK</p>
+          <h3>AI Reality Check</h3>
+          <p class="card-price">One week — $3,500</p>
+          <p>
+            You already adopted AI. Now you can't tell what's working from what's just
+            running. In one week I instrument your AI systems, measure what they
+            actually do against what you're paying for, and hand you the three
+            highest-leverage fixes — ranked, with the math done. Not a diagnosis. A
+            short list of what to do Monday.
+          </p>
+          <a class="card-link" data-book href="mailto:dan@desklessconsulting.com?subject=AI%20Reality%20Check">Book a Reality Check <span aria-hidden="true">→</span></a>
+        </article>
+
         <article class="card card-featured">
           <i class="tick a"></i><i class="tick b"></i><i class="tick c"></i><i class="tick d"></i>
-          <p class="card-tag">Headline offer</p>
-          <p class="spec-id">SPEC-01 · ASSESS</p>
-          <h3>AI Readiness Assessment</h3>
-          <p class="card-price">2-week engagement — Starting at $3,500</p>
+          <p class="card-tag">Lead offer</p>
+          <p class="spec-id">SPEC-02 · WEEK BUILD</p>
+          <h3>The Week Build</h3>
+          <p class="card-price">Five days — $8,500–15,000</p>
           <p>
-            We audit your current workflows, data, and team structure. You get a
-            plain-English report: what AI can and can't help with, which tools are worth
-            evaluating, and a prioritized roadmap of where to start. No jargon, no
-            vendor upsell.
+            Tell me the tool you've wanted for two years. I'll ship it in five days.
+            There's an internal tool stuck in your backlog because it was never worth a
+            three-month engineering project. It's worth a week of mine. We scope it
+            Monday, I build it, and you watch it run on your data Friday — live,
+            working, yours to keep. Fixed price, so the risk of "not done Friday" is
+            mine, not yours.
           </p>
-          <a class="card-link" data-book href="mailto:dan@desklessconsulting.com?subject=AI%20Readiness%20Assessment">Start an assessment <span aria-hidden="true">→</span></a>
-          <p class="card-note">
-            Not sure you're ready?
-            <a href="scorecard.html">Take the free 15-min AI Readiness self-check →</a>
-          </p>
+          <a class="card-link" data-book href="mailto:dan@desklessconsulting.com?subject=The%20Week%20Build">See what got built in a week <span aria-hidden="true">→</span></a>
         </article>
 
         <article class="card">
           <i class="tick a"></i><i class="tick b"></i><i class="tick c"></i><i class="tick d"></i>
-          <p class="spec-id">SPEC-02 · BUILD</p>
-          <h3>Workflow Build &amp; Integration</h3>
-          <p class="card-price">4–8 week engagement — Starting at $8,500</p>
+          <p class="spec-id">SPEC-03 · FLEET INSTALL</p>
+          <h3>The Agent Fleet Install</h3>
+          <p class="card-price">Two weeks — $15,000–25,000</p>
           <p>
-            We design and implement one AI-powered workflow end-to-end. Prompt
-            engineering, integration with your existing tools, staff training,
-            documentation. Handed off running.
+            Install the operating system that lets your team ship like a bigger one. I
+            run AI agent fleets that do team-scale work solo — every day, in public. In
+            two weeks I install that capability inside your team: tuned setup for your
+            repos, coordination patterns, playbooks, quality gates, and hands-on
+            training on your real work, until you can run it without me. The
+            deliverable isn't a tool. It's a capability that stays after I leave.
           </p>
+          <a class="card-link" data-book href="mailto:dan@desklessconsulting.com?subject=The%20Agent%20Fleet%20Install">See the operating manual <span aria-hidden="true">→</span></a>
         </article>
 
         <article class="card">
           <i class="tick a"></i><i class="tick b"></i><i class="tick c"></i><i class="tick d"></i>
-          <p class="spec-id">SPEC-03 · TRAIN</p>
-          <h3>AI Training Workshops</h3>
-          <p class="card-price">Half-day or full-day — Starting at $2,500/session</p>
+          <p class="spec-id">SPEC-04 · SCOREBOARD</p>
+          <h3>The AI Scoreboard</h3>
+          <p class="card-price">Ongoing — from $2,500/mo</p>
           <p>
-            Practical, hands-on training for your team. Not "here's what ChatGPT is" —
-            specific to your industry, your tools, and your people's actual job
-            functions. Built for teams in the field, not just the office.
+            You shipped AI. Is it any good? I'll instrument it and tell you monthly.
+            Your vendor grades their own homework. I don't. The Scoreboard is a
+            standing, vendor-neutral read on your production AI — instrumented once,
+            scored every month, in language you can forward to a board. Is it getting
+            better or worse? Where's it drifting? What's it costing? A number you can
+            steer by, not a feeling.
           </p>
+          <a class="card-link" data-book href="mailto:dan@desklessconsulting.com?subject=The%20AI%20Scoreboard">Talk about a Scoreboard <span aria-hidden="true">→</span></a>
         </article>
       </div>
 
@@ -450,6 +471,10 @@
           people managing distributed or frontline workforces. You don't need a tech
           team. You need someone who will actually learn your workflows before
           suggesting how to change them.
+        </p>
+        <p style="margin-top:1rem">
+          <span class="mono" style="font-size:.85rem;color:var(--ink-mute)">Running Adobe Customer Journey Analytics and think your numbers have drifted? →</span>
+          <a class="card-link" style="display:inline-flex" data-book href="mailto:dan@desklessconsulting.com?subject=CJA%2FAEP%20Config%20Health%20%26%20Drift%20Audit">Ask about the CJA/AEP Config Health &amp; Drift Audit <span aria-hidden="true">→</span></a>
         </p>
       </div>
     </div>
@@ -522,8 +547,8 @@
         <p>We build things. The deliverable is a working AI workflow and a trained team, not a report.</p>
       </details>
       <details>
-        <summary><span class="q">Q4</span> What does the AI Readiness Assessment actually include? <span class="plus" aria-hidden="true">+</span></summary>
-        <p>Stakeholder interviews, workflow mapping, tool audit, risk review, and a prioritized roadmap. Delivered in 2 weeks. Costs $3,500. If we find there's nothing worth building, we tell you that and refund the unused portion.</p>
+        <summary><span class="q">Q4</span> What does The Week Build actually include? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>We scope the tool together on Monday, I build it through the week, and you watch it run on your real data live on Friday — working, yours to keep. Fixed price of $8,500–15,000 depending on scope. If it's not done Friday, that risk is mine, not yours.</p>
       </details>
       <details>
         <summary><span class="q">Q5</span> Can you work with our existing tools (Slack, HubSpot, Notion, etc.)? <span class="plus" aria-hidden="true">+</span></summary>
