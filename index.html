@@ -289,6 +289,33 @@
   .cta-inner .tick.a{top:10px;left:10px;border-right:0;border-bottom:0}
   .cta-inner .tick.d{bottom:10px;right:10px;border-left:0;border-top:0}
 
+  /* ---------- light "paper" sections ---------- */
+  /* White spec-sheets laid on the drawing board — breaks up the one-pager. */
+  .section-light{
+    background:var(--off);
+    color:var(--navy);
+    border-top:1px solid var(--gray);
+    border-bottom:1px solid var(--gray);
+  }
+  .section-light::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:
+      linear-gradient(rgba(47,107,255,.06) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(47,107,255,.06) 1px,transparent 1px);
+    background-size:24px 24px;
+  }
+  .section-light .sec-label{color:#64789c}
+  .section-light .sec-num{border-color:rgba(47,107,255,.35);background:#fff}
+  .section-light .lead{color:var(--navy)}
+  .section-light p{color:var(--slate)}
+  .section-light .close-line{color:var(--orange)!important}
+  .section-light strong{color:var(--navy)}
+  .section-light .about-frame{
+    background:#fff;border-color:rgba(47,107,255,.28);
+    box-shadow:0 16px 38px -22px rgba(8,24,51,.25);
+  }
+  .section-light .about-frame .coord{background:var(--off);color:#64789c}
+
   /* ---------- footer ---------- */
   .site-footer{border-top:1px solid var(--line);padding:3rem 0 2rem;background:rgba(5,15,34,.6)}
   .footer-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2rem}
@@ -370,7 +397,7 @@
   </section>
 
   <!-- ===================== 01 · PROBLEM ===================== -->
-  <section class="section problem">
+  <section class="section problem section-light">
     <div class="container narrow">
       <div class="sec-head">
         <span class="sec-num">01</span>
@@ -529,7 +556,7 @@
   </section>
 
   <!-- ===================== 03 · ABOUT ===================== -->
-  <section class="section about" id="about">
+  <section class="section about section-light" id="about">
     <div class="container narrow">
       <div class="sec-head">
         <span class="sec-num">03</span>
