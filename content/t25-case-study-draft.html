@@ -1,0 +1,69 @@
+<!--
+  T25 — Deskless case study draft (VendingVault)
+  DRAFT — do NOT paste into index.html or unhide #results until Dan has
+  approved every number/claim below against content/case-study-vendingvault.md.
+
+  This file mirrors, verbatim, the markup that is ALREADY sitting inside the
+  `hidden` #results section of ../index.html (lines ~486-528 as of 2026-08-01).
+  It is provided as an isolated, easy-to-review copy — editing this file does
+  NOT change the live site. Nothing here has been unhidden or pushed.
+
+  Source doc: content/case-study-vendingvault.md
+  Corroborated against: /media/dbonomo/ssd2/Development/VendingVault/
+    (ROADMAP.md, DEVLOG.md, PROJECT_SUMMARY.md)
+
+  Sign-off checklist for Dan:
+  [ ] "29 pages to 15 pages" — confirmed in VendingVault/ROADMAP.md line 33
+      ("Site reduced from 29 pages to 15 pages"). Matches source doc.
+  [ ] "Astro and Tailwind CSS" — matches source doc para 2.
+  [ ] "Decap CMS" — confirmed in VendingVault/DEVLOG.md, ROADMAP.md, PROJECT_SUMMARY.md.
+  [ ] "Hosting moved onto infrastructure the client controls" — matches source
+      doc ("moved off Netlify onto infrastructure the client controls").
+  [ ] Per-machine QR code feedback system — confirmed in VendingVault/ROADMAP.md
+      + DEVLOG.md (Feb 10 2026 entry). NOTE: those files also give a concrete
+      count — QR codes were generated "for all 9 machines" — but that number
+      is NOT in case-study-vendingvault.md, so it was deliberately left OUT
+      of the copy below. Dan: add "across all 9 machines" only if you want to
+      hand-approve pulling a number from the project folder rather than the
+      case-study source doc.
+  [ ] Testimonial — source doc has [TESTIMONIAL PLACEHOLDER — get quote from
+      client]. Left as an HTML comment below (renders as nothing), NOT as
+      placeholder text, so nothing fake displays. Needs a real quote from Mark
+      before this can go live, or the <p class="emphasis"> line should be
+      deleted entirely.
+  [ ] Follow-on ops audit line — matches source doc ("Dan and Vending Vault
+      have since scoped a follow-on operations audit... possible next phase").
+-->
+
+<div class="about-frame">
+  <span class="coord" aria-hidden="true">REF · CASE-01</span>
+  <p>
+    <strong>Vending Vault</strong> — full-service vending machine provider,
+    Northern Colorado.
+  </p>
+  <p>
+    <strong>Challenge:</strong> Vending Vault's pitch — free installation,
+    weekly service, no contracts — is a real differentiator, but the old
+    stock WordPress site didn't reflect it and was slow for the owner to
+    update. Customers standing at a jammed machine had no fast way to
+    report it.
+  </p>
+  <p>
+    <strong>Approach:</strong> Dan rebuilt the site on Astro and Tailwind
+    with Decap CMS, so the owner edits photos and copy himself — no
+    developer needed. SEO work targeted the specific cities and
+    industries Vending Vault serves; the site was trimmed from 29 pages
+    to 15, cutting low-value SEO surface area. Hosting moved onto
+    infrastructure the client controls. Dan also added a per-machine QR
+    code so a customer can report an issue or request a product in under
+    a minute, routed straight to the owner's inbox.
+  </p>
+  <p>
+    <strong>Outcome:</strong> A fast, mobile-friendly site the owner runs
+    himself, leaner than the original build, plus a direct
+    machine-to-owner feedback loop none of Vending Vault's local
+    competitors offer. A follow-on operations audit (route planning,
+    restocking) is a possible next phase.
+  </p>
+  <p class="emphasis"><!-- TESTIMONIAL PLACEHOLDER — get quote from client. Do not invent. --></p>
+</div>

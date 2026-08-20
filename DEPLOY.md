@@ -24,6 +24,36 @@ Quick find:
 grep -rn "PLACEHOLDER" .
 ```
 
+### Getting the BOOKING_LINK (Cal.com free tier) — needs Dan, ~2 minutes
+
+Cal.com's free tier doesn't need a card or phone number, but it does need an account
+under Dan's identity (email/password or Google OAuth) — creating a new third-party
+account in Dan's name isn't something an agent should do unattended, so this step is
+staged for Dan to click through himself:
+
+1. Go to https://cal.com/signup and sign up (Google OAuth is fastest, or email/password).
+2. Pick a username, e.g. `deskless` or `dbonomo` — this becomes part of your booking URL
+   (`https://cal.com/<username>/<event-type>`).
+3. Create one event type, e.g. "Discovery Call" — 30 min, free plan default settings are
+   fine to start.
+4. Copy the event's public booking link, e.g. `https://cal.com/deskless/discovery-call`.
+5. Open `index.html`, find the line near the bottom (search for `BOOKING_URL`):
+   ```js
+   const BOOKING_URL = "mailto:dan@desklessconsulting.com?subject=Discovery%20Call";
+   ```
+   Replace the mailto string with your real Cal.com URL, e.g.:
+   ```js
+   const BOOKING_URL = "https://cal.com/deskless/discovery-call";
+   ```
+   This is the only line that needs to change — every CTA on the site (`nav`, hero,
+   offer cards, footer band) reads from this one constant via `[data-book]`.
+6. Commit and push to `deploy-origin` (GitHub Pages redeploys automatically):
+   ```bash
+   git add index.html
+   git commit -m "Swap mailto CTA for Cal.com booking link"
+   git push deploy-origin main
+   ```
+
 ---
 
 ## Option A — GitHub Pages (free)
