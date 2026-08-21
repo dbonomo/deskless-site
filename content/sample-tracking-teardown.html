@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sample report — Tracking Teardown · Deskless</title>
+<meta name="description" content="Anonymized sample of a Deskless Tracking Teardown report: findings ranked by ad-spend impact, with a specific fix for each." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/svg+xml" href="../assets/deskless-badge.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" />
+<style>
+  :root{
+    --navy:#081833;--slate:#2F3C52;--blue:#2F6BFF;--cyan:#1786D4;--orange:#FF7A1A;
+    --off:#F5F7FA;--gray:#E6E8EC;--line:rgba(47,107,255,.22);
+    --mono:'JetBrains Mono',ui-monospace,monospace;--sans:'Manrope',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:var(--off);color:var(--navy);line-height:1.55;-webkit-font-smoothing:antialiased;
+    background-image:linear-gradient(rgba(47,107,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(47,107,255,.06) 1px,transparent 1px);background-size:24px 24px}
+  a{color:var(--blue)}
+  .wrap{width:min(920px,94vw);margin:2rem auto 4rem}
+  .sheet{background:#fff;border:1px solid var(--line);border-radius:4px;padding:clamp(1.2rem,3.5vw,2.4rem);box-shadow:0 16px 38px -22px rgba(8,24,51,.25);position:relative}
+  .sheet .coord{position:absolute;top:-.6rem;left:1.4rem;background:var(--off);padding:0 .6rem;font-family:var(--mono);font-size:.68rem;color:#64789c;letter-spacing:.14em}
+  .top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem 1.5rem;align-items:baseline;margin-bottom:1rem}
+  .brand{font-weight:800;letter-spacing:.14em;font-size:.95rem}
+  .brand .lo{color:var(--blue)}
+  .stamp{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:#64789c;text-transform:uppercase}
+  h1{font-size:clamp(1.5rem,4vw,2.1rem);font-weight:800;letter-spacing:-.02em;line-height:1.15;margin:.4rem 0 .6rem}
+  .sub{color:var(--slate);font-size:.98rem;margin-bottom:1.4rem}
+  .summary{border-left:3px solid var(--orange);padding:.6rem 1rem;background:rgba(255,122,26,.06);margin-bottom:1.6rem}
+  .summary p{font-size:.98rem;margin:.2rem 0}
+  .summary b{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:.3rem}
+  h2{font-size:1.05rem;font-weight:800;letter-spacing:.02em;margin:1.8rem 0 .7rem;font-family:var(--mono);text-transform:uppercase;font-size:.78rem;color:var(--cyan);letter-spacing:.18em}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{border-collapse:collapse;width:100%;min-width:640px;font-size:.9rem}
+  th,td{text-align:left;vertical-align:top;padding:.6rem .65rem;border-top:1px solid var(--gray)}
+  th{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#64789c;border-top:0;font-weight:500}
+  td:first-child{font-family:var(--mono);color:#64789c;font-size:.78rem;white-space:nowrap}
+  .sev{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;padding:.15rem .45rem;border-radius:2px;white-space:nowrap;font-weight:700}
+  .s1{background:#FF7A1A;color:#fff}.s2{background:rgba(255,122,26,.18);color:#b04d00}.s3{background:rgba(23,134,212,.14);color:#0e5f99}.s4{background:var(--gray);color:var(--slate)}
+  code{font-family:var(--mono);font-size:.82em;background:rgba(47,107,255,.08);padding:.05rem .3rem;border-radius:2px}
+  ul{padding-left:1.2rem;color:var(--slate);font-size:.95rem}
+  li{margin-bottom:.35rem}
+  p.note{color:var(--slate);font-size:.9rem;margin:.6rem 0}
+  .foot{margin-top:2rem;padding-top:1rem;border-top:1px dashed var(--line);font-family:var(--mono);font-size:.72rem;color:#64789c;letter-spacing:.05em;display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;justify-content:space-between}
+  .back{display:inline-block;margin-bottom:1rem;font-family:var(--mono);font-size:.8rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../#offers">← desklessconsulting.com</a>
+  <div class="sheet">
+    <span class="coord" aria-hidden="true">REF · SAMPLE · SPEC-01</span>
+    <div class="top">
+      <span class="brand">DESK<span class="lo">LESS</span> · TRACKING TEARDOWN</span>
+      <span class="stamp">Sample report · anonymized · REV.2026.08</span>
+    </div>
+    <h1>Conversion-tracking teardown: three domains, two ad platforms, one CRM</h1>
+    <p class="sub">
+      What a client receives. This sample merges findings from two real pre-sale teardowns
+      (a tutoring company and a regional transportation business); names, domains and IDs
+      removed. Scope: main site, a booking page, an SEO blog subdomain, and a customer portal
+      on a separate top-level domain. Done from the public sites only — no account access.
+    </p>
+
+    <div class="summary">
+      <b>Summary</b>
+      <p>1 · The blog is invisible to GA4 and Google Ads: a consent plugin defaults <code>analytics_storage</code> to <code>denied</code> on a US site with no consent banner, so no visitor can ever opt in.</p>
+      <p>2 · Meta has no conversion signal at all: the pixel fires on the homepage and never loads on the booking page, so every Meta-sourced lead is untracked.</p>
+      <p>3 · Cross-domain sessions break at the portal: no GA4 linker, the portal hostname is missing from the tag-manager lookup table, and three GA4 properties split the funnel — conversions land as Direct in a property that never saw the ad click.</p>
+    </div>
+
+    <h2>Findings · ranked by ad-spend affected</h2>
+    <div class="scroll">
+    <table>
+      <thead><tr><th>#</th><th>Finding</th><th>Severity</th><th>What it breaks</th><th>Fix</th></tr></thead>
+      <tbody>
+        <tr><td>01</td><td>Meta Pixel does not load on the booking page (fires PageView on the homepage only).</td><td><span class="sev s1">Critical</span></td><td>Zero Lead events to Meta. Meta ads optimize blind; no conversion reporting for that spend.</td><td>Deploy the pixel via tag manager on every domain; fire <code>Lead</code> on booking-form submit; dedupe against CAPI once the CRM integration is on.</td></tr>
+        <tr><td>02</td><td>Consent Mode v2 defaults all storage to <code>denied</code> on the blog subdomain, with no banner to grant consent.</td><td><span class="sev s1">Critical</span></td><td>Every blog visitor is dark in GA4 and Google Ads. All blog-assisted attribution is lost; modeled conversions have no signal.</td><td>Reconfigure the consent plugin's defaults for US traffic (or remove it); verify <code>analytics_storage: granted</code> in the network request.</td></tr>
+        <tr><td>03</td><td>No GA4 cross-domain linker in either tag-manager container; bare <code>gtag('config')</code> calls on the direct-install site.</td><td><span class="sev s1">Critical</span></td><td>Every hop to the portal's separate TLD starts a new session. Portal conversions record as Direct; paid attribution is lost at the step that matters.</td><td>Configure the linker with all hostnames in both containers and in the GA4 data-stream settings; verify <code>_gl=</code> on cross-domain links and a matching <code>_ga</code> cookie after landing.</td></tr>
+        <tr><td>04</td><td>Portal hostname missing from the GA4 measurement-ID lookup table; falls through to the global fallback property.</td><td><span class="sev s2">High</span></td><td>Portal conversions land in a different property than the sessions that drove them. No property holds the full journey.</td><td>Add the portal hostname to the lookup table; decide consolidate-vs-separate for the three properties before touching the linker.</td></tr>
+        <tr><td>05</td><td>Three GA4 measurement IDs across the funnel; two fire simultaneously on the marketing and product sites.</td><td><span class="sev s2">High</span></td><td>Duplicate <code>_ga_*</code> cookies; session stitching is unpredictable; reporting is split three ways.</td><td>Consolidate to the one property already present on every domain; retire or restructure the other two as data streams.</td></tr>
+        <tr><td>06</td><td>Booking form captures UTMs as hidden fields but not <code>gclid</code> / <code>fbclid</code>.</td><td><span class="sev s2">High</span></td><td>Click IDs never reach CRM contact records. CRM attribution is UTM-only and breaks on any direct load or cross-domain path.</td><td>Add <code>gclid</code>, <code>fbclid</code> and <code>_ga</code> hidden fields populated from URL/cookie on page load; map them to CRM properties.</td></tr>
+        <tr><td>07</td><td>A custom inline script decorates portal links with UTMs and click IDs but not <code>_gl</code>.</td><td><span class="sev s3">Medium</span></td><td>Looks like cross-domain tracking works (CRM sees the gclid) while GA4 sessions stay broken. Masks finding 03.</td><td>Keep it for the CRM; stop relying on it for GA4. Retire once the linker is verified.</td></tr>
+        <tr><td>08</td><td>Four Meta pixel IDs configured in the main container, two in the product container; routing logic opaque.</td><td><span class="sev s3">Medium</span></td><td>Possible simultaneous fires and cookie/event competition; Meta deduplication working harder than it should.</td><td>Confirm the primary pixel with the client; route by hostname or remove the extras.</td></tr>
+        <tr><td>09</td><td>Two GA4 properties fire on every blog pageview (direct gtag + a WordPress analytics plugin).</td><td><span class="sev s3">Medium</span></td><td>Blog traffic split across two properties; neither is complete.</td><td>Remove the plugin's property; keep the direct install through tag manager.</td></tr>
+        <tr><td>10</td><td>CRM tracking script loads on the main domain only.</td><td><span class="sev s3">Medium</span></td><td>Blog → main-site visitors lose CRM session context; blog UTMs never reach contact records.</td><td>Load the CRM script on every domain via tag manager.</td></tr>
+        <tr><td>11</td><td>Legacy Universal Analytics tag still referenced in both containers.</td><td><span class="sev s4">Low</span></td><td>Hits to a dead endpoint or dead weight; either way, noise during debugging.</td><td>Remove.</td></tr>
+        <tr><td>12</td><td>Older blog subdomain has no tracking at all; a staging hostname is referenced in production scripts.</td><td><span class="sev s4">Low</span></td><td>Minor untracked traffic; risk of a staging property bleeding into production data.</td><td>Tag or redirect the old blog; confirm no staging IDs live in the production container.</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h2>What the client thought was wrong vs. what was</h2>
+    <ul>
+      <li>Known to client: the missing cross-domain linker (03) and lost gclids (06). <strong>Real, but not the biggest.</strong></li>
+      <li>Unknown to client: the silent consent-mode default (02), the pixel missing on the booking page (01), the lookup-table gap (04), the duplicate property (09). <strong>Two of these affect more spend than the one they asked about.</strong></li>
+    </ul>
+
+    <h2>Fix order · what I'd do first</h2>
+    <ul>
+      <li><strong>Day 1:</strong> consent defaults on the blog (02) and pixel on the booking page (01). Two config changes; both restore signal immediately.</li>
+      <li><strong>Day 2:</strong> one property decision, then linker + lookup table together (03, 04, 05). Fixing the linker alone does not fix attribution.</li>
+      <li><strong>Day 3–4:</strong> click-ID hidden fields (06), CRM script everywhere (10), pixel rationalization (08), cleanup (07, 09, 11, 12).</li>
+      <li><strong>Day 5:</strong> end-to-end verification — Google ad click → landing → booking → GA4 conversion + Ads conversion + Meta Lead + CRM contact with correct source. Same for a Meta click. Documented, with every tag and container ID.</li>
+    </ul>
+    <p class="note">Who does the fix: your team, with this list — or me, in a five-day Fix Sprint at a fixed price. I don't require either.</p>
+
+    <h2>Method</h2>
+    <p class="note">Public-site inspection of the live tag-manager container scripts, direct gtag installs, consent calls, form markup, and outbound-link decoration. No account access was needed for any finding above. Read-only ad-account access is only used when the client wants spend figures attached to each row.</p>
+
+    <div class="foot">
+      <span>DESKLESS · TRACKING TEARDOWN · $1,500 FIXED · 3–5 BUSINESS DAYS</span>
+      <span>dan@desklessconsulting.com</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

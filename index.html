@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Deskless Consulting — AI that works for the people doing the work</title>
-<meta name="description" content="Deskless Consulting helps organizations move from AI experiments to AI infrastructure — built for the people doing the actual work. Book a free discovery call." />
+<title>Deskless — Analytics-plumbing teardowns and fixes. Fixed price, written findings.</title>
+<meta name="description" content="Your numbers are wrong somewhere. Deskless does analytics-plumbing teardowns and fixes — Adobe CJA/AEP migrations and GA4/GTM ad-tracking — at fixed prices with written findings. No retainers." />
 
 <!-- PRE-LAUNCH: keep this site out of search until we're ready. Remove both this
      meta tag and /robots.txt's Disallow when we want to be indexed. -->
@@ -12,7 +12,7 @@
 
 <!-- Open Graph / social preview -->
 <meta property="og:title" content="Deskless Consulting" />
-<meta property="og:description" content="AI that works for the people doing the work. We close the gap between AI hype and AI reality." />
+<meta property="og:description" content="Your numbers are wrong somewhere. I find where, then fix it. Analytics-plumbing teardowns and fixes — fixed prices, written findings, no retainers." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://desklessconsulting.com" />
 
@@ -163,7 +163,7 @@
     font-weight:500;letter-spacing:.02em;margin-bottom:1.3rem;
     padding-left:1rem;border-left:2px solid var(--orange);
   }
-  .hero-sub{color:var(--ink-dim);font-size:1.05rem;max-width:34rem;margin-bottom:2rem}
+  .hero-sub{color:var(--ink-dim);font-size:1.05rem;max-width:36rem;margin-bottom:2rem}
   .hero-actions{display:flex;flex-wrap:wrap;gap:1rem}
   .btn{
     display:inline-flex;align-items:center;gap:.55rem;font-weight:700;
@@ -329,6 +329,42 @@
   .footer-contact .muted{color:var(--ink-mute)}
   @media(max-width:640px){.footer-contact{text-align:left}}
   .copyright{font-family:var(--mono);font-size:.72rem;color:var(--ink-mute);margin-top:2.4rem;letter-spacing:.06em;border-top:1px dashed var(--line-soft);padding-top:1.4rem}
+
+  /* ---------- v3 additions: how-it-works strip, 3-up offers, proof tiles, partner strip ---------- */
+  .how{border-top:1px solid var(--line-soft);padding:1.4rem 0}
+  .how-row{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1.2rem;font-family:var(--mono);font-size:.8rem;color:var(--ink-dim)}
+  .how-row b{color:var(--off);font-weight:700}
+  .how-row .arrow{color:var(--orange)}
+  .how-row .or{flex-basis:100%;font-size:.76rem;color:var(--ink-mute);font-style:italic}
+  @media(min-width:900px){.how-row .or{flex-basis:auto;margin-left:auto}}
+  .cards.three{grid-template-columns:repeat(3,1fr);margin-bottom:1.6rem}
+  @media(max-width:1000px){.cards.three{grid-template-columns:1fr}}
+  .card-for{font-family:var(--mono);font-size:.76rem!important;color:var(--cyan)!important;letter-spacing:.02em}
+  .card-fine{font-family:var(--mono);font-size:.7rem!important;color:var(--ink-mute)!important;line-height:1.6;border-top:1px dashed var(--line);padding-top:.8rem;margin-top:auto;margin-bottom:.9rem!important}
+  .card-actions{display:flex;flex-wrap:wrap;gap:.5rem 1.2rem}
+  .card-actions .card-link{margin-top:0}
+  .also{font-family:var(--mono);font-size:.8rem;color:var(--ink-mute);border-left:2px solid var(--line);padding-left:1rem;max-width:56rem}
+  .also b{color:var(--ink-dim);font-weight:500}
+  .tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem;margin-bottom:1.6rem}
+  @media(max-width:760px){.tiles{grid-template-columns:1fr}}
+  .tile{background:#fff;border:1px solid rgba(47,107,255,.28);border-radius:4px;padding:1.3rem 1.3rem 1.1rem;position:relative;display:flex;flex-direction:column;box-shadow:0 16px 38px -22px rgba(8,24,51,.25)}
+  .tile-id{font-family:var(--mono);font-size:.66rem;color:#64789c;letter-spacing:.14em;margin-bottom:.5rem}
+  .tile-num{font-family:var(--mono);font-size:clamp(1.25rem,2.6vw,1.6rem);font-weight:700;color:var(--orange);letter-spacing:-.01em;line-height:1.2;margin-bottom:.5rem}
+  .tile p{font-size:.92rem;margin-bottom:.8rem}
+  .tile .card-link{margin-top:auto}
+  .ballast{font-family:var(--mono);font-size:.78rem;color:#64789c;display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;margin-bottom:.7rem}
+  .ballast span::before{content:"▪ ";color:var(--orange)}
+  .case-line{font-size:.92rem;color:var(--slate)}
+  .case-line a{color:var(--blue);font-family:var(--mono);font-size:.82rem}
+  .partners{background:var(--navy-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .partner-frame{border:1px solid var(--line);border-radius:4px;padding:clamp(1.4rem,3.5vw,2.2rem);background:rgba(10,20,40,.5);position:relative}
+  .partner-frame .coord{position:absolute;top:-.6rem;left:1.4rem;background:var(--navy-deep);padding:0 .6rem;font-family:var(--mono);font-size:.68rem;color:var(--ink-mute);letter-spacing:.14em}
+  .partner-frame h2{font-size:clamp(1.3rem,2.6vw,1.7rem);font-weight:800;letter-spacing:-.01em;line-height:1.2;margin-bottom:.8rem}
+  .partner-frame p{color:var(--ink-dim);font-size:.98rem;margin-bottom:.9rem}
+  .partner-frame strong{color:var(--off)}
+  .partner-terms{font-family:var(--mono);font-size:.8rem;color:var(--cyan);border:1px dashed rgba(23,134,212,.4);background:rgba(23,134,212,.08);border-radius:3px;padding:.5rem .7rem;display:inline-block;margin-bottom:1rem}
+  .hero-secondary{font-family:var(--mono);font-size:.82rem;color:var(--ink-dim);align-self:center;text-decoration:underline;text-underline-offset:3px}
+  .hero-secondary:hover{color:var(--off)}
 </style>
 </head>
 <body id="top">
@@ -348,10 +384,12 @@
       <span class="brand-name">DESK<span class="lo">LESS</span></span>
     </a>
     <nav class="site-nav" aria-label="Primary">
-      <a href="#services">Services</a>
+      <a href="#offers">Offers</a>
+      <a href="#proof">Proof</a>
+      <a href="#partners">For Adobe partners</a>
       <a href="#about">About</a>
       <a href="#faq">FAQ</a>
-      <a class="nav-cta" data-book href="mailto:dan@desklessconsulting.com?subject=Discovery%20Call">Book a Call</a>
+      <a class="nav-cta" data-book href="mailto:dan@desklessconsulting.com?subject=Discovery%20Call">Book a call</a>
     </nav>
   </div>
 </header>
@@ -378,242 +416,254 @@
 
     <div class="container hero-inner">
       <p class="eyebrow">Deskless Consulting</p>
-      <h1 class="hero-headline">You shipped <span class="hl">AI</span>! Half of it works. The other half&hellip; let&rsquo;s talk.</h1>
-      <p class="hero-tagline">AI that works for the people doing the work.</p>
+      <h1 class="hero-headline">Your numbers are wrong <span class="hl">somewhere</span>. I find where, then fix it.</h1>
       <p class="hero-sub">
-        Deskless is a one-person AI consultancy for teams past the hype. I measure what
-        your AI actually does, build the tools you've been waiting on, and install the
-        capability so your team can run it without me.
+        Deskless does analytics-plumbing teardowns and fixes — Adobe CJA/AEP migrations and
+        GA4/GTM ad-tracking — for teams whose spend and decisions ride on numbers nobody has
+        audited. Fixed prices. Written findings. No retainers.
       </p>
       <div class="hero-actions">
         <a class="btn btn-primary" data-book href="mailto:dan@desklessconsulting.com?subject=Book%20a%20Call">Book a call <span aria-hidden="true">→</span></a>
+        <a class="hero-secondary" href="#proof">See a sample report ↓</a>
       </div>
       <dl class="hero-readout">
-        <div><b>POSITIONING</b><span>AI that works for the people doing the work.</span></div>
-        <div><b>REV.</b><span>2026.07</span></div>
-        <div><b>SCALE</b><span>1 : 1 build</span></div>
+        <div><b>REV.</b><span>2026.08</span></div>
+        <div><b>PRICE</b><span>FIXED PRICE</span></div>
+        <div><b>TERMS</b><span>NO RETAINER</span></div>
       </dl>
     </div>
   </section>
 
-  <!-- ===================== 01 · PROBLEM ===================== -->
-  <section class="section problem section-light">
-    <div class="container narrow">
-      <div class="sec-head">
-        <span class="sec-num">01</span>
-        <span class="sec-label">The implementation gap</span>
-      </div>
-      <h2 class="section-title" style="margin-bottom:1.4rem">The implementation gap</h2>
-      <p class="lead">Most companies have tried AI. A lot of those experiments are still sitting in a Notion doc.</p>
-      <p>
-        The gap between "this ChatGPT demo was impressive" and "this AI workflow saves
-        our field team 12 hours a week" is a real gap — and it's not a technology gap.
-        It's an implementation gap. And it's even wider when your workforce isn't
-        sitting at a desk.
-      </p>
-      <p class="close-line">We close it.</p>
+  <!-- ===================== HOW IT WORKS (strip) ===================== -->
+  <section class="how" aria-label="How it works">
+    <div class="container how-row">
+      <span><b>Teardown</b> (3–5 days, fixed)</span>
+      <span class="arrow" aria-hidden="true">→</span>
+      <span><b>Readout</b> (45 min, ranked fix list)</span>
+      <span class="arrow" aria-hidden="true">→</span>
+      <span><b>Fix Sprint</b> (5 days, fixed)</span>
+      <span class="or">— or your team takes the list and fixes it themselves. Either is fine.</span>
     </div>
   </section>
 
-  <!-- ===================== 02 · SERVICES ===================== -->
-  <section class="section services" id="services">
+  <!-- ===================== 01 · OFFERS ===================== -->
+  <section class="section offers" id="offers">
     <div class="container">
       <div class="sec-head" style="justify-content:center">
-        <span class="sec-num">02</span>
-        <span class="sec-label">Service specifications</span>
+        <span class="sec-num">01</span>
+        <span class="sec-label">Offer specifications</span>
       </div>
-      <h2 class="section-title centered" style="margin-bottom:2.6rem">Services</h2>
+      <h2 class="section-title centered" style="margin-bottom:2.6rem">Offers</h2>
 
-      <div class="cards">
-        <article class="card">
-          <i class="tick a"></i><i class="tick b"></i><i class="tick c"></i><i class="tick d"></i>
-          <p class="card-tag">Start here</p>
-          <p class="spec-id">SPEC-01 · REALITY CHECK</p>
-          <h3>AI Reality Check</h3>
-          <p class="card-price">One week — $3,500</p>
-          <p>
-            You already adopted AI. Now you can't tell what's working from what's just
-            running. In one week I instrument your AI systems, measure what they
-            actually do against what you're paying for, and hand you the three
-            highest-leverage fixes — ranked, with the math done. Not a diagnosis. A
-            short list of what to do Monday.
-          </p>
-          <a class="card-link" data-book href="mailto:dan@desklessconsulting.com?subject=AI%20Reality%20Check">Book a Reality Check <span aria-hidden="true">→</span></a>
-        </article>
-
+      <div class="cards three">
         <article class="card card-featured">
           <i class="tick a"></i><i class="tick b"></i><i class="tick c"></i><i class="tick d"></i>
-          <p class="card-tag">Lead offer</p>
-          <p class="spec-id">SPEC-02 · WEEK BUILD</p>
-          <h3>The Week Build</h3>
-          <p class="card-price">Five days — $8,500–15,000</p>
+          <p class="card-tag">Start here</p>
+          <p class="spec-id">SPEC-01 · TRACKING TEARDOWN</p>
+          <h3>Tracking Teardown</h3>
+          <p class="card-price">$1,500, fixed · 3–5 business days</p>
+          <p class="card-for">For businesses spending real money on Google/Meta ads, and the agencies that run them.</p>
           <p>
-            Tell me the tool you've wanted for two years. I'll ship it in five days.
-            There's an internal tool stuck in your backlog because it was never worth a
-            three-month engineering project. It's worth a week of mine. We scope it
-            Monday, I build it, and you watch it run on your data Friday — live,
-            working, yours to keep. Fixed price, so the risk of "not done Friday" is
-            mine, not yours.
+            I audit your conversion tracking — GA4, tag manager, pixels, consent settings — across
+            up to three domains, from your public site and (if you want spend figures) read-only
+            ad-account access. You get a written report of what's broken, ranked by how much ad
+            spend it affects, a specific fix for each item, and a 45-minute readout.
+            <em>Who does the fix:</em> you, with the list — or me, in a Fix Sprint.
           </p>
-          <a class="card-link" data-book href="mailto:dan@desklessconsulting.com?subject=The%20Week%20Build">See what got built in a week <span aria-hidden="true">→</span></a>
+          <p class="card-fine">no retainer · no ongoing account access · no percentage of spend · I delete anything you send me when the report is delivered.</p>
+          <div class="card-actions">
+            <a class="card-link" href="content/sample-tracking-teardown.html">Sample report <span aria-hidden="true">→</span></a>
+            <a class="card-link" data-book href="mailto:dan@desklessconsulting.com?subject=Tracking%20Teardown">Book a call <span aria-hidden="true">→</span></a>
+          </div>
         </article>
 
         <article class="card">
           <i class="tick a"></i><i class="tick b"></i><i class="tick c"></i><i class="tick d"></i>
-          <p class="spec-id">SPEC-03 · FLEET INSTALL</p>
-          <h3>The Agent Fleet Install</h3>
-          <p class="card-price">Two weeks — $15,000–25,000</p>
+          <p class="spec-id">SPEC-02 · CJA / AEP CONFIG HEALTH &amp; DRIFT AUDIT</p>
+          <h3>CJA / AEP Config Health &amp; Drift Audit</h3>
+          <p class="card-price">$1,500 Lite (async) · $3,500 Full</p>
+          <p class="card-for">For teams on Adobe Customer Journey Analytics / Experience Platform mid-migration or suspicious of their numbers.</p>
           <p>
-            Install the operating system that lets your team ship like a bigger one. I
-            run AI agent fleets that do team-scale work solo — every day, in public. In
-            two weeks I install that capability inside your team: tuned setup for your
-            repos, coordination patterns, playbooks, quality gates, and hands-on
-            training on your real work, until you can run it without me. The
-            deliverable isn't a tool. It's a capability that stays after I leave.
+            <strong>Lite:</strong> you export config snapshots (schemas, datasets, data views,
+            identity) with the instructions I send; I run an automated health pass and return a
+            ranked written report of what's inconsistent, drifted, or silently broken — no
+            production access, no call required.
           </p>
-          <a class="card-link" data-book href="mailto:dan@desklessconsulting.com?subject=The%20Agent%20Fleet%20Install">See the operating manual <span aria-hidden="true">→</span></a>
+          <p>
+            <strong>Full (~2 weeks):</strong> Lite, plus a review of your AA→CJA mapping, a parity
+            check of sample reports between old and new, a prioritized fix list, and a 60-minute
+            readout with your team.
+          </p>
+          <p class="card-fine">read-only or exported snapshots only · NDA on request · snapshots deleted on delivery.</p>
+          <div class="card-actions">
+            <a class="card-link" href="https://dbonomo.github.io/aep-audit-demo/">Sample report <span aria-hidden="true">→</span></a>
+            <a class="card-link" data-book href="mailto:dan@desklessconsulting.com?subject=CJA%2FAEP%20Config%20Health%20%26%20Drift%20Audit">Book a call <span aria-hidden="true">→</span></a>
+          </div>
         </article>
 
         <article class="card">
           <i class="tick a"></i><i class="tick b"></i><i class="tick c"></i><i class="tick d"></i>
-          <p class="spec-id">SPEC-04 · SCOREBOARD</p>
-          <h3>The AI Scoreboard</h3>
-          <p class="card-price">Ongoing — from $2,500/mo</p>
+          <p class="spec-id">SPEC-03 · FIX SPRINT</p>
+          <h3>Fix Sprint</h3>
+          <p class="card-price">$3,500, fixed · five working days</p>
           <p>
-            You shipped AI. Is it any good? I'll instrument it and tell you monthly.
-            Your vendor grades their own homework. I don't. The Scoreboard is a
-            standing, vendor-neutral read on your production AI — instrumented once,
-            scored every month, in language you can forward to a board. Is it getting
-            better or worse? Where's it drifting? What's it costing? A number you can
-            steer by, not a feeling.
+            One specific repair or automation, scoped in writing on day one, working by day five:
+            repairing a broken tracking setup end to end, or one internal automation (an intake
+            that files itself, a weekly report that assembles itself, a feed between two systems
+            you already use). Documentation and two weeks of support included.
           </p>
-          <a class="card-link" data-book href="mailto:dan@desklessconsulting.com?subject=The%20AI%20Scoreboard">Talk about a Scoreboard <span aria-hidden="true">→</span></a>
+          <p><strong>If day-one scoping shows it's bigger than five days, I tell you then and you can stop — no charge.</strong></p>
+          <p>
+            Larger builds (a tool with a UI, multiple systems) are quoted as a fixed price,
+            typically $7,500 for two weeks; you keep the code.
+          </p>
+          <div class="card-actions">
+            <a class="card-link" data-book href="mailto:dan@desklessconsulting.com?subject=Fix%20Sprint">Book a call <span aria-hidden="true">→</span></a>
+          </div>
         </article>
       </div>
 
-      <div class="who narrow">
-        <h3 class="who-title">Who we work with</h3>
-        <p>
-          Professional services firms, agencies, and operations-heavy teams of 10–200
-          people managing distributed or frontline workforces. You don't need a tech
-          team. You need someone who will actually learn your workflows before
-          suggesting how to change them.
-        </p>
-        <p style="margin-top:1rem">
-          <span class="mono" style="font-size:.85rem;color:var(--ink-mute)">Running Adobe Customer Journey Analytics and think your numbers have drifted? →</span>
-          <a class="card-link" style="display:inline-flex" data-book href="mailto:dan@desklessconsulting.com?subject=CJA%2FAEP%20Config%20Health%20%26%20Drift%20Audit">Ask about the CJA/AEP Config Health &amp; Drift Audit <span aria-hidden="true">→</span></a>
-        </p>
-      </div>
+      <p class="also">
+        <b>Also available on request:</b> a half-day hands-on working session on running AI
+        coding-agent fleets for dev/analytics teams that already use them ($2,000, up to 8
+        people), and independent evaluation of shipped AI features. Ask.
+      </p>
     </div>
   </section>
 
-  <!-- ===================== RESULTS / CASE STUDIES ===================== -->
-  <!-- Placeholder. Unhide (remove the `hidden` attribute) once the VendingVault
-       case study is written with real, approved numbers. Do NOT invent claims. -->
-  <section class="section results-section" id="results" hidden>
-    <div class="container narrow">
+  <!-- ===================== 02 · PROOF ===================== -->
+  <section class="section proof section-light" id="proof">
+    <div class="container">
       <div class="sec-head">
-        <span class="sec-num">R</span>
-        <span class="sec-label">Field results</span>
+        <span class="sec-num">02</span>
+        <span class="sec-label">Receipts</span>
       </div>
-      <h2 class="section-title" style="margin-bottom:2rem">Results</h2>
-      <div class="about-frame">
-        <span class="coord" aria-hidden="true">REF · CASE-01</span>
-        <!-- DRAFT — source: content/case-study-vendingvault.md. Do not publish
-             until client approves numbers/claims (see T25). Section stays
-             `hidden` until Dan signs off. -->
+      <h2 class="section-title" style="margin-bottom:2rem">Nothing here is a claim I can't show you.</h2>
+
+      <div class="tiles">
+        <article class="tile">
+          <p class="tile-id">PROOF · 01 · IN PROGRESS</p>
+          <p class="tile-num">33 properties · 135+ datasets</p>
+          <p>Currently leading one of the larger Adobe Analytics → CJA migrations in market, single-handed, with my own mapping and drift tooling.</p>
+        </article>
+        <article class="tile">
+          <p class="tile-id">PROOF · 02 · SAMPLE</p>
+          <p class="tile-num">CJA/AEP drift audit</p>
+          <p>Clean-room demo on synthetic data: two verticals, stitching coverage at 61%, a silent reporting-timezone flip, an orphaned dimension.</p>
+          <a class="card-link" href="https://dbonomo.github.io/aep-audit-demo/">aep-audit-demo <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="tile">
+          <p class="tile-id">PROOF · 03 · SAMPLE</p>
+          <p class="tile-num">Tracking teardown</p>
+          <p>A consent plugin defaulting <code class="mono">analytics_storage: denied</code> on a US blog with no consent banner, hiding every blog visitor from GA4 and Google Ads; four rogue Meta pixel IDs; a booking subdomain missing from the GA4 lookup table.</p>
+          <a class="card-link" href="content/sample-tracking-teardown.html">Anonymized report <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="tile">
+          <p class="tile-id">PROOF · 04 · IN PUBLIC</p>
+          <p class="tile-num">A year of agent fleets, documented</p>
+          <p>A year of running AI agent fleets that do the delivery work, documented: operating manual + run logs at btf4e.com. That's how a $1,500 teardown costs a day, not a week.</p>
+          <a class="card-link" href="https://btf4e.com/notebook/operating-manual.html">Operating manual <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+
+      <p class="ballast">
+        <span>UN disaster-data pipeline, 100+ countries (2025)</span>
+        <span>$10M+/yr PPC waste eliminated (Namecheap)</span>
+      </p>
+      <p class="case-line">
+        Local build, delivered: <a href="content/t25-case-study-draft.html">VendingVault4U site + QR machine-feedback loop <span aria-hidden="true">→</span></a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== 03 · FOR ADOBE PARTNERS ===================== -->
+  <section class="section partners" id="partners">
+    <div class="container">
+      <div class="partner-frame">
+        <span class="coord" aria-hidden="true">03 · FOR ADOBE PARTNERS</span>
+        <h2>Overflow migration delivery for Adobe partner practices.</h2>
         <p>
-          <strong>Vending Vault</strong> — full-service vending machine provider,
-          Northern Colorado.
+          Post-Aug-12 backlog, no bench? I take scoped AA→CJA slices — component mapping,
+          data-view configuration, parity QA — under your master subcontractor agreement and
+          NDA, asynchronously in your tooling, invisible to the client unless you say otherwise.
         </p>
+        <p class="partner-terms">Fixed fee per property (typically $8,000) or $150/hr</p>
         <p>
-          <strong>Challenge:</strong> Vending Vault's pitch — free installation,
-          weekly service, no contracts — is a real differentiator, but the old
-          stock WordPress site didn't reflect it and was slow for the owner to
-          update. Customers standing at a jammed machine had no fast way to
-          report it.
+          ~10 hrs/week of capacity; two scheduled business-hours calls a week (US
+          Mountain/Central). Work sample in ten minutes:
+          <a href="https://dbonomo.github.io/aep-audit-demo/" style="color:var(--cyan);text-decoration:underline;text-underline-offset:2px">the drift-audit demo above</a>.
         </p>
-        <p>
-          <strong>Approach:</strong> Dan rebuilt the site on Astro and Tailwind
-          with Decap CMS, so the owner edits photos and copy himself — no
-          developer needed. SEO work targeted the specific cities and
-          industries Vending Vault serves; the site was trimmed from 29 pages
-          to 15, cutting low-value SEO surface area. Hosting moved onto
-          infrastructure the client controls. Dan also added a per-machine QR
-          code so a customer can report an issue or request a product in under
-          a minute, routed straight to the owner's inbox.
-        </p>
-        <p>
-          <strong>Outcome:</strong> A fast, mobile-friendly site the owner runs
-          himself, leaner than the original build, plus a direct
-          machine-to-owner feedback loop none of Vending Vault's local
-          competitors offer. A follow-on operations audit (route planning,
-          restocking) is a possible next phase.
-        </p>
-        <p class="emphasis"><!-- TESTIMONIAL PLACEHOLDER — get quote from client. Do not invent. --></p>
+        <a class="btn btn-ghost" href="mailto:dan@desklessconsulting.com?subject=AA%E2%86%92CJA%20overflow%20%E2%80%94%20property%20scope">Email me the property <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
 
-  <!-- ===================== 03 · ABOUT ===================== -->
+  <!-- ===================== 04 · ABOUT ===================== -->
   <section class="section about section-light" id="about">
     <div class="container narrow">
       <div class="sec-head">
-        <span class="sec-num">03</span>
+        <span class="sec-num">04</span>
         <span class="sec-label">Principal / operator</span>
       </div>
-      <h2 class="section-title" style="margin-bottom:2rem">About Dan</h2>
+      <h2 class="section-title" style="margin-bottom:2rem">About</h2>
       <div class="about-frame">
         <span class="coord" aria-hidden="true">REF · DAN BONOMO</span>
         <p>
-          <strong>Dan Bonomo</strong> is a senior product and analytics leader who has
-          spent 8+ years building AI and analytics systems at a large geospatial-technology
-          company whose platform is used by 350,000+ organizations worldwide,
-          including many of the largest field operations and frontline
-          workforce teams on earth.
+          <strong>Dan Bonomo, Fort Collins, Colorado.</strong> Fifteen years building and measuring
+          analytics systems — enterprise Adobe Analytics/CJA/AEP at a $2B software company, a UN
+          disaster-data pipeline across 100+ countries, Namecheap's analytics and SEO functions
+          from zero, and his own SMB consultancy before that.
         </p>
         <p>
-          He started Deskless Consulting because the gap between AI hype and AI reality
-          is a real business problem, and most consultants aren't technical enough to
-          close it — especially for the teams whose work happens outside a browser tab.
+          He runs Deskless alongside a full-time product role, which is why everything is
+          fixed-scope and written down: you get the senior person, not a team, for a bounded
+          slice. Conference speaker when someone hands him a microphone.
         </p>
-        <p class="emphasis">Dan charges for outcomes, not decks.</p>
+        <p class="emphasis">Deskless is the storefront. BTF4E is the lab.</p>
       </div>
     </div>
   </section>
 
-  <!-- ===================== 04 · FAQ ===================== -->
+  <!-- ===================== 05 · FAQ ===================== -->
   <section class="section faq" id="faq">
     <div class="container narrow">
       <div class="sec-head">
-        <span class="sec-num">04</span>
+        <span class="sec-num">05</span>
         <span class="sec-label">Frequently asked</span>
       </div>
       <h2 class="section-title" style="margin-bottom:2rem">Frequently asked</h2>
 
       <details>
-        <summary><span class="q">Q1</span> Do I need a tech team? <span class="plus" aria-hidden="true">+</span></summary>
-        <p>No. We work with the tools you already have and handle the technical implementation ourselves.</p>
+        <summary><span class="q">Q1</span> What do you need access to? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>For the Tracking Teardown: nothing to start — it's done from your public site; read-only ad-account access only if you want spend figures. For the CJA/AEP audit: exported snapshots or read-only; never production changes. I sign NDAs and delete what you send on delivery.</p>
       </details>
       <details>
-        <summary><span class="q">Q2</span> What kinds of businesses do you work with? <span class="plus" aria-hidden="true">+</span></summary>
-        <p>Professional services firms, marketing agencies, operations teams, and any mid-market organization managing distributed or frontline workforces. The fit is best for teams between 10 and 500 people.</p>
+        <summary><span class="q">Q2</span> Can I see what I'd get before paying? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>Yes — both sample reports are linked above. Same format, same depth, your data instead of synthetic.</p>
       </details>
       <details>
-        <summary><span class="q">Q3</span> How is this different from hiring a consultant to write a strategy doc? <span class="plus" aria-hidden="true">+</span></summary>
-        <p>We build things. The deliverable is a working AI workflow and a trained team, not a report.</p>
+        <summary><span class="q">Q3</span> Who fixes the things you find? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>Your team, with the ranked list — or me, in a Fix Sprint. I don't require either.</p>
       </details>
       <details>
-        <summary><span class="q">Q4</span> What does The Week Build actually include? <span class="plus" aria-hidden="true">+</span></summary>
-        <p>We scope the tool together on Monday, I build it through the week, and you watch it run on your real data live on Friday — working, yours to keep. Fixed price of $8,500–15,000 depending on scope. If it's not done Friday, that risk is mine, not yours.</p>
+        <summary><span class="q">Q4</span> Is this a retainer? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>No. Every offer is a fixed price with a written scope and an end date. If you want the audit re-run later, ask; it's priced as a one-off each time.</p>
       </details>
       <details>
-        <summary><span class="q">Q5</span> Can you work with our existing tools (Slack, HubSpot, Notion, etc.)? <span class="plus" aria-hidden="true">+</span></summary>
-        <p>Yes. We start from what you have.</p>
+        <summary><span class="q">Q5</span> What if the Fix Sprint turns out to be bigger than five days? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>You find out on day one, in writing, and can stop at no charge. If we proceed, the price doesn't move.</p>
       </details>
       <details>
-        <summary><span class="q">Q6</span> Why "Deskless"? <span class="plus" aria-hidden="true">+</span></summary>
-        <p>Most AI consulting is built around knowledge workers in front of screens. A lot of the hardest, most valuable work in the world happens somewhere else — in the field, on a job site, in a distribution center. That's who we build for.</p>
+        <summary><span class="q">Q6</span> Will this eat my engineers' time? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>No. Teardowns need none. Fix Sprints need one person who can answer questions on day one and grant access.</p>
+      </details>
+      <details>
+        <summary><span class="q">Q7</span> Why "Deskless"? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>Because the point is AI and measurement that work for the people doing the work — not more dashboards for the people watching them. It's the mission line in the footer.</p>
+      </details>
+      <details>
+        <summary><span class="q">Q8</span> Do you work locally? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>Yes — Fort Collins / Front Range, in person when it helps. Most work is remote and asynchronous.</p>
       </details>
     </div>
   </section>
@@ -622,12 +672,10 @@
   <section class="section cta-band">
     <div class="container narrow cta-inner">
       <i class="tick a"></i><i class="tick d"></i>
-      <h2>Ready to close the implementation gap?</h2>
-      <p>
-        Book a free 30-minute discovery call. We'll tell you honestly whether we can
-        help — and if not, we'll point you in the right direction.
-      </p>
-      <a class="btn btn-primary" data-book href="mailto:dan@desklessconsulting.com?subject=Schedule%20a%20Call">Schedule a Call <span aria-hidden="true">→</span></a>
+      <h2>Ready to find out where your numbers are wrong?</h2>
+      <p class="mono" style="font-size:.9rem">Fixed prices. Written findings. No retainers.</p>
+      <a class="btn btn-primary" data-book href="mailto:dan@desklessconsulting.com?subject=Book%20a%20Call">Book a call <span aria-hidden="true">→</span></a>
+      <p class="mono" style="margin-top:1.2rem;font-size:.85rem;margin-bottom:0"><a href="mailto:dan@desklessconsulting.com" style="color:var(--blue)">dan@desklessconsulting.com</a></p>
     </div>
   </section>
 </main>
@@ -643,14 +691,14 @@
         <span class="brand-name">DESK<span class="lo">LESS</span></span>
       </span>
       <p class="footer-tag">AI that works for the people doing the work.</p>
-      <p class="footer-parent"><strong>A <a href="https://btf4e.com">BTF4E</a> Company</strong> — Building the future for everyone.</p>
+      <p class="footer-parent"><strong>A <a href="https://btf4e.com">BTF4E</a> Company</strong> · <a href="https://btf4e.com">btf4e.com</a></p>
     </div>
     <div class="footer-contact">
       <p><a href="mailto:dan@desklessconsulting.com">dan@desklessconsulting.com</a></p>
       <p><span class="muted">desklessconsulting.com</span></p>
     </div>
   </div>
-  <p class="copyright container">© <span id="year">2026</span> Deskless Consulting. Northern Colorado.</p>
+  <p class="copyright container">© <span id="year">2026</span> Deskless Consulting. Fort Collins, Colorado.</p>
 </footer>
 
 <!-- reusable wings symbol for the small brand marks -->
