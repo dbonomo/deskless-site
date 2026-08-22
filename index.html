@@ -716,10 +716,10 @@
   // ------------------------------------------------------------------
   // ONE booking URL for the whole site. Every CTA tagged data-book reads
   // from here, so swapping to Calendly/Cal.com is a one-line edit.
-  // TODO[PLACEHOLDER:BOOKING_LINK]: replace this mailto with the real
-  // booking URL once it exists (e.g. "https://cal.com/deskless/discovery").
+  // Cal.com: 30-min discovery call. Profile: https://cal.com/deskless
+  // (also has /15min). The mailto: hrefs in the markup are the no-JS fallback.
   // ------------------------------------------------------------------
-  const BOOKING_URL = "mailto:dan@desklessconsulting.com?subject=Discovery%20Call";
+  const BOOKING_URL = "https://cal.com/deskless/30min";
   document.querySelectorAll('a[data-book]').forEach(function (a) {
     a.setAttribute('href', BOOKING_URL);
   });

@@ -14,7 +14,7 @@ Every spot is marked in the source with `TODO[PLACEHOLDER...]`. Search the repo 
 
 | Placeholder | Where | Action needed |
 |---|---|---|
-| `BOOKING_LINK` | hero CTA, nav "Book a Call", AI Readiness card, footer CTA band | Replace the `mailto:` links with a real booking URL (Calendly / Cal.com / Savvycal). Until then they open an email draft, which works but is not ideal. |
+| `BOOKING_LINK` | every `[data-book]` CTA | Resolved 2026-08-21: `BOOKING_URL = https://cal.com/deskless/30min` (profile also has `/15min`). The `mailto:` hrefs remain in markup as no-JS fallback. |
 | `EMAIL` | header CTA, all CTAs, footer | Resolved: all CTAs use `dan@desklessconsulting.com` consistently (matches approved copy). |
 | `PHONE` | footer | Optional. No phone is shown yet. Add one if desired. |
 | `og:url` / canonical | `<head>` | Confirm `https://desklessconsulting.com` once the domain is pointed. |
