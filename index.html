@@ -331,12 +331,28 @@
   .copyright{font-family:var(--mono);font-size:.72rem;color:var(--ink-mute);margin-top:2.4rem;letter-spacing:.06em;border-top:1px dashed var(--line-soft);padding-top:1.4rem}
 
   /* ---------- v3 additions: how-it-works strip, 3-up offers, proof tiles, partner strip ---------- */
-  .how{border-top:1px solid var(--line-soft);padding:1.4rem 0}
-  .how-row{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1.2rem;font-family:var(--mono);font-size:.8rem;color:var(--ink-dim)}
-  .how-row b{color:var(--off);font-weight:700}
-  .how-row .arrow{color:var(--orange)}
-  .how-row .or{flex-basis:100%;font-size:.76rem;color:var(--ink-mute);font-style:italic}
-  @media(min-width:900px){.how-row .or{flex-basis:auto;margin-left:auto}}
+  .how{border-top:1px solid var(--line-soft);padding:2rem 0 1.8rem}
+  .how-head{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:1.1rem}
+  .path{display:grid;grid-template-columns:1fr;gap:1rem 0;margin:0;padding:0;list-style:none}
+  .path li{position:relative;padding-right:0;font-size:.95rem;color:var(--ink-dim);line-height:1.55}
+  .path b{display:block;font-family:var(--mono);font-size:.82rem;font-weight:700;color:var(--off);margin-bottom:.3rem;letter-spacing:.02em}
+  .path .arrow{color:var(--orange);font-family:var(--mono);margin-right:.45rem}
+  @media(min-width:900px){
+    .path{grid-template-columns:repeat(4,1fr);gap:0 2.2rem}
+    .path li{padding-right:.4rem}
+    .path li+li::before{content:"→";position:absolute;left:-1.55rem;top:-.05rem;color:var(--orange);font-family:var(--mono);font-size:.95rem}
+    .path .arrow{display:none}
+  }
+  @media(max-width:899px){.path li:first-child .arrow{display:none}}
+  .how-who{font-family:var(--mono);font-size:.78rem;color:var(--ink-mute);margin-top:1.3rem;border-top:1px dashed var(--line);padding-top:.9rem}
+  .how-who b{color:var(--ink-dim);font-weight:500}
+  .next{margin:2.2rem 0 1.8rem;border:1px solid var(--line);border-radius:4px;padding:clamp(1.3rem,3vw,1.9rem) clamp(1.3rem,3vw,2rem);background:rgba(10,20,40,.4)}
+  .next h3{font-size:clamp(1.15rem,2.2vw,1.4rem);font-weight:800;letter-spacing:-.01em;margin-bottom:.35rem;color:var(--off)}
+  .next .next-sub{font-size:.9rem;color:var(--ink-mute);font-style:italic;margin-bottom:1.1rem}
+  .next ul{list-style:none;margin:0 0 1.1rem;padding:0}
+  .next li{position:relative;padding-left:1.2rem;color:var(--ink-dim);font-size:.95rem;line-height:1.6;margin-bottom:.55rem}
+  .next li::before{content:"·";position:absolute;left:.2rem;top:0;color:var(--orange);font-weight:700}
+  .next .next-close{font-size:.95rem;color:var(--off);margin:0;border-top:1px dashed var(--line);padding-top:.9rem}
   .cards.three{grid-template-columns:repeat(3,1fr);margin-bottom:1.6rem}
   @media(max-width:1000px){.cards.three{grid-template-columns:1fr}}
   .card-for{font-family:var(--mono);font-size:.76rem!important;color:var(--cyan)!important;letter-spacing:.02em}
@@ -434,15 +450,17 @@
     </div>
   </section>
 
-  <!-- ===================== HOW IT WORKS (strip) ===================== -->
-  <section class="how" aria-label="How it works">
-    <div class="container how-row">
-      <span><b>Teardown</b> (3–5 days, fixed)</span>
-      <span class="arrow" aria-hidden="true">→</span>
-      <span><b>Readout</b> (45 min, ranked fix list)</span>
-      <span class="arrow" aria-hidden="true">→</span>
-      <span><b>Fix Sprint</b> (5 days, fixed)</span>
-      <span class="or">— or your team takes the list and fixes it themselves. Either is fine.</span>
+  <!-- ===================== HOW THIS USUALLY GOES (path) ===================== -->
+  <section class="how" aria-label="How this usually goes">
+    <div class="container">
+      <p class="how-head">How this usually goes</p>
+      <ol class="path">
+        <li><b>Check</b> a fixed-price teardown or config audit. Small on purpose. It's the only thing I ask a stranger to buy.</li>
+        <li><b><span class="arrow" aria-hidden="true">→</span>Fix</b> a five-day sprint on the top item from the list, or your team takes the list and I'm out of the way.</li>
+        <li><b><span class="arrow" aria-hidden="true">→</span>Build</b> once I know your systems, the bigger stuff: the pipeline into your warehouse, the schema translation, the internal tool you've been putting off. Quoted fixed, one at a time.</li>
+        <li><b><span class="arrow" aria-hidden="true">→</span>Stay</b> not a retainer. Most people just keep the number of the person who already knows where the bodies are.</li>
+      </ol>
+      <p class="how-who"><b>I do the work myself.</b> Automated checks run first; I read every finding and write every fix.</p>
     </div>
   </section>
 
@@ -465,7 +483,8 @@
           <p class="card-for">For businesses spending real money on Google/Meta ads, and the agencies that run them.</p>
           <p>
             I audit your conversion tracking — GA4, tag manager, pixels, consent settings — across
-            up to three domains, from your public site and (if you want spend figures) read-only
+            up to three domains or subdomains (a booking, checkout, or app subdomain counts as
+            one), from your public site and (if you want spend figures) read-only
             ad-account access. You get a written report of what's broken, ranked by how much ad
             spend it affects, a specific fix for each item, and a 45-minute readout.
             <em>Who does the fix:</em> you, with the list — or me, in a Fix Sprint.
@@ -475,6 +494,7 @@
             <a class="card-link" href="content/sample-tracking-teardown.html">Sample report <span aria-hidden="true">→</span></a>
             <a class="card-link" data-book href="mailto:dan@desklessconsulting.com?subject=Tracking%20Teardown">Book a call <span aria-hidden="true">→</span></a>
           </div>
+          <p class="card-fine" style="margin-top:.6rem;margin-bottom:0!important;border-top:0;padding-top:0">Real findings from two pre-sale teardowns, names and IDs removed. The client version includes the raw tag/pixel inventory as a CSV.</p>
         </article>
 
         <article class="card">
@@ -499,6 +519,7 @@
             <a class="card-link" href="https://dbonomo.github.io/aep-audit-demo/">Sample report <span aria-hidden="true">→</span></a>
             <a class="card-link" data-book href="mailto:dan@desklessconsulting.com?subject=CJA%2FAEP%20Config%20Health%20%26%20Drift%20Audit">Book a call <span aria-hidden="true">→</span></a>
           </div>
+          <p class="card-fine" style="margin-top:.6rem;margin-bottom:0!important;border-top:0;padding-top:0">Real findings from two pre-sale teardowns, names and IDs removed. The client version includes the raw tag/pixel inventory as a CSV.</p>
         </article>
 
         <article class="card">
@@ -523,10 +544,22 @@
         </article>
       </div>
 
+      <div class="next" id="where-next">
+        <h3>Where this usually goes</h3>
+        <p class="next-sub">None of this is on the card. It's what tends to happen after the first slice is good.</p>
+        <ul>
+          <li>The Adobe Analytics or GA4 data you're moving into Snowflake, BigQuery, or Fabric — export design, the eVar/prop → XDM → warehouse-table translation, dbt models your BI team can use.</li>
+          <li>The reporting setup that quietly disagrees with itself — traced back to source, fixed at the source.</li>
+          <li>The internal tool that's been "next quarter" for two years — built in a week or two, yours to keep.</li>
+          <li>A pile of documents nobody can read — tens of thousands of reports, surveys, PDFs — turned into a dataset you can query and a report you can stand behind. (I've done this for the UN.)</li>
+        </ul>
+        <p class="next-close">If one of those is you, start with the Check anyway. It's cheaper for both of us to find out on a $1,500 slice whether we work well together.</p>
+      </div>
+
       <p class="also">
-        <b>Also available on request:</b> a half-day hands-on working session on running AI
-        coding-agent fleets for dev/analytics teams that already use them ($2,000, up to 8
-        people), and independent evaluation of shipped AI features. Ask.
+        <b>Also available on request:</b> a half-day hands-on working session on AI-assisted
+        development workflows for dev/analytics teams ($2,000, up to 8 people), and independent
+        evaluation of shipped AI features. Ask.
       </p>
     </div>
   </section>
@@ -560,10 +593,18 @@
         </article>
         <article class="tile">
           <p class="tile-id">PROOF · 04 · IN PUBLIC</p>
-          <p class="tile-num">A year of agent fleets, documented</p>
-          <p>A year of running AI agent fleets that do the delivery work, documented: operating manual + run logs at btf4e.com. That's how a $1,500 teardown costs a day, not a week.</p>
+          <p class="tile-num">Why a teardown takes a day, not a week</p>
+          <p>The checks are automated — my own tooling, built over a year and documented in public at btf4e.com. The reading, and the fixes, are me.</p>
           <a class="card-link" href="https://btf4e.com/notebook/operating-manual.html">Operating manual <span aria-hidden="true">→</span></a>
         </article>
+        <!-- TODO: un-comment once the dbt-adobe-events repo is public and set the href.
+        <article class="tile">
+          <p class="tile-id">PROOF · 05 · OPEN SOURCE</p>
+          <p class="tile-num">The Adobe dbt package that didn't exist</p>
+          <p>dbt-adobe-events: turns AEP/Web SDK, CJA, and Adobe Analytics Data Feed exports into tested sessions/page-views/users tables. Mine, Apache-2.0.</p>
+          <a class="card-link" href="TODO_REPO_URL">Repo <span aria-hidden="true">→</span></a>
+        </article>
+        -->
       </div>
 
       <p class="ballast">
@@ -589,8 +630,11 @@
         </p>
         <p class="partner-terms">Fixed fee per property (typically $8,000) or $150/hr</p>
         <p>
-          ~10 hrs/week of capacity; two scheduled business-hours calls a week (US
-          Mountain/Central). Work sample in ten minutes:
+          One property slice at a time; start date quoted with the scope; two scheduled
+          business-hours calls a week (US Mountain/Central). A slice = one report suite mapped
+          into one CJA data view: component mapping, data-view configuration, parity QA on an
+          agreed sample of reports. Scope in writing before I start; fixed fee; if I don't
+          finish the slice, you don't pay the balance. Work sample in ten minutes:
           <a href="https://dbonomo.github.io/aep-audit-demo/" style="color:var(--cyan);text-decoration:underline;text-underline-offset:2px">the drift-audit demo above</a>.
         </p>
         <a class="btn btn-ghost" href="mailto:dan@desklessconsulting.com?subject=AA%E2%86%92CJA%20overflow%20%E2%80%94%20property%20scope">Email me the property <span aria-hidden="true">→</span></a>
@@ -615,9 +659,10 @@
           from zero, and his own SMB consultancy before that.
         </p>
         <p>
-          He runs Deskless alongside a full-time product role, which is why everything is
-          fixed-scope and written down: you get the senior person, not a team, for a bounded
-          slice. Conference speaker when someone hands him a microphone.
+          Deskless is deliberately small — one senior operator, a handful of engagements at a
+          time. That's why everything is fixed-scope and written down: you get the person, not a
+          team, and you know what you're getting before you pay. Conference speaker when someone
+          hands him a microphone.
         </p>
         <p class="emphasis">Deskless is the storefront. BTF4E is the lab.</p>
       </div>
@@ -642,27 +687,31 @@
         <p>Yes — both sample reports are linked above. Same format, same depth, your data instead of synthetic.</p>
       </details>
       <details>
-        <summary><span class="q">Q3</span> Who fixes the things you find? <span class="plus" aria-hidden="true">+</span></summary>
+        <summary><span class="q">Q3</span> Who actually does the work? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>I do the work myself. Automated checks run first; I read every finding and write every fix.</p>
+      </details>
+      <details>
+        <summary><span class="q">Q4</span> Who fixes the things you find? <span class="plus" aria-hidden="true">+</span></summary>
         <p>Your team, with the ranked list — or me, in a Fix Sprint. I don't require either.</p>
       </details>
       <details>
-        <summary><span class="q">Q4</span> Is this a retainer? <span class="plus" aria-hidden="true">+</span></summary>
+        <summary><span class="q">Q5</span> Is this a retainer? <span class="plus" aria-hidden="true">+</span></summary>
         <p>No. Every offer is a fixed price with a written scope and an end date. If you want the audit re-run later, ask; it's priced as a one-off each time.</p>
       </details>
       <details>
-        <summary><span class="q">Q5</span> What if the Fix Sprint turns out to be bigger than five days? <span class="plus" aria-hidden="true">+</span></summary>
+        <summary><span class="q">Q6</span> What if the Fix Sprint turns out to be bigger than five days? <span class="plus" aria-hidden="true">+</span></summary>
         <p>You find out on day one, in writing, and can stop at no charge. If we proceed, the price doesn't move.</p>
       </details>
       <details>
-        <summary><span class="q">Q6</span> Will this eat my engineers' time? <span class="plus" aria-hidden="true">+</span></summary>
+        <summary><span class="q">Q7</span> Will this eat my engineers' time? <span class="plus" aria-hidden="true">+</span></summary>
         <p>No. Teardowns need none. Fix Sprints need one person who can answer questions on day one and grant access.</p>
       </details>
       <details>
-        <summary><span class="q">Q7</span> Why "Deskless"? <span class="plus" aria-hidden="true">+</span></summary>
+        <summary><span class="q">Q8</span> Why "Deskless"? <span class="plus" aria-hidden="true">+</span></summary>
         <p>Because the point is AI and measurement that work for the people doing the work — not more dashboards for the people watching them. It's the mission line in the footer.</p>
       </details>
       <details>
-        <summary><span class="q">Q8</span> Do you work locally? <span class="plus" aria-hidden="true">+</span></summary>
+        <summary><span class="q">Q9</span> Do you work locally? <span class="plus" aria-hidden="true">+</span></summary>
         <p>Yes — Fort Collins / Front Range, in person when it helps. Most work is remote and asynchronous.</p>
       </details>
     </div>
