@@ -57,6 +57,22 @@
       display: block
     }
 
+    /* Phones and tablets: no canvas, no animation. A still, painted background that scrolls with the page. */
+    @media (max-width: 820px), (pointer: coarse) {
+      #sky {
+        display: none
+      }
+
+      body {
+        background:
+          radial-gradient(90vw 70vw at 8% 2%, rgba(120, 205, 222, .42), rgba(120, 205, 222, 0) 70%),
+          radial-gradient(80vw 80vw at 100% 12%, rgba(96, 170, 232, .24), rgba(96, 170, 232, 0) 70%),
+          radial-gradient(70vw 60vw at 60% 0%, rgba(255, 214, 170, .22), rgba(255, 214, 170, 0) 70%),
+          var(--ground);
+        background-repeat: no-repeat
+      }
+    }
+
     .page {
       position: relative;
       z-index: 1;
@@ -888,7 +904,7 @@
             comfortable.</p>
         </div>
         <div class="card"><span class="tag">Reach you</span>
-          <h3>Making it simple to get in touch</h3>
+          <h3>Making it easy for people to contact you</h3>
           <p>Your phone number and email right where people expect them, on any device. Plus a short inquiry form, so a
             parent or case manager can reach out late at night without having to call.</p>
         </div>
@@ -1110,17 +1126,18 @@
       const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches; const sl = [...document.querySelectorAll("#slides svg")], dots = [...document.querySelectorAll("#slides .s-dots i")]; let k = 0;
       if (!reduce) setInterval(() => { sl[k].classList.remove("on"); dots[k].classList.remove("on"); k = (k + 1) % sl.length; sl[k].classList.add("on"); dots[k].classList.add("on") }, 5000);
       // sky: pale washes + drifting bokeh
+      if (matchMedia("(max-width: 820px), (pointer: coarse)").matches) return; // static CSS background on phones and tablets
       const cv = document.getElementById("sky"), c = cv.getContext("2d"), dpr = Math.min(devicePixelRatio || 1, 2);
       function rng(seed) { let h = 1779033703 ^ seed.length; for (let i = 0; i < seed.length; i++) { h = Math.imul(h ^ seed.charCodeAt(i), 3432918353); h = h << 13 | h >>> 19 } return () => { h = Math.imul(h ^ h >>> 16, 2246822507); h = Math.imul(h ^ h >>> 13, 3266489909); return ((h ^= h >>> 16) >>> 0) / 4294967296 } }
-      const r = rng("nervous-energy"); let W = 0, H = 0, wash = null, orbs = [];
+      let r = rng("nervous-energy"); let W = 0, H = 0, wash = null, orbs = [];
       function build() {
-        W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr;
+        r = rng("nervous-energy"); W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr;
         wash = document.createElement("canvas"); wash.width = W; wash.height = Math.round(H * 1.4); const w = wash.getContext("2d"); w.fillStyle = "#F2F9FB"; w.fillRect(0, 0, wash.width, wash.height);
         const cols = ["120,205,222", "96,170,232", "160,226,214", "255,214,170"]; for (let i = 0; i < 9; i++) { const x = r() * W, y = r() * wash.height, rad = Math.max(W, H) * (.25 + r() * .35), col = cols[i % cols.length]; const g = w.createRadialGradient(x, y, 0, x, y, rad); g.addColorStop(0, `rgba(${col},${i % 4 === 3 ? .16 : .28})`); g.addColorStop(1, `rgba(${col},0)`); w.fillStyle = g; w.fillRect(0, 0, wash.width, wash.height) }
         orbs = []; const n = Math.round(W * H / 38000) + 8; for (let i = 0; i < n; i++)orbs.push({ x: r() * W, y: r() * H * 1.3, rad: 6 + r() * r() * 46, z: .2 + r() * .8, ph: r() * 6.28, warm: r() < .18 })
       }
       function frame(t) {
-        if (W !== innerWidth || H !== innerHeight) build(); c.setTransform(dpr, 0, 0, dpr, 0, 0); const sy = scrollY;
+        if (W !== innerWidth || Math.abs(H - innerHeight) > 160) build(); c.setTransform(dpr, 0, 0, dpr, 0, 0); const sy = scrollY;
         c.drawImage(wash, 0, -Math.min(sy * .06, wash.height - H));
         for (const o of orbs) {
           const drift = reduce ? 0 : t * .006 * o.z; let y = (o.y - drift - sy * .12 * o.z) % (H * 1.3); if (y < -60) y += H * 1.3 + 60; const x = o.x + (reduce ? 0 : Math.sin(t * .0004 + o.ph) * 14 * o.z);
