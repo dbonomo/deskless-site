@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<!-- SOURCE OF TRUTH as of 2026-09-20: Dan edits this file by hand. Do NOT regenerate it with qrpages/build_nervous_energy.py; that would overwrite his edits. -->
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Eco Adventures · Deskless</title>
+  <meta name="description"
+    content="A friendly plan for Eco Adventures Day Program and Respite's new website, from Deskless Consulting.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Manrope:wght@400;600;700;800&family=Nunito:wght@600;800&family=DM+Serif+Display&family=Bitter:wght@500;700&display=swap">
+  <style>
+    :root {
+      --ground: #F2F9FB;
+      --surface: #FFFFFF;
+      --ink: #0E2A36;
+      --ink2: #40596A;
+      --mute: #6F8794;
+      --teal: #0E8FA3;
+      --teal-deep: #0A6F80;
+      --sky: #4CB8D6;
+      --wash: #DDF1F6;
+      --line: rgba(14, 42, 54, .12);
+      --orange: #FF7A1A;
+      --display: 'Bricolage Grotesque', 'Manrope', system-ui, sans-serif;
+      --sans: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--ground);
+      color: var(--ink);
+      line-height: 1.6;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden
+    }
+
+    #sky {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      display: block
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(940px, 90vw);
+      margin: 0 auto;
+      padding: 26px 0 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 72px
+    }
+
+    a {
+      color: var(--teal-deep)
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--sky);
+      outline-offset: 3px;
+      border-radius: 8px
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 17px;
+      text-decoration: none;
+      color: var(--ink)
+    }
+
+    .brand .badge {
+      width: 34px;
+      height: 34px;
+      display: block
+    }
+
+    .brand-name {
+      font-weight: 800;
+      letter-spacing: .14em;
+      font-size: 1.05rem;
+      text-transform: uppercase
+    }
+
+    .brand-name .lo {
+      color: #2F6BFF
+    }
+
+    .top .call {
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 15px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--ink)
+    }
+
+    .label {
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--teal-deep);
+      display: block;
+      margin-bottom: 10px
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--display);
+      letter-spacing: -.02em;
+      line-height: 1.08;
+      text-wrap: balance;
+      color: var(--ink)
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding-top: min(9vh, 80px);
+      max-width: 700px
+    }
+
+    .hello {
+      display: flex;
+      align-items: center;
+      gap: 16px
+    }
+
+    .portrait {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--surface);
+      box-shadow: 0 8px 24px rgba(14, 42, 54, .15)
+    }
+
+    .hello .label {
+      margin: 0
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 700
+    }
+
+    .lede {
+      font-size: 20px;
+      color: var(--ink2);
+      max-width: 56ch
+    }
+
+    .ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 16px;
+      text-decoration: none;
+      border: 2px solid transparent;
+      cursor: pointer;
+      font-family: var(--sans)
+    }
+
+    .btn.primary {
+      background: var(--orange);
+      color: #1b1206;
+      box-shadow: 0 8px 22px rgba(255, 122, 26, .28)
+    }
+
+    .btn.primary small {
+      font-weight: 600
+    }
+
+    .btn.soft {
+      background: var(--surface);
+      color: var(--ink);
+      border-color: var(--line)
+    }
+
+    section>h2 {
+      font-size: clamp(26px, 3.6vw, 36px);
+      font-weight: 700;
+      margin-bottom: 12px;
+      max-width: 22ch
+    }
+
+    .intro {
+      color: var(--ink2);
+      max-width: 60ch;
+      margin-bottom: 22px
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+      gap: 16px
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 6px 24px rgba(14, 42, 54, .07);
+      border: 1px solid rgba(14, 42, 54, .05)
+    }
+
+    .card .tag {
+      display: inline-block;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--teal-deep);
+      background: var(--wash);
+      padding: 5px 10px;
+      border-radius: 999px;
+      margin-bottom: 12px
+    }
+
+    .card h3 {
+      font-size: 21px;
+      font-weight: 700;
+      margin-bottom: 8px
+    }
+
+    .card p {
+      color: var(--ink2);
+      font-size: 16px
+    }
+
+    .trio {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 24px
+    }
+
+    .trio h3 {
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 4px
+    }
+
+    .trio p {
+      color: var(--ink2);
+      font-size: 16px
+    }
+
+    .trio>div {
+      border-top: 3px solid var(--wash);
+      padding-top: 14px
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px
+    }
+
+    .chip {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 16px;
+      font-size: 15px;
+      color: var(--ink);
+      display: inline-flex;
+      gap: 8px;
+      align-items: center
+    }
+
+    .chip svg {
+      width: 15px;
+      height: 15px;
+      color: var(--mute)
+    }
+
+    .path {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px
+    }
+
+    .path>div {
+      border-top: 4px solid var(--wash);
+      padding-top: 14px
+    }
+
+    .path>div.now {
+      border-top-color: var(--teal)
+    }
+
+    .path .when {
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--mute)
+    }
+
+    .path .now .when {
+      color: var(--teal-deep)
+    }
+
+    .path h3 {
+      font-size: 19px;
+      font-weight: 700;
+      margin: 4px 0
+    }
+
+    .path p {
+      color: var(--ink2);
+      font-size: 16px
+    }
+
+    .need {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 14px 32px
+    }
+
+    .need li {
+      padding-left: 34px;
+      position: relative;
+      color: var(--ink2);
+      font-size: 16px
+    }
+
+    .need li b {
+      color: var(--ink)
+    }
+
+    .need li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .2em;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--wash) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230A6F80' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/14px no-repeat
+    }
+
+    .two {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px
+    }
+
+    .two .card p+p {
+      margin-top: 8px
+    }
+
+    .src {
+      display: block;
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--mute)
+    }
+
+    .contact {
+      background: var(--surface);
+      border-radius: 24px;
+      padding: clamp(24px, 4vw, 40px);
+      box-shadow: 0 10px 36px rgba(14, 42, 54, .09)
+    }
+
+    .contact h2 {
+      margin-bottom: 6px
+    }
+
+    .phone {
+      font-family: var(--display);
+      font-size: clamp(34px, 6vw, 54px);
+      font-weight: 700;
+      letter-spacing: -.02em;
+      text-decoration: none;
+      color: var(--teal-deep);
+      display: inline-block;
+      margin: 10px 0 18px
+    }
+
+    .ways {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px 24px;
+      font-size: 16px
+    }
+
+    .ways span {
+      display: block;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--mute)
+    }
+
+    .foot {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      font-size: 14px;
+      color: var(--mute)
+    }
+
+    .foot code {
+      font-family: ui-monospace, Menlo, monospace;
+      font-size: 11px;
+      letter-spacing: .04em
+    }
+
+    /* ---------- website sketch ---------- */
+    .looks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+      align-items: center
+    }
+
+    .looks span {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--mute);
+      margin-right: 4px
+    }
+
+    .looks button {
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 2px solid var(--line);
+      background: var(--surface);
+      color: var(--ink);
+      cursor: pointer
+    }
+
+    .looks button[aria-pressed="true"] {
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink)
+    }
+
+    .browser {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(14, 42, 54, .18);
+      border: 1px solid rgba(14, 42, 54, .1);
+      background: #fff
+    }
+
+    .bar {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 14px;
+      background: #E9EEF1
+    }
+
+    .bar i {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #C6D0D6;
+      display: block
+    }
+
+    .bar .url {
+      flex: 1;
+      margin-left: 10px;
+      background: #fff;
+      border-radius: 999px;
+      padding: 4px 14px;
+      font-size: 12px;
+      color: #7a8a94;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis
+    }
+
+    .site {
+      --m-bg: #FFFBEF;
+      --m-ink: #23323A;
+      --m-ink2: #4E6470;
+      --m-accent: #F2A900;
+      --m-accent-ink: #2a1e00;
+      --m-second: #2E9E6B;
+      --m-card: #fff;
+      --m-sky: #BEE7FF;
+      --m-sun: #FFD34D;
+      --m-hill1: #2E9E6B;
+      --m-hill2: #7CC9A1;
+      --m-water: #5AB9EA;
+      --m-path: #F6E3B4;
+      --m-font: 'Nunito', system-ui, sans-serif;
+      --m-display: 'Nunito', system-ui, sans-serif;
+      --m-radius: 22px;
+      background: var(--m-bg);
+      color: var(--m-ink);
+      font-family: var(--m-font);
+      font-size: 14px;
+      line-height: 1.5;
+      transition: background .3s, color .3s
+    }
+
+    .site[data-look="1"] {
+      --m-bg: #F3F7FD;
+      --m-ink: #16294A;
+      --m-ink2: #4A5F82;
+      --m-accent: #2F6BDF;
+      --m-accent-ink: #fff;
+      --m-second: #16294A;
+      --m-card: #fff;
+      --m-sky: #DCE9FB;
+      --m-sun: #FFFFFF;
+      --m-hill1: #2B4C7E;
+      --m-hill2: #7FA3D6;
+      --m-water: #9CC3F2;
+      --m-path: #EEF4FC;
+      --m-font: 'Manrope', system-ui, sans-serif;
+      --m-display: 'DM Serif Display', Georgia, serif;
+      --m-radius: 8px
+    }
+
+    .site[data-look="2"] {
+      --m-bg: #F5EDE0;
+      --m-ink: #3B2A20;
+      --m-ink2: #6B5546;
+      --m-accent: #C8643C;
+      --m-accent-ink: #fff;
+      --m-second: #5F7F5A;
+      --m-card: #FFF9F0;
+      --m-sky: #F3DFC2;
+      --m-sun: #E9A34B;
+      --m-hill1: #5F7F5A;
+      --m-hill2: #A9B98C;
+      --m-water: #7FA7A0;
+      --m-path: #E8CFA6;
+      --m-font: 'Bitter', Georgia, serif;
+      --m-display: 'Bitter', Georgia, serif;
+      --m-radius: 4px
+    }
+
+    .site * {
+      transition: background-color .3s, color .3s, border-radius .3s, fill .3s
+    }
+
+    .s-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 22px;
+      gap: 12px;
+      flex-wrap: wrap
+    }
+
+    .s-logo {
+      font-family: var(--m-display);
+      font-weight: 800;
+      font-size: 17px;
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .s-logo b {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--m-accent);
+      display: inline-block
+    }
+
+    .s-links {
+      display: flex;
+      gap: 16px;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--m-ink2);
+      flex-wrap: wrap
+    }
+
+    .s-hero {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 20px;
+      padding: 10px 22px 26px;
+      align-items: center
+    }
+
+    .s-hero h4 {
+      font-family: var(--m-display);
+      font-size: clamp(24px, 3.4vw, 34px);
+      line-height: 1.08;
+      font-weight: 800;
+      margin-bottom: 10px;
+      letter-spacing: -.01em
+    }
+
+    .s-hero p {
+      color: var(--m-ink2);
+      font-size: 15px;
+      margin-bottom: 14px
+    }
+
+    .s-btn {
+      display: inline-block;
+      background: var(--m-accent);
+      color: var(--m-accent-ink);
+      font-weight: 800;
+      padding: 10px 18px;
+      border-radius: var(--m-radius);
+      font-size: 14px
+    }
+
+    .s-photo {
+      position: relative;
+      border-radius: var(--m-radius);
+      overflow: hidden;
+      aspect-ratio: 600/330;
+      background: var(--m-sky)
+    }
+
+    .s-photo svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity .9s
+    }
+
+    .s-photo svg.on {
+      opacity: 1
+    }
+
+    .s-photo .ph {
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+      background: rgba(255, 255, 255, .9);
+      color: #23323A;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px
+    }
+
+    .s-dots {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      display: flex;
+      gap: 5px
+    }
+
+    .s-dots i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .6)
+    }
+
+    .s-dots i.on {
+      background: #fff
+    }
+
+    .s-progs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding: 0 22px 18px
+    }
+
+    .s-prog {
+      background: var(--m-card);
+      border-radius: var(--m-radius);
+      padding: 16px;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, .06)
+    }
+
+    .s-prog b {
+      display: block;
+      font-family: var(--m-display);
+      font-size: 16px;
+      margin-bottom: 4px
+    }
+
+    .s-prog span {
+      color: var(--m-ink2);
+      font-size: 13px
+    }
+
+    .s-prog::before {
+      content: "";
+      display: block;
+      width: 26px;
+      height: 6px;
+      border-radius: 3px;
+      background: var(--m-second);
+      margin-bottom: 10px
+    }
+
+    .s-waiver {
+      margin: 0 22px 18px;
+      padding: 12px 16px;
+      border-radius: var(--m-radius);
+      background: color-mix(in srgb, var(--m-second) 14%, transparent);
+      font-weight: 700;
+      font-size: 13px
+    }
+
+    .s-form {
+      margin: 0 22px 22px;
+      background: var(--m-card);
+      border-radius: var(--m-radius);
+      padding: 18px;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, .06)
+    }
+
+    .s-form h5 {
+      font-family: var(--m-display);
+      font-size: 18px;
+      margin-bottom: 10px
+    }
+
+    .s-fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 8px
+    }
+
+    .s-field {
+      border: 2px solid color-mix(in srgb, var(--m-ink) 16%, transparent);
+      border-radius: calc(var(--m-radius)/2 + 4px);
+      padding: 9px 12px;
+      color: var(--m-ink2);
+      font-size: 13px;
+      background: transparent
+    }
+
+    .s-field.wide {
+      grid-column: 1/-1;
+      min-height: 54px
+    }
+
+    .s-note {
+      font-size: 12px;
+      color: var(--m-ink2);
+      margin-bottom: 10px
+    }
+
+    .s-foot {
+      padding: 12px 22px;
+      font-size: 12px;
+      color: var(--m-ink2);
+      border-top: 1px solid color-mix(in srgb, var(--m-ink) 10%, transparent)
+    }
+
+    .disclaimer {
+      margin-top: 16px;
+      padding: 16px 20px;
+      border-radius: 16px;
+      background: var(--wash);
+      color: var(--ink);
+      font-weight: 600;
+      max-width: 70ch
+    }
+
+    @media (max-width:640px) {
+      body {
+        font-size: 16px
+      }
+
+      .page {
+        gap: 56px
+      }
+
+      .s-hero {
+        grid-template-columns: 1fr
+      }
+
+      .s-progs {
+        grid-template-columns: 1fr
+      }
+
+      .s-fields {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      html {
+        scroll-behavior: auto
+      }
+
+      .site *,
+      .s-photo svg {
+        transition: none
+      }
+    }
+  </style>
+  <link rel="icon" type="image/svg+xml" href="/assets/deskless-badge.svg">
+</head>
+
+<body>
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <main class="page">
+    <header class="top"><a class="brand" href="https://desklessconsulting.com"
+        aria-label="Deskless Consulting home"><img class="badge" alt="" width="34" height="34"
+          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ijk2IC0yNDcgMjMxOSAyMzE5Ij4KPGRlZnMKICAgICBpZD0iZGVmczYiPgogICAgPGxpbmVhckdyYWRpZW50CiAgICAgICBpZD0id2luZyIKICAgICAgIHgxPSIwIgogICAgICAgeTE9IjAiCiAgICAgICB4Mj0iMCIKICAgICAgIHkyPSIxIj4KICAgICAgPHN0b3AKICAgICAgICAgb2Zmc2V0PSIwIgogICAgICAgICBzdG9wLWNvbG9yPSIjMkY2QkZGIgogICAgICAgICBpZD0ic3RvcDEiIC8+CiAgICAgIDxzdG9wCiAgICAgICAgIG9mZnNldD0iMC40MiIKICAgICAgICAgc3RvcC1jb2xvcj0iIzJGNkJGRiIKICAgICAgICAgaWQ9InN0b3AyIiAvPgogICAgICA8c3RvcAogICAgICAgICBvZmZzZXQ9IjAuNTIiCiAgICAgICAgIHN0b3AtY29sb3I9IiMxNzg2RDQiCiAgICAgICAgIGlkPSJzdG9wMyIgLz4KICAgICAgPHN0b3AKICAgICAgICAgb2Zmc2V0PSIwLjcwIgogICAgICAgICBzdG9wLWNvbG9yPSIjMTc4NkQ0IgogICAgICAgICBpZD0ic3RvcDQiIC8+CiAgICAgIDxzdG9wCiAgICAgICAgIG9mZnNldD0iMC44MCIKICAgICAgICAgc3RvcC1jb2xvcj0iI0ZGN0ExQSIKICAgICAgICAgaWQ9InN0b3A1IiAvPgogICAgICA8c3RvcAogICAgICAgICBvZmZzZXQ9IjEiCiAgICAgICAgIHN0b3AtY29sb3I9IiNGRjdBMUEiCiAgICAgICAgIGlkPSJzdG9wNiIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgo8Y2lyY2xlIGN4PSIxMjU2IiBjeT0iOTEyIiByPSIxMDg5IiBmaWxsPSIjRjVGN0ZBIi8+CjxwYXRoCiAgICAgZmlsbC1ydWxlPSJub256ZXJvIgogICAgIGZpbGw9InVybCgjd2luZykiCiAgICAgZD0iTSA3MzQuMCAxMjg0LjggQyA3MzQuMCAxMjcyLjUgNzM0LjQgMTI2Mi4wIDczNC44IDEyNjEuNCBDIDczNS4yIDEyNjAuOCA3MzkuNSAxMjU4LjIgNzQ0LjUgMTI1NS41IEMgNzU1LjMgMTI0OS43IDc2MS43IDEyNDYuMyA3NjkuMCAxMjQyLjMgQyA3NzIuMCAxMjQwLjYgNzc4LjQgMTIzNy4yIDc4My4yIDEyMzQuNiBDIDc4OC4wIDEyMzIuMSA3OTQuMyAxMjI4LjYgNzk3LjEgMTIyNi45IEMgNzk5LjkgMTIyNS4zIDgwNi42IDEyMjEuNiA4MTEuOSAxMjE4LjggQyA4MTcuMiAxMjE2LjAgODIyLjAgMTIxMy40IDgyMi41IDEyMTMuMCBDIDgyMy43IDEyMTIuMCA4MjkuOSAxMjA4LjYgODM2LjIgMTIwNS4zIEMgODQxLjQgMTIwMi42IDg0MS44IDEyMDEuNiA4MzkuNSAxMTk4LjMgQyA4MzcuMCAxMTk0LjcgODI0LjUgMTE2OS44IDgyMS42IDExNjIuNSBDIDgwNi40IDExMjQuNyA4MDAuMSAxMDg2LjcgODAyLjkgMTA0OC45IEMgODA0LjAgMTAzMi42IDgwNC42IDEwMjguMCA4MDcuMSAxMDE0LjUgQyA4MTIuMyA5ODYuNyA4MjUuNiA5NTEuNiA4NDEuNyA5MjMuMiBDIDg0NC42IDkxOC4wIDg0Ny4wIDkxMy41IDg0Ny4wIDkxMy4wIEMgODQ3LjAgOTEyLjYgODQxLjUgOTA3LjQgODM0LjggOTAxLjQgQyA4MDkuNSA4NzkuMCA3NzYuOSA4NDUuNyA3NTMuMSA4MTguMCBDIDc0MC42IDgwMy40IDcxMi41IDc2NS4zIDcwMC44IDc0Ny4wIEMgNjU5LjUgNjgyLjYgNjM3LjAgNjI2LjggNjE4LjYgNTQzLjQgQyA2MTIuNSA1MTUuNiA2MDguMSA0ODUuNyA2MDQuOCA0NDkuNSBDIDYwMy4yIDQzMC45IDYwMy4yIDM2OS44IDYwNC44IDM1MC41IEMgNjA3LjYgMzE3LjcgNjExLjcgMjkwLjUgNjE4LjAgMjYxLjAgQyA2MjEuOCAyNDMuNSA2MjkuMCAyMTQuNiA2MzAuNSAyMTAuOCBDIDYzNS40IDE5OC42IDU5My42IDI0OC43IDU3Mi4zIDI4MC41IEMgNTUwLjkgMzEyLjYgNTI2LjkgMzYwLjUgNTE2LjggMzkxLjUgQyA1MDYuOCA0MjIuMiA1MDAuOCA0NDcuNSA0OTcuMSA0NzQuNSBDIDQ5NC41IDQ5My40IDQ5NC4wIDQ5OC41IDQ5My4wIDUxNy4yIEMgNDkwLjYgNTU5LjQgNDk3LjMgNjA5LjUgNTEwLjAgNjQ0LjAgQyA1MTEuNyA2NDguNyA1MTMuOCA2NTQuNSA1MTQuNyA2NTcuMCBDIDUxNy4yIDY2NC42IDUzMy40IDY5Ni45IDU0MS4wIDcwOS41IEMgNTkxLjEgNzkyLjggNjU2LjkgODY2LjYgNzQyLjYgOTM1LjcgQyA3NTcuMyA5NDcuNiA3NTYuMiA5NDUuNSA3NTIuOCA5NTUuMiBDIDc1MS4yIDk1OS44IDc0OS42IDk2My44IDc0OS4yIDk2NC4yIEMgNzQ3LjYgOTY1LjggNjkxLjUgOTI0LjEgNjY1LjIgOTAxLjggQyA2MzAuNCA4NzIuMyA1OTAuOSA4MzMuOSA1NjQuOCA4MDMuOSBDIDUxOS45IDc1Mi41IDQ3OS43IDY5Ni4xIDQ0OS4yIDY0Mi4wIEMgNDQwLjkgNjI3LjMgNDM0LjggNjE1LjkgNDI5LjUgNjA1LjEgQyA0MjYuMiA1OTguNSA0MjMuMiA1OTMuMCA0MjIuOCA1OTMuMCBDIDQyMS4yIDU5My4wIDQxOS44IDYwNi4xIDQxNy41IDY0My4wIEMgNDE0LjYgNjg5LjQgNDE2LjEgNzMyLjIgNDIxLjkgNzY0LjUgQyA0MjUuNSA3ODUuMCA0MzIuMiA4MDguNyA0MzguMSA4MjEuNyBDIDQzOS4xIDgyNC4xIDQ0MC4wIDgyNi4zIDQ0MC4wIDgyNi42IEMgNDQwLjAgODI4LjYgNDQ5LjQgODQ2LjAgNDU1LjEgODU0LjUgQyA0NjQuMSA4NjguMCA0NzIuOSA4NzguMCA0ODkuMCA4OTIuOSBDIDU0Ni4zIDk0NS44IDYyNC43IDk5OC4xIDcxMS4yIDEwNDEuMCBDIDcyMi4zIDEwNDYuNiA3MzEuNyAxMDUxLjUgNzMyLjAgMTA1MS45IEMgNzMyLjMgMTA1Mi40IDczMi40IDEwNTcuMSA3MzIuMiAxMDYyLjQgQyA3MzEuOSAxMDY5LjQgNzMxLjUgMTA3Mi4wIDczMC42IDEwNzIuMCBDIDcyOC42IDEwNzIuMCA2OTUuNSAxMDU4LjIgNjc2LjAgMTA0OS4yIEMgNTg0LjAgMTAwNi45IDUxMC4zIDk2My4xIDQ0Mi41IDkxMC4yIEMgNDM1LjkgOTA1LjEgNDMwLjQgOTAxLjQgNDMwLjIgOTAyLjAgQyA0MjkuMCA5MDUuNiA0MzcuNSA5NDAuNCA0NDUuNSA5NjQuNSBDIDQ2My40IDEwMTguMiA0OTEuOSAxMDYxLjcgNTI0LjYgMTA4NC45IEMgNTU5LjIgMTEwOS41IDY0Ny40IDExMzkuNyA3MzMuOSAxMTU2LjYgTCA3MzguMyAxMTU3LjUgTCA3NDEuMiAxMTY4LjMgQyA3NDIuOCAxMTc0LjMgNzQzLjkgMTE3OS40IDc0My42IDExNzkuNyBDIDc0My4wIDExODAuMyA3MjQuMiAxMTc3LjggNzA4LjAgMTE3NS4wIEMgNjQ4LjkgMTE2NC41IDU5OC4xIDExNTEuNyA1NDYuNSAxMTM0LjAgQyA1MjAuMSAxMTI0LjkgNTIyLjAgMTEyNS41IDUyMi4wIDExMjcuMyBDIDUyMi4wIDExMjkuNSA1MzAuOSAxMTQ3LjEgNTM3LjkgMTE1OC45IEMgNTU0LjEgMTE4Ni4wIDU2NS4xIDEyMDAuMiA1ODYuMCAxMjIxLjAgQyA2MDYuMCAxMjQxLjEgNjI0LjAgMTI1NC45IDY0OC4zIDEyNjguOSBDIDY2MC44IDEyNzYuMSA2ODYuOSAxMjg5LjAgNjk3LjAgMTI5My4wIEMgNzAxLjcgMTI5NC44IDcwNi4wIDEyOTYuNiA3MDYuNSAxMjk3LjAgQyA3MDcuMCAxMjk3LjQgNzEwLjIgMTI5OC43IDcxMy41IDEyOTkuOSBDIDcxNi44IDEzMDEuMCA3MjIuNCAxMzAzLjEgNzI2LjAgMTMwNC40IEMgNzI5LjYgMTMwNS44IDczMi44IDEzMDYuOSA3MzMuMiAxMzA2LjkgQyA3MzMuNyAxMzA3LjAgNzM0LjAgMTI5Ny4wIDczNC4wIDEyODQuOCBaIE0gMTc4Ny4yIDEzMDIuNiBDIDE4MDguMSAxMjk1LjAgMTgxMy4wIDEyOTMuMSAxODE5LjEgMTI5MC4zIEMgMTgyMi42IDEyODguNiAxODI4LjQgMTI4Ni4wIDE4MzIuMCAxMjg0LjUgQyAxODM4LjQgMTI4MS42IDE4NDAuNCAxMjgwLjYgMTg1Mi41IDEyNzQuMCBDIDE4ODIuMSAxMjU3LjggMTkwNS45IDEyNDAuMSAxOTI3LjYgMTIxNy45IEMgMTk0MS41IDEyMDMuNyAxOTUwLjYgMTE5Mi40IDE5NjEuNCAxMTc2LjIgQyAxOTc0LjcgMTE1Ni4yIDE5OTAuMiAxMTI3LjkgMTk4OC43IDExMjYuNCBDIDE5ODguNCAxMTI2LjAgMTk4Ni44IDExMjYuMiAxOTg1LjMgMTEyNi44IEMgMTk2OS4yIDExMzMuMSAxOTI4LjQgMTE0Ni4yIDE5MDYuNSAxMTUyLjAgQyAxODkyLjUgMTE1NS44IDE4NzkuNiAxMTU5LjEgMTg3NS41IDExNTkuOSBDIDE4NzMuMyAxMTYwLjQgMTg2Ny4wIDExNjEuOCAxODYxLjUgMTE2My4wIEMgMTgzNS45IDExNjguNyAxODE1LjQgMTE3Mi43IDE3OTMuNSAxMTc2LjQgQyAxNzcwLjQgMTE4MC4zIDE3NjYuNCAxMTgwLjggMTc2NS43IDExODAuMSBDIDE3NjUuMyAxMTc5LjcgMTc2NS42IDExNzcuNiAxNzY2LjMgMTE3NS40IEMgMTc2Ny4wIDExNzMuMyAxNzY4LjMgMTE2OC44IDE3NjkuMCAxMTY1LjUgQyAxNzcwLjcgMTE1OC4wIDE3NzEuMiAxMTU3LjQgMTc3NS44IDExNTYuNiBDIDE3OTIuNiAxMTUzLjYgMTgzOS4zIDExNDIuNSAxODYyLjUgMTEzNS45IEMgMTkwMi44IDExMjQuNCAxOTU1LjkgMTEwMy42IDE5NzYuMyAxMDkxLjQgQyAyMDAzLjAgMTA3NS4zIDIwMjcuMSAxMDQ3LjUgMjA0NS4zIDEwMTEuOCBDIDIwNDkuMyAxMDAzLjkgMjA1My4zIDk5NS43IDIwNTQuMiA5OTMuNSBDIDIwNTguNiA5ODMuMiAyMDU5LjUgOTgxLjAgMjA2Mi4yIDk3My41IEMgMjA2Ni43IDk2MS4xIDIwNjcuNiA5NTguNSAyMDcxLjggOTQzLjUgQyAyMDc2LjAgOTI4LjcgMjA3Ny4zIDkyMy42IDIwNzguOSA5MTUuNSBDIDIwNzkuNSA5MTIuOCAyMDgwLjQgOTA4LjYgMjA4MC45IDkwNi4yIEMgMjA4MS40IDkwMy45IDIwODEuNSA5MDEuOCAyMDgxLjAgOTAxLjUgQyAyMDgwLjYgOTAxLjMgMjA3Ni41IDkwNC4wIDIwNzEuOSA5MDcuNiBDIDIwMzEuMyA5MzguOSAyMDA5LjEgOTU0LjIgMTk2NS45IDk4MC4zIEMgMTkzOS40IDk5Ni40IDE4ODUuOCAxMDI0LjcgMTg1MC41IDEwNDEuMyBDIDE4MjUuMyAxMDUzLjIgMTc4MS4zIDEwNzIuMCAxNzc4LjggMTA3Mi4wIEMgMTc3OC40IDEwNzIuMCAxNzc4LjAgMTA2Ny40IDE3NzguMCAxMDYxLjggTCAxNzc4LjAgMTA1MS41IEwgMTgwMS4zIDEwMzkuOCBDIDE4NTIuNCAxMDEzLjkgMTkxMS43IDk3OC43IDE5NDYuOSA5NTMuMSBDIDE5OTIuOCA5MTkuOCAyMDMwLjQgODg3LjcgMjA0Ni4wIDg2OC41IEMgMjA2OC4zIDg0MS4wIDIwODMuMCA4MDUuMyAyMDg5LjkgNzYxLjUgQyAyMDkxLjAgNzU0LjQgMjA5Mi40IDc0NS40IDIwOTMuMCA3NDEuNSBDIDIwOTQuNyA3MzAuOCAyMDk1LjQgNjY5LjUgMjA5NC4xIDY0Ny41IEMgMjA5My4xIDYzMC4yIDIwOTIuNSA2MjMuNSAyMDkwLjQgNjAxLjIgQyAyMDg5LjQgNTkwLjYgMjA4OS4zIDU5MC43IDIwNzkuMCA2MTAuNSBDIDIwNzUuMCA2MTguMiAyMDcxLjQgNjI1LjAgMjA3MS4wIDYyNS41IEMgMjA3MC42IDYyNi4wIDIwNjguNiA2MjkuNiAyMDY2LjUgNjMzLjUgQyAyMDU4LjIgNjQ4LjkgMjA1Ni40IDY1Mi4xIDIwNDcuMiA2NjcuMCBDIDIwMTcuNyA3MTUuMSAxOTgyLjkgNzYyLjcgMTk0OS4zIDgwMS4wIEMgMTkxNi4yIDgzOC44IDE4NjMuNCA4ODguNSAxODI0LjEgOTE4LjggQyAxNzk0LjIgOTQyLjAgMTc2MS4wIDk2NS41IDE3NjAuMCA5NjQuMyBDIDE3NTkuNCA5NjMuNiAxNzU0LjAgOTQ3LjggMTc1NC4wIDk0Ni43IEMgMTc1NC4wIDk0Ni41IDE3NTkuMyA5NDIuMSAxNzY1LjggOTM2LjkgQyAxODMxLjAgODg0LjggMTg4OC4zIDgyNi4xIDE5MzIuMiA3NjYuNCBDIDE5ODYuMiA2OTIuOSAyMDA3LjMgNjQ1LjcgMjAxNi42IDU3OC4wIEMgMjAxNy45IDU2OC42IDIwMTguNCA1NTcuOSAyMDE4LjQgNTM0LjUgQyAyMDE4LjUgNDk4LjggMjAxNy40IDQ4Ni43IDIwMTEuNCA0NTQuMCBDIDE5OTUuOSAzNzAuNyAxOTU3LjEgMjkzLjkgMTg5My4wIDIxOS42IEMgMTg4NC40IDIwOS43IDE4ODAuOSAyMDYuNyAxODgyLjQgMjEwLjcgQyAxODg0LjcgMjE2LjUgMTg5NS40IDI2MS4zIDE4OTcuOSAyNzUuNSBDIDE5MDUuNSAzMTguMiAxOTA4LjAgMzQzLjkgMTkwOC43IDM4OC4wIEMgMTkwOS4zIDQyNy43IDE5MDguMyA0NDkuNCAxOTA0LjQgNDgwLjAgQyAxODkwLjQgNTkwLjkgMTg1OS42IDY3NC44IDE4MDEuMSA3NjEuMiBDIDE3ODEuOCA3ODkuNiAxNzY5LjkgODA1LjEgMTc0Ny4wIDgzMS4zIEMgMTczNS43IDg0NC4yIDE2ODYuOSA4OTIuMyAxNjc0LjcgOTAyLjUgQyAxNjY4LjggOTA3LjQgMTY2NC4wIDkxMi4xIDE2NjQuMCA5MTIuOSBDIDE2NjQuMCA5MTMuNyAxNjY1LjggOTE3LjUgMTY2OC4xIDkyMS40IEMgMTY3OC4zIDkzOC45IDE2ODkuOCA5NjUuNSAxNjk1LjggOTg1LjAgQyAxNzEwLjMgMTAzMi4yIDE3MTEuMyAxMDg3LjAgMTY5OC41IDExMzEuNSBDIDE2OTIuMiAxMTUzLjMgMTY4MS43IDExNzcuOCAxNjcwLjggMTE5Ni4zIEMgMTY2OS4yIDExOTkuMCAxNjY4LjIgMTIwMS41IDE2NjguNSAxMjAxLjkgQyAxNjY4LjkgMTIwMi43IDE2ODYuNiAxMjEyLjkgMTcwMC41IDEyMjAuNSBDIDE3MDMuMiAxMjIyLjAgMTcwOC40IDEyMjUuMCAxNzEyLjAgMTIyNy4wIEMgMTcxNS42IDEyMjkuMSAxNzIyLjEgMTIzMi43IDE3MjYuNSAxMjM1LjAgQyAxNzMwLjkgMTIzNy4zIDE3MzYuOCAxMjQwLjUgMTczOS41IDEyNDIuMCBDIDE3NDIuMiAxMjQzLjUgMTc0OS45IDEyNDcuNiAxNzU2LjUgMTI1MS4wIEMgMTc2My4xIDEyNTQuNSAxNzcwLjAgMTI1OC4yIDE3NzEuOCAxMjU5LjIgTCAxNzc1LjAgMTI2MS4yIEwgMTc3NS4wIDEyODMuNiBDIDE3NzUuMCAxMzAyLjYgMTc3NS4yIDEzMDYuMCAxNzc2LjUgMTMwNi4wIEMgMTc3Ny4zIDEzMDYuMCAxNzgyLjEgMTMwNC41IDE3ODcuMiAxMzAyLjYgWiIKICAgICBpZD0icGF0aDYiIC8+CjxwYXRoCiAgICAgZmlsbC1ydWxlPSJub256ZXJvIgogICAgIGZpbGw9IiMwODE4MzMiCiAgICAgZD0iTSAxMDI5LjggMTYxMi41IEMgMTAzMC44IDE2MTIuMSAxMDMxLjAgMTU5Ni42IDEwMzAuNiAxNTM0LjggQyAxMDMwLjQgMTQ5Mi4zIDEwMzAuMyAxNDU2LjQgMTAzMC4zIDE0NTUuMCBDIDEwMzAuNCAxNDUzLjYgMTAzMC40IDE0MjEuNSAxMDMwLjQgMTM4My41IEwgMTAzMC41IDEzMTQuNSBMIDkwMi4xIDEzMTQuMiBDIDgyNS44IDEzMTQuMSA3NzMuMiAxMzE0LjQgNzcyLjcgMTMxNC45IEMgNzcxLjcgMTMxNS45IDc3MS4xIDE2MDkuNiA3NzIuMSAxNjEyLjAgQyA3NzIuNyAxNjEzLjQgNzg2LjEgMTYxMy42IDkwMC42IDE2MTMuMyBDIDk3MS4wIDE2MTMuMSAxMDI5LjEgMTYxMi44IDEwMjkuOCAxNjEyLjUgWiBNIDE3MzYuNSAxNDY0LjAgTCAxNzM2LjUgMTMxNC41IEwgMTYwNy42IDEzMTQuMiBDIDE1MDcuNyAxMzE0LjAgMTQ3OC41IDEzMTQuMyAxNDc3LjkgMTMxNS4yIEMgMTQ3Ny4wIDEzMTYuNiAxNDc2LjcgMTQ0OC4xIDE0NzcuNiAxNDUwLjQgQyAxNDc4LjIgMTQ1MS45IDE0ODkuNiAxNDUyLjAgMTYwNC4xIDE0NTIuMCBMIDE3MzAuMCAxNDUyLjAgTCAxNzMwLjAgMTQ1Ni4wIEwgMTczMC4wIDE0NjAuMCBMIDE2MDQuMSAxNDYwLjAgQyAxNTA0LjMgMTQ2MC4wIDE0NzguMSAxNDYwLjMgMTQ3Ny43IDE0NjEuMiBDIDE0NzYuOSAxNDYzLjQgMTQ3Ny4yIDE2MTEuNSAxNDc4LjAgMTYxMi41IEMgMTQ3OC42IDE2MTMuMiAxNTIzLjAgMTYxMy41IDE2MDcuNyAxNjEzLjUgTCAxNzM2LjUgMTYxMy41IEwgMTczNi41IDE0NjQuMCBaIE0gMTA1My4xIDE2MDEuOCBDIDEwNTYuNyAxNTk2LjcgMTA2Ni4yIDE1ODMuMiAxMDc0LjMgMTU3MS44IEwgMTA4OS4wIDE1NTEuMiBMIDEwODkuMiAxNDYyLjYgTCAxMDg5LjUgMTM3NC4wIEwgMTI1My45IDEzNzQuMCBDIDEzNDQuMyAxMzc0LjAgMTQxOC41IDEzNzQuMiAxNDE4LjcgMTM3NC40IEMgMTQxOC45IDEzNzQuNiAxNDE5LjAgMTQxNC4zIDE0MTkuMCAxNDYyLjcgTCAxNDE5LjAgMTU1MC42IEwgMTQyMi44IDE1NTYuMSBDIDE0MjQuOSAxNTU5LjEgMTQzMy4yIDE1NzAuNyAxNDQxLjEgMTU4Mi4wIEMgMTQ0OS4xIDE1OTMuMyAxNDU2LjkgMTYwNC40IDE0NTguNSAxNjA2LjggQyAxNDYwLjAgMTYwOS4xIDE0NjEuNyAxNjExLjAgMTQ2Mi4xIDE2MTEuMCBDIDE0NjIuNiAxNjExLjAgMTQ2Mi45IDE1NDYuNCAxNDYyLjggMTQ2Mi44IEwgMTQ2Mi41IDEzMTQuNSBMIDEyNTQuMCAxMzE0LjUgTCAxMDQ1LjUgMTMxNC41IEwgMTA0NS4yIDE0NjIuOCBDIDEwNDUuMSAxNTQ0LjMgMTA0NS4zIDE2MTEuMCAxMDQ1LjggMTYxMS4wIEMgMTA0Ni4yIDE2MTEuMCAxMDQ5LjUgMTYwNi44IDEwNTMuMSAxNjAxLjggWiBNIDg1OS42IDE1MjQuNCBDIDg1OS4zIDE1MjMuNiA4NTkuMCAxNTE5LjUgODU5LjAgMTUxNS40IEwgODU5LjAgMTUwOC4wIEwgOTAxLjAgMTUwOC4wIEwgOTQzLjEgMTUwOC4wIEwgOTQyLjggMTUxNi44IEwgOTQyLjUgMTUyNS41IEwgOTAxLjQgMTUyNS44IEMgODY0LjUgMTUyNi4wIDg2MC4yIDE1MjUuOSA4NTkuNiAxNTI0LjQgWiBNIDE1NjUuNyAxNTI1LjMgQyAxNTY1LjQgMTUyNC44IDE1NjUuMSAxNTIwLjkgMTU2NC45IDE1MTYuNSBMIDE1NjQuNSAxNTA4LjUgTCAxNjA2LjUgMTUwOC41IEwgMTY0OC41IDE1MDguNSBMIDE2NDguNSAxNTE3LjAgTCAxNjQ4LjUgMTUyNS41IEwgMTYwNy4zIDE1MjUuOCBDIDE1ODQuNyAxNTI1LjkgMTU2NS45IDE1MjUuNyAxNTY1LjcgMTUyNS4zIFogTSA3NzguNCAxNDU4LjYgQyA3NzguMSAxNDU3LjggNzc4LjAgMTQ1Ni4xIDc3OC4yIDE0NTQuOCBMIDc3OC41IDE0NTIuNSBMIDkwMS40IDE0NTIuNSBDIDEwMTcuMyAxNDUyLjUgMTAyNC4zIDE0NTIuNiAxMDI1LjQgMTQ1NC4yIEMgMTAyNi4yIDE0NTUuNSAxMDI2LjIgMTQ1Ni41IDEwMjUuNCAxNDU3LjggQyAxMDI0LjMgMTQ1OS40IDEwMTcuMiAxNDU5LjUgOTAxLjYgMTQ1OS44IEMgNzk1LjkgMTQ2MC4wIDc3OC45IDE0NTkuOCA3NzguNCAxNDU4LjYgWiBNIDg1OS43IDEzODYuMyBDIDg1OS4zIDEzODYuMCA4NTkuMCAxMzgyLjEgODU5LjAgMTM3Ny44IEwgODU5LjAgMTM3MC4wIEwgOTAwLjggMTM3MC4yIEwgOTQyLjUgMTM3MC41IEwgOTQyLjUgMTM3OC41IEwgOTQyLjUgMTM4Ni41IEwgOTAxLjQgMTM4Ni44IEMgODc4LjggMTM4Ni45IDg2MC4xIDEzODYuNyA4NTkuNyAxMzg2LjMgWiBNIDE1NjUuMCAxMzc4LjUgTCAxNTY1LjAgMTM3MC4wIEwgMTYwNi44IDEzNzAuMiBMIDE2NDguNSAxMzcwLjUgTCAxNjQ4LjUgMTM3OC41IEwgMTY0OC41IDEzODYuNSBMIDE2MDYuOCAxMzg2LjggTCAxNTY1LjAgMTM4Ny4wIEwgMTU2NS4wIDEzNzguNSBaIE0gMTc1MS44IDEyODguMSBDIDE3NTIuMCAxMjgzLjUgMTc1MS43IDEyNzkuMyAxNzUxLjMgMTI3OC45IEMgMTc1MC44IDEyNzguNCAxNzQwLjYgMTI3NC43IDE3MjguNSAxMjcwLjYgQyAxNjk1LjUgMTI1OS40IDE2NzEuOSAxMjUxLjAgMTY0Mi4yIDEyNDAuMSBDIDE2MzcuNyAxMjM4LjQgMTYzMC4zIDEyMzUuNiAxNjI1LjggMTIzNC4wIEwgMTYxNy43IDEyMzEuMCBMIDEyNTQuNCAxMjMxLjAgQyA5ODkuNCAxMjMxLjAgODkwLjQgMTIzMS4zIDg4OC4zIDEyMzIuMSBDIDg4Ni44IDEyMzIuNyA4ODEuOSAxMjM0LjUgODc3LjUgMTIzNi4wIEMgODczLjEgMTIzNy42IDg2NS43IDEyNDAuMyA4NjEuMCAxMjQyLjAgQyA4NTYuMyAxMjQzLjggODUwLjAgMTI0Ni4xIDg0Ny4wIDEyNDcuMiBDIDgzOC43IDEyNTAuMyA4MTAuNSAxMjYwLjEgNzgxLjggMTI2OS43IEwgNzU2LjAgMTI3OC40IEwgNzU2LjAgMTI4Ny43IEwgNzU2LjAgMTI5Ny4wIEwgMTI1My44IDEyOTYuOCBMIDE3NTEuNSAxMjk2LjUgTCAxNzUxLjggMTI4OC4xIFoiCiAgICAgaWQ9InBhdGg3IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7ZmlsbC1vcGFjaXR5OjEiIC8+Cjwvc3ZnPg=="><span
+          class="brand-name">DESK<span class="lo">LESS</span></span></a><a class="call" href="tel:+19703029907">Call or
+        text (970) 302-9907</a></header>
+    <section class="hero">
+      <div class="hello"><span class="label">Hi Meadow and Dwane, nice to meet you!</span></div>
+      <h1>A website for Eco Adventures</h1>
+      <p class="lede">It was really good talking with you Meadow! Here's some notes on my thoughts on a website for Eco
+        Adventures Day Program and Respite. When you're ready to discuss more about the site, URL, etc.. just give me a
+        call.</p>
+      <div class="ctas"><a class="btn primary" href="tel:+19703029907">Call or text Dan <small>(970)
+            302-9907</small></a><a class="btn soft" href="https://cal.com/deskless/30min">Book a 30 minute chat</a>
+      </div>
+    </section>
+    <section><span class="label">Let's talk about</span>
+      <div class="cards">
+        <div class="card"><span class="tag">Tell Your Story</span>
+          <h3>Getting you in touch with more clients</h3>
+          <p>We'll help families, case managers and participants all find the same clear page. It'll say who you are, who you serve
+            and what a day with Eco Adventures actually looks like. No searching around, no confusion.</p>
+        </div>
+        <div class="card"><span class="tag">Build trust</span>
+          <h3>Letting people see the real thing</h3>
+          <p>An (easy to update) rotating slideshow of your real activities right at the top. Below that, a clear summary of the programs
+            and waivers you support, and a note that you are a PASA. When people can see it plainly, they feel
+            comfortable.</p>
+        </div>
+        <div class="card"><span class="tag">Reach you</span>
+          <h3>Making it simple to get in touch</h3>
+          <p>Your phone number and email right where people expect them, on any device. Plus a short inquiry form, so a
+            parent or case manager can reach out late at night without having to call.</p>
+        </div>
+      </div>
+    </section>
+    <section><span class="label">A rough sketch</span>
+      <h2>Here is one way it could look</h2>
+      <p class="intro">This little browser window holds a quick sketch we put together so you have something to look at
+        and react to. Try flipping between the three looks and see which feeling is closest to yours. It is always
+        easier to start with something on the page than with a blank screen.</p>
+      <div class="looks" role="group" aria-label="Try a different look"><span>Try a look:</span><button type="button"
+          data-look="0" aria-pressed="true">Sunny Day</button><button type="button" data-look="1"
+          aria-pressed="false">Mountain Blue</button><button type="button" data-look="2" aria-pressed="false">Trail
+          Earth</button></div>
+      <div class="browser">
+        <div class="bar"><i></i><i></i><i></i>
+          <div class="url">your-new-site.com</div>
+        </div>
+        <div class="site" id="site" data-look="0">
+          <div class="s-nav">
+            <div class="s-logo"><b></b>Eco Adventures</div>
+            <div class="s-links"><span>Home</span><span>Programs</span><span>About Us</span><span>Contact</span></div>
+          </div>
+          <div class="s-hero">
+            <div>
+              <h4>Good days, outdoors, with good people</h4>
+              <p>Day programs, adaptive outdoor adventures and respite for people with intellectual and developmental
+                disabilities in Northern Colorado.</p><span class="s-btn">Ask us a question</span>
+            </div>
+            <div class="s-photo" id="slides">
+              <svg class="on" viewBox="0 0 600 330" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="600" height="330" fill="var(--m-sky)" />
+                <circle cx="470" cy="80" r="38" fill="var(--m-sun)" />
+                <path d="M0 230 L120 110 L210 190 L320 80 L450 210 L520 150 L600 220 L600 330 L0 330Z"
+                  fill="var(--m-hill2)" />
+                <path d="M0 260 C120 210 220 250 330 235 S520 215 600 250 L600 330 L0 330Z" fill="var(--m-hill1)" />
+                <path d="M250 330 C290 295 250 275 320 255 S380 240 360 232" stroke="var(--m-path)" stroke-width="12"
+                  fill="none" stroke-linecap="round" />
+                <g fill="var(--m-hill2)">
+                  <path d="M80 262l14-34 14 34z" />
+                  <path d="M112 268l11-27 11 27z" />
+                  <path d="M500 256l13-32 13 32z" />
+                </g>
+              </svg>
+              <svg viewBox="0 0 600 330" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="600" height="330" fill="var(--m-sky)" />
+                <circle cx="140" cy="95" r="34" fill="var(--m-sun)" />
+                <path d="M0 190 C90 150 170 175 260 160 S450 120 600 175 L600 330 L0 330Z" fill="var(--m-hill2)" />
+                <rect y="200" width="600" height="130" fill="var(--m-water)" />
+                <path d="M0 200 C100 190 200 206 300 198 S500 192 600 202 L600 214 L0 214Z" fill="var(--m-hill1)" />
+                <g stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".55">
+                  <path d="M90 250h70M330 286h90M440 240h60" />
+                </g>
+                <path d="M230 262 q60 22 120 0 l-10 12 h-100z" fill="var(--m-accent)" />
+                <path d="M290 262v-30" stroke="var(--m-ink)" stroke-width="4" stroke-linecap="round" />
+                <circle cx="290" cy="226" r="8" fill="var(--m-ink)" />
+              </svg>
+              <svg viewBox="0 0 600 330" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="600" height="330" fill="var(--m-sky)" />
+                <circle cx="300" cy="70" r="36" fill="var(--m-sun)" />
+                <path d="M0 210 C150 170 300 200 600 180 L600 330 L0 330Z" fill="var(--m-hill2)" />
+                <rect y="240" width="600" height="90" fill="var(--m-hill1)" />
+                <g>
+                  <rect x="60" y="236" width="200" height="40" rx="8" fill="var(--m-path)" />
+                  <rect x="330" y="236" width="210" height="40" rx="8" fill="var(--m-path)" />
+                </g>
+                <g fill="var(--m-accent)">
+                  <circle cx="95" cy="228" r="11" />
+                  <circle cx="150" cy="222" r="13" />
+                  <circle cx="210" cy="228" r="11" />
+                  <circle cx="370" cy="224" r="12" />
+                  <circle cx="430" cy="228" r="10" />
+                  <circle cx="495" cy="222" r="13" />
+                </g>
+                <g stroke="var(--m-hill1)" stroke-width="4">
+                  <path d="M95 238v-4M150 238v-6M210 238v-4M370 238v-4M430 238v-2M495 238v-6" />
+                </g>
+              </svg>
+              <span class="ph">Your photos go here</span>
+              <div class="s-dots"><i class="on"></i><i></i><i></i></div>
+            </div>
+          </div>
+          <div class="s-progs">
+            <div class="s-prog"><b>Day Program</b><span>A full day of activities, friendships and time outside, with
+                staff who know each participant well.</span></div>
+            <div class="s-prog"><b>Adaptive Adventures</b><span>Trails, water and open air, planned so everyone can take
+                part in their own way.</span></div>
+            <div class="s-prog"><b>Respite</b><span>Short-term care that gives family caregivers a genuine break,
+                knowing their person is safe and happy.</span></div>
+          </div>
+          <div class="s-waiver">We are a Program Approved Service Agency (PASA). We work with Medicaid waiver services
+            including SLS and respite.</div>
+          <div class="s-form">
+            <h5>Tell us a little about yourself</h5>
+            <div class="s-fields">
+              <div class="s-field">Your name</div>
+              <div class="s-field">Phone or email</div>
+              <div class="s-field wide">What you are looking for</div>
+            </div>
+            <p class="s-note">Please do not include medical details here. We will talk through those with you in person.
+            </p><span class="s-btn">Send</span>
+          </div>
+          <div class="s-foot">Serving families across Northern Colorado.</div>
+        </div>
+      </div>
+      <p class="disclaimer">This is only a sketch. Nothing here is decided. Your real site can look completely
+        different, built around your own photos, your own colours and your own personality.</p>
+    </section>
+    <section><span class="label">Getting found online</span>
+      <h2>Built so search engines understand you</h2>
+      <p class="intro">We write and structure the page so Google can clearly see what you offer and where, using the
+        words families and case managers actually search for. We will never promise you a number one spot, but a
+        well-built, clearly written page is how you earn one over time.</p>
+      <div class="chips"><span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" />
+            <path d="M20 20l-3.5-3.5" />
+          </svg>adaptive adventures colorado</span><span class="chip"><svg viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" />
+            <path d="M20 20l-3.5-3.5" />
+          </svg>idd day program near me</span><span class="chip"><svg viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" />
+            <path d="M20 20l-3.5-3.5" />
+          </svg>pasa day program larimer county</span><span class="chip"><svg viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" />
+            <path d="M20 20l-3.5-3.5" />
+          </svg>respite care sls waiver</span></div>
+    </section>
+    <section><span class="label">Yours to run</span>
+      <h2>Your team can update it</h2>
+      <p class="intro">New photos, a new program description, a changed phone number: you make the update yourself in a
+        few minutes from any browser. No developer needed, no waiting on us, no extra cost.</p>
+      <div class="trio">
+        <div>
+          <h3>Fast</h3>
+          <p>The page loads quickly even on a phone with weak signal, which is where a lot of families will first find
+            you.</p>
+        </div>
+        <div>
+          <h3>Safe</h3>
+          <p>Nothing to patch and very little that can break. Inquiries go straight to you and nowhere else.</p>
+        </div>
+        <div>
+          <h3>Readable by everyone</h3>
+          <p>Plain language, large text, strong contrast, and it works with screen readers. Participants are readers
+            too, so the page is written with them in mind.</p>
+        </div>
+      </div>
+    </section>
+    <section><span class="label">Where this goes from here</span>
+      <div class="path">
+        <div class="now"><span class="when">First</span>
+          <h3>The landing page</h3>
+          <p>One clear page that makes you visible online and brings inquiries in. Everything else builds on top of it.
+          </p>
+        </div>
+        <div class=""><span class="when">Later</span>
+          <h3>Monthly activity calendar</h3>
+          <p>A calendar families can check from their phone to see what is coming up this month.</p>
+        </div>
+        <div class=""><span class="when">After that</span>
+          <h3>Weekly notes to families</h3>
+          <p>A short weekly update to families and case managers, sent from the same place you manage the site.</p>
+        </div>
+      </div>
+    </section>
+    <section><span class="label">To get started</span>
+      <h2>What we would ask you for</h2>
+      <p class="intro">None of this has to be polished or complete. We can work with whatever you have right now.</p>
+      <ul class="need">
+        <li><b>Photos of your activities.</b> The more real the better. Only ones where you have a photo release on
+          file.</li>
+        <li><b>Your programs and waivers.</b> The list, the way you would explain it to a new case manager at Foothills
+          Gateway.</li>
+        <li><b>Service area and hours.</b> Where you work and when people can reach you.</li>
+        <li><b>Logo and colours,</b> if you have them. If not, we will put together a few options for you to choose
+          from.</li>
+        <li><b>Who should get inquiries.</b> The name and email address the contact form should go to.</li>
+      </ul>
+    </section>
+    <section class="two">
+      <div class="card"><span class="tag">Recent project, 2026</span>
+        <p>We recently built a site for a small Northern Colorado business. The owner now updates the whole thing
+          himself, photos and all, without calling a developer. That is the same idea here.</p>
+      </div>
+      <div class="card"><span class="tag">Who you would be working with</span>
+        <p>Deskless is Dan Bonomo, based in Fort Collins. He builds simple, sturdy websites and tools that small teams
+          can run on their own, then shows them how and steps back. No lock-in, nothing you need to call him to change.
+        </p>
+      </div>
+    </section>
+    <section class="contact"><span class="label">Say hello</span>
+      <h2>We would love to hear from you</h2>
+      <p class="intro" style="margin-bottom:0">Call, text or email, whatever is easiest.</p>
+      <a class="phone" href="tel:+19703029907">(970) 302-9907</a>
+      <div class="ways">
+        <div><span>Email</span><a
+            href="mailto:dan@desklessconsulting.com?subject=Eco%20Adventures%20website">dan@desklessconsulting.com</a>
+        </div>
+        <div><span>Pick a time</span><a href="https://cal.com/deskless/30min">cal.com/deskless/30min</a></div>
+        <div><span>Save my details</span><a
+            href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3ABonomo%3BDan%3B%3B%3B%0AFN%3ADan%20Bonomo%0AORG%3ADeskless%20Consulting%0ATEL%3BTYPE%3DCELL%3A%2B19703029907%0AEMAIL%3BTYPE%3DINTERNET%3Adan%40desklessconsulting.com%0AURL%3Ahttps%3A//desklessconsulting.com%0AADR%3BTYPE%3DWORK%3A%3B%3B%3BFort%20Collins%3BCO%3B%3BUSA%0AEND%3AVCARD%0A"
+            download="dan-bonomo.vcf">Add Dan to your contacts</a></div>
+      </div>
+    </section>
+    <footer class="foot">
+      <div>Thanks for the conversation, Meadow. Reach out whenever you are ready.</div>
+      <code>Deskless · Fort Collins, Colorado · card 41 of 50</code>
+    </footer>
+  </main>
+  <script>
+    (function () {
+      // looks
+      const site = document.getElementById("site"); document.querySelectorAll(".looks button").forEach(b => b.onclick = () => { site.dataset.look = b.dataset.look; document.querySelectorAll(".looks button").forEach(x => x.setAttribute("aria-pressed", String(x === b))) });
+      // slideshow
+      const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches; const sl = [...document.querySelectorAll("#slides svg")], dots = [...document.querySelectorAll("#slides .s-dots i")]; let k = 0;
+      if (!reduce) setInterval(() => { sl[k].classList.remove("on"); dots[k].classList.remove("on"); k = (k + 1) % sl.length; sl[k].classList.add("on"); dots[k].classList.add("on") }, 5000);
+      // sky: pale washes + drifting bokeh
+      const cv = document.getElementById("sky"), c = cv.getContext("2d"), dpr = Math.min(devicePixelRatio || 1, 2);
+      function rng(seed) { let h = 1779033703 ^ seed.length; for (let i = 0; i < seed.length; i++) { h = Math.imul(h ^ seed.charCodeAt(i), 3432918353); h = h << 13 | h >>> 19 } return () => { h = Math.imul(h ^ h >>> 16, 2246822507); h = Math.imul(h ^ h >>> 13, 3266489909); return ((h ^= h >>> 16) >>> 0) / 4294967296 } }
+      const r = rng("nervous-energy"); let W = 0, H = 0, wash = null, orbs = [];
+      function build() {
+        W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr;
+        wash = document.createElement("canvas"); wash.width = W; wash.height = Math.round(H * 1.4); const w = wash.getContext("2d"); w.fillStyle = "#F2F9FB"; w.fillRect(0, 0, wash.width, wash.height);
+        const cols = ["120,205,222", "96,170,232", "160,226,214", "255,214,170"]; for (let i = 0; i < 9; i++) { const x = r() * W, y = r() * wash.height, rad = Math.max(W, H) * (.25 + r() * .35), col = cols[i % cols.length]; const g = w.createRadialGradient(x, y, 0, x, y, rad); g.addColorStop(0, `rgba(${col},${i % 4 === 3 ? .16 : .28})`); g.addColorStop(1, `rgba(${col},0)`); w.fillStyle = g; w.fillRect(0, 0, wash.width, wash.height) }
+        orbs = []; const n = Math.round(W * H / 38000) + 8; for (let i = 0; i < n; i++)orbs.push({ x: r() * W, y: r() * H * 1.3, rad: 6 + r() * r() * 46, z: .2 + r() * .8, ph: r() * 6.28, warm: r() < .18 })
+      }
+      function frame(t) {
+        if (W !== innerWidth || H !== innerHeight) build(); c.setTransform(dpr, 0, 0, dpr, 0, 0); const sy = scrollY;
+        c.drawImage(wash, 0, -Math.min(sy * .06, wash.height - H));
+        for (const o of orbs) {
+          const drift = reduce ? 0 : t * .006 * o.z; let y = (o.y - drift - sy * .12 * o.z) % (H * 1.3); if (y < -60) y += H * 1.3 + 60; const x = o.x + (reduce ? 0 : Math.sin(t * .0004 + o.ph) * 14 * o.z);
+          const a = (.22 + .2 * o.z) * (reduce ? 1 : (.75 + .25 * Math.sin(t * .0011 + o.ph))); const col = o.warm ? "255,190,120" : "255,255,255"; const g = c.createRadialGradient(x, y, 0, x, y, o.rad); g.addColorStop(0, `rgba(${col},${a * .5})`); g.addColorStop(.78, `rgba(${col},${a})`); g.addColorStop(1, `rgba(${col},0)`); c.fillStyle = g; c.beginPath(); c.arc(x, y, o.rad, 0, 6.3); c.fill()
+        }
+        if (!reduce) requestAnimationFrame(frame)
+      }
+      build(); requestAnimationFrame(frame); if (reduce) { addEventListener("scroll", () => frame(0), { passive: true }); addEventListener("resize", () => frame(0)) }
+    })();
+  </script>
+  <script src="/qr/ping.js" defer></script>
+</body>
+
+</html>
