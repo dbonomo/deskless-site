@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Beats Working · Deskless</title>
+<meta name="description" content="Dan Bonomo, Deskless Consulting, Fort Collins. Data system evaluations and audits. This page belongs to card 36 of 50, the Beats Working.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" type="image/svg+xml" href="/assets/deskless-badge.svg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@1,6..72,400&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+<style>
+:root{--navy:#081833;--deep:#050f22;--blue:#2F6BFF;--cyan:#1786D4;--orange:#FF7A1A;--off:#F5F7FA;
+  --fg:#F5F7FA;--fg2:#c3cee4;--mute:#8497bb;--line:rgba(159,180,216,.22);--panel:rgba(8,24,51,.55);--accent:#FF7A1A;--accent-fg:#081833;
+  --sans:'Manrope',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;--serif:'Newsreader',Georgia,serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:#03070f;color:var(--fg);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+#world{position:fixed;inset:0;z-index:0}
+#world canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.page{position:relative;z-index:1;width:min(980px,92vw);margin:0 auto;padding:28px 0 60px;display:flex;flex-direction:column;gap:64px}
+a{color:inherit}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.01em;font-size:16px;text-decoration:none}
+.brand svg{width:26px;height:26px}
+.shipline{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);display:flex;gap:10px;align-items:baseline}
+.shipline i{font-family:var(--serif);font-style:italic;text-transform:none;letter-spacing:0;font-size:18px;color:var(--fg)}
+.hero{max-width:640px;display:flex;flex-direction:column;gap:18px;padding-top:min(20vh,170px);min-height:min(78vh,640px)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.disarm{font-family:var(--sans);font-size:15px;color:var(--fg2);text-transform:none;letter-spacing:0;max-width:52ch}
+.disarm i{font-family:var(--serif);font-style:italic;color:var(--fg);font-size:17px}
+h1{font-size:clamp(32px,5.2vw,58px);line-height:1.02;letter-spacing:-.03em;font-weight:800;text-wrap:balance;text-shadow:0 2px 30px rgba(0,0,0,.55)}
+.hero p.lede{font-size:18px;max-width:50ch;color:var(--fg2);text-shadow:0 1px 14px rgba(0,0,0,.5)}
+.cta{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:999px;font-weight:700;background:var(--accent);color:var(--accent-fg);width:max-content;text-decoration:none;font-size:15px}
+.cta small{font-weight:500;opacity:.8}
+.cta:focus-visible,a:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+section h2{font-size:24px;letter-spacing:-.02em;margin-bottom:14px}
+.panel{border:1px solid var(--line);background:var(--panel);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:8px;padding:22px 24px}
+.sc{max-width:680px}
+.sc h2{margin-bottom:6px}
+.sc>p{color:var(--fg2);margin-bottom:14px}
+.sc ul{list-style:none;display:flex;flex-direction:column}
+.sc li{padding:11px 0;border-top:1px solid var(--line);display:flex;gap:14px;align-items:baseline}
+.sc li span{font-family:var(--mono);font-size:11px;color:var(--mute);min-width:64px;letter-spacing:.06em}
+.sc li a{color:var(--fg);text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px}
+.offers{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.offer h3{font-size:18px;margin-bottom:4px}
+.offer .price{font-family:var(--mono);font-size:13px;color:var(--mute);margin-bottom:10px}
+.offer p{color:var(--fg2);font-size:15px}
+.free{max-width:680px;border-left:2px solid var(--accent);padding-left:16px;font-size:16px;color:var(--fg2)}
+.free b{color:var(--fg)}
+.receipt{max-width:680px;font-size:17px;color:var(--fg2)}
+.receipt b{color:var(--fg)}
+.receipt .src{display:block;margin-top:8px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);text-align:left;padding:0 12px 8px 0;font-weight:500}
+td{padding:9px 12px 9px 0;border-top:1px solid var(--line);vertical-align:top;color:var(--fg2)}
+td:first-child{color:var(--fg);font-weight:600;white-space:nowrap}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.tablewrap{overflow-x:auto}
+.more{display:inline-block;margin-top:12px;font-size:14px;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--accent)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;counter-reset:s}
+.step{position:relative;padding-top:6px}
+.step b{display:block;font-size:15px;margin-bottom:4px}
+.step p{font-size:14px;color:var(--fg2)}
+.step::before{content:"";display:block;height:2px;background:var(--accent);width:36px;margin-bottom:10px}
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px 24px;font-size:15px}
+.contact div{display:flex;flex-direction:column;gap:2px}
+.contact span{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.contact a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--line);width:max-content;max-width:100%}
+.dict{max-width:620px;font-size:16px;color:var(--fg2)}
+.dict .w{font-family:var(--serif);font-size:24px;color:var(--fg);letter-spacing:.01em}
+.dict .pos{font-family:var(--serif);font-style:italic;color:var(--mute);margin-left:6px}
+.dict ol{list-style:none;margin-top:8px;display:flex;flex-direction:column;gap:4px}
+.dict li::before{content:counter(d) ".";counter-increment:d;font-family:var(--mono);font-size:12px;color:var(--mute);margin-right:8px}
+.dict ol{counter-reset:d}
+.lore{max-width:640px;font-size:15px;color:var(--fg2)}
+.lore i{font-family:var(--serif);font-style:italic;color:var(--fg);font-size:17px}
+.lore p+p{margin-top:10px}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-end;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--mute)}
+.foot em{font-family:var(--serif);font-style:italic;color:var(--fg);font-size:16px}
+.foot code{font-family:var(--mono);font-size:11px;letter-spacing:.06em}
+.foot a{text-decoration:none;border-bottom:1px solid var(--line)}
+@media (max-width:640px){.page{gap:48px;padding-top:20px}.hero{padding-top:70px;min-height:0}.top{flex-direction:column;align-items:flex-start;gap:8px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.ctas{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.cta.ghost{background:transparent;color:var(--fg);border:1.5px solid var(--line)}
+.intro{color:var(--fg2);max-width:58ch;margin-bottom:16px}
+.h2{font-size:24px;letter-spacing:-.02em;margin-bottom:6px}
+.brand .badge{width:30px;height:30px;display:block}
+.brand-name{font-weight:800;letter-spacing:.14em;font-size:1rem;text-transform:uppercase}
+.brand-name .lo{color:var(--cyan)}
+.phone{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.02em;text-decoration:none;display:inline-block;color:var(--fg)}
+.phone small{display:block;font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:4px}
+.lore i,.disarm i{font-family:var(--serif);font-style:italic;color:var(--fg)}
+</style>
+</head>
+<body>
+<div id="world" aria-hidden="true"><canvas class="bg"></canvas><canvas class="gl"></canvas><canvas class="fg"></canvas></div>
+<main class="page">
+<header class="top"><a class="brand" href="https://desklessconsulting.com" aria-label="Deskless Consulting home"><img class="badge" alt="" width="30" height="30" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ijk2IC0yNDcgMjMxOSAyMzE5Ij4KPGRlZnMKICAgICBpZD0iZGVmczYiPgogICAgPGxpbmVhckdyYWRpZW50CiAgICAgICBpZD0id2luZyIKICAgICAgIHgxPSIwIgogICAgICAgeTE9IjAiCiAgICAgICB4Mj0iMCIKICAgICAgIHkyPSIxIj4KICAgICAgPHN0b3AKICAgICAgICAgb2Zmc2V0PSIwIgogICAgICAgICBzdG9wLWNvbG9yPSIjMkY2QkZGIgogICAgICAgICBpZD0ic3RvcDEiIC8+CiAgICAgIDxzdG9wCiAgICAgICAgIG9mZnNldD0iMC40MiIKICAgICAgICAgc3RvcC1jb2xvcj0iIzJGNkJGRiIKICAgICAgICAgaWQ9InN0b3AyIiAvPgogICAgICA8c3RvcAogICAgICAgICBvZmZzZXQ9IjAuNTIiCiAgICAgICAgIHN0b3AtY29sb3I9IiMxNzg2RDQiCiAgICAgICAgIGlkPSJzdG9wMyIgLz4KICAgICAgPHN0b3AKICAgICAgICAgb2Zmc2V0PSIwLjcwIgogICAgICAgICBzdG9wLWNvbG9yPSIjMTc4NkQ0IgogICAgICAgICBpZD0ic3RvcDQiIC8+CiAgICAgIDxzdG9wCiAgICAgICAgIG9mZnNldD0iMC44MCIKICAgICAgICAgc3RvcC1jb2xvcj0iI0ZGN0ExQSIKICAgICAgICAgaWQ9InN0b3A1IiAvPgogICAgICA8c3RvcAogICAgICAgICBvZmZzZXQ9IjEiCiAgICAgICAgIHN0b3AtY29sb3I9IiNGRjdBMUEiCiAgICAgICAgIGlkPSJzdG9wNiIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgo8Y2lyY2xlIGN4PSIxMjU2IiBjeT0iOTEyIiByPSIxMTExIiBmaWxsPSJub25lIiBzdHJva2U9IiMyRjZCRkYiIHN0cm9rZS13aWR0aD0iOSIvPgo8Y2lyY2xlIGN4PSIxMjU2IiBjeT0iOTEyIiByPSIxMDg5IiBmaWxsPSIjRjVGN0ZBIi8+CjxwYXRoCiAgICAgZmlsbC1ydWxlPSJub256ZXJvIgogICAgIGZpbGw9InVybCgjd2luZykiCiAgICAgZD0iTSA3MzQuMCAxMjg0LjggQyA3MzQuMCAxMjcyLjUgNzM0LjQgMTI2Mi4wIDczNC44IDEyNjEuNCBDIDczNS4yIDEyNjAuOCA3MzkuNSAxMjU4LjIgNzQ0LjUgMTI1NS41IEMgNzU1LjMgMTI0OS43IDc2MS43IDEyNDYuMyA3NjkuMCAxMjQyLjMgQyA3NzIuMCAxMjQwLjYgNzc4LjQgMTIzNy4yIDc4My4yIDEyMzQuNiBDIDc4OC4wIDEyMzIuMSA3OTQuMyAxMjI4LjYgNzk3LjEgMTIyNi45IEMgNzk5LjkgMTIyNS4zIDgwNi42IDEyMjEuNiA4MTEuOSAxMjE4LjggQyA4MTcuMiAxMjE2LjAgODIyLjAgMTIxMy40IDgyMi41IDEyMTMuMCBDIDgyMy43IDEyMTIuMCA4MjkuOSAxMjA4LjYgODM2LjIgMTIwNS4zIEMgODQxLjQgMTIwMi42IDg0MS44IDEyMDEuNiA4MzkuNSAxMTk4LjMgQyA4MzcuMCAxMTk0LjcgODI0LjUgMTE2OS44IDgyMS42IDExNjIuNSBDIDgwNi40IDExMjQuNyA4MDAuMSAxMDg2LjcgODAyLjkgMTA0OC45IEMgODA0LjAgMTAzMi42IDgwNC42IDEwMjguMCA4MDcuMSAxMDE0LjUgQyA4MTIuMyA5ODYuNyA4MjUuNiA5NTEuNiA4NDEuNyA5MjMuMiBDIDg0NC42IDkxOC4wIDg0Ny4wIDkxMy41IDg0Ny4wIDkxMy4wIEMgODQ3LjAgOTEyLjYgODQxLjUgOTA3LjQgODM0LjggOTAxLjQgQyA4MDkuNSA4NzkuMCA3NzYuOSA4NDUuNyA3NTMuMSA4MTguMCBDIDc0MC42IDgwMy40IDcxMi41IDc2NS4zIDcwMC44IDc0Ny4wIEMgNjU5LjUgNjgyLjYgNjM3LjAgNjI2LjggNjE4LjYgNTQzLjQgQyA2MTIuNSA1MTUuNiA2MDguMSA0ODUuNyA2MDQuOCA0NDkuNSBDIDYwMy4yIDQzMC45IDYwMy4yIDM2OS44IDYwNC44IDM1MC41IEMgNjA3LjYgMzE3LjcgNjExLjcgMjkwLjUgNjE4LjAgMjYxLjAgQyA2MjEuOCAyNDMuNSA2MjkuMCAyMTQuNiA2MzAuNSAyMTAuOCBDIDYzNS40IDE5OC42IDU5My42IDI0OC43IDU3Mi4zIDI4MC41IEMgNTUwLjkgMzEyLjYgNTI2LjkgMzYwLjUgNTE2LjggMzkxLjUgQyA1MDYuOCA0MjIuMiA1MDAuOCA0NDcuNSA0OTcuMSA0NzQuNSBDIDQ5NC41IDQ5My40IDQ5NC4wIDQ5OC41IDQ5My4wIDUxNy4yIEMgNDkwLjYgNTU5LjQgNDk3LjMgNjA5LjUgNTEwLjAgNjQ0LjAgQyA1MTEuNyA2NDguNyA1MTMuOCA2NTQuNSA1MTQuNyA2NTcuMCBDIDUxNy4yIDY2NC42IDUzMy40IDY5Ni45IDU0MS4wIDcwOS41IEMgNTkxLjEgNzkyLjggNjU2LjkgODY2LjYgNzQyLjYgOTM1LjcgQyA3NTcuMyA5NDcuNiA3NTYuMiA5NDUuNSA3NTIuOCA5NTUuMiBDIDc1MS4yIDk1OS44IDc0OS42IDk2My44IDc0OS4yIDk2NC4yIEMgNzQ3LjYgOTY1LjggNjkxLjUgOTI0LjEgNjY1LjIgOTAxLjggQyA2MzAuNCA4NzIuMyA1OTAuOSA4MzMuOSA1NjQuOCA4MDMuOSBDIDUxOS45IDc1Mi41IDQ3OS43IDY5Ni4xIDQ0OS4yIDY0Mi4wIEMgNDQwLjkgNjI3LjMgNDM0LjggNjE1LjkgNDI5LjUgNjA1LjEgQyA0MjYuMiA1OTguNSA0MjMuMiA1OTMuMCA0MjIuOCA1OTMuMCBDIDQyMS4yIDU5My4wIDQxOS44IDYwNi4xIDQxNy41IDY0My4wIEMgNDE0LjYgNjg5LjQgNDE2LjEgNzMyLjIgNDIxLjkgNzY0LjUgQyA0MjUuNSA3ODUuMCA0MzIuMiA4MDguNyA0MzguMSA4MjEuNyBDIDQzOS4xIDgyNC4xIDQ0MC4wIDgyNi4zIDQ0MC4wIDgyNi42IEMgNDQwLjAgODI4LjYgNDQ5LjQgODQ2LjAgNDU1LjEgODU0LjUgQyA0NjQuMSA4NjguMCA0NzIuOSA4NzguMCA0ODkuMCA4OTIuOSBDIDU0Ni4zIDk0NS44IDYyNC43IDk5OC4xIDcxMS4yIDEwNDEuMCBDIDcyMi4zIDEwNDYuNiA3MzEuNyAxMDUxLjUgNzMyLjAgMTA1MS45IEMgNzMyLjMgMTA1Mi40IDczMi40IDEwNTcuMSA3MzIuMiAxMDYyLjQgQyA3MzEuOSAxMDY5LjQgNzMxLjUgMTA3Mi4wIDczMC42IDEwNzIuMCBDIDcyOC42IDEwNzIuMCA2OTUuNSAxMDU4LjIgNjc2LjAgMTA0OS4yIEMgNTg0LjAgMTAwNi45IDUxMC4zIDk2My4xIDQ0Mi41IDkxMC4yIEMgNDM1LjkgOTA1LjEgNDMwLjQgOTAxLjQgNDMwLjIgOTAyLjAgQyA0MjkuMCA5MDUuNiA0MzcuNSA5NDAuNCA0NDUuNSA5NjQuNSBDIDQ2My40IDEwMTguMiA0OTEuOSAxMDYxLjcgNTI0LjYgMTA4NC45IEMgNTU5LjIgMTEwOS41IDY0Ny40IDExMzkuNyA3MzMuOSAxMTU2LjYgTCA3MzguMyAxMTU3LjUgTCA3NDEuMiAxMTY4LjMgQyA3NDIuOCAxMTc0LjMgNzQzLjkgMTE3OS40IDc0My42IDExNzkuNyBDIDc0My4wIDExODAuMyA3MjQuMiAxMTc3LjggNzA4LjAgMTE3NS4wIEMgNjQ4LjkgMTE2NC41IDU5OC4xIDExNTEuNyA1NDYuNSAxMTM0LjAgQyA1MjAuMSAxMTI0LjkgNTIyLjAgMTEyNS41IDUyMi4wIDExMjcuMyBDIDUyMi4wIDExMjkuNSA1MzAuOSAxMTQ3LjEgNTM3LjkgMTE1OC45IEMgNTU0LjEgMTE4Ni4wIDU2NS4xIDEyMDAuMiA1ODYuMCAxMjIxLjAgQyA2MDYuMCAxMjQxLjEgNjI0LjAgMTI1NC45IDY0OC4zIDEyNjguOSBDIDY2MC44IDEyNzYuMSA2ODYuOSAxMjg5LjAgNjk3LjAgMTI5My4wIEMgNzAxLjcgMTI5NC44IDcwNi4wIDEyOTYuNiA3MDYuNSAxMjk3LjAgQyA3MDcuMCAxMjk3LjQgNzEwLjIgMTI5OC43IDcxMy41IDEyOTkuOSBDIDcxNi44IDEzMDEuMCA3MjIuNCAxMzAzLjEgNzI2LjAgMTMwNC40IEMgNzI5LjYgMTMwNS44IDczMi44IDEzMDYuOSA3MzMuMiAxMzA2LjkgQyA3MzMuNyAxMzA3LjAgNzM0LjAgMTI5Ny4wIDczNC4wIDEyODQuOCBaIE0gMTc4Ny4yIDEzMDIuNiBDIDE4MDguMSAxMjk1LjAgMTgxMy4wIDEyOTMuMSAxODE5LjEgMTI5MC4zIEMgMTgyMi42IDEyODguNiAxODI4LjQgMTI4Ni4wIDE4MzIuMCAxMjg0LjUgQyAxODM4LjQgMTI4MS42IDE4NDAuNCAxMjgwLjYgMTg1Mi41IDEyNzQuMCBDIDE4ODIuMSAxMjU3LjggMTkwNS45IDEyNDAuMSAxOTI3LjYgMTIxNy45IEMgMTk0MS41IDEyMDMuNyAxOTUwLjYgMTE5Mi40IDE5NjEuNCAxMTc2LjIgQyAxOTc0LjcgMTE1Ni4yIDE5OTAuMiAxMTI3LjkgMTk4OC43IDExMjYuNCBDIDE5ODguNCAxMTI2LjAgMTk4Ni44IDExMjYuMiAxOTg1LjMgMTEyNi44IEMgMTk2OS4yIDExMzMuMSAxOTI4LjQgMTE0Ni4yIDE5MDYuNSAxMTUyLjAgQyAxODkyLjUgMTE1NS44IDE4NzkuNiAxMTU5LjEgMTg3NS41IDExNTkuOSBDIDE4NzMuMyAxMTYwLjQgMTg2Ny4wIDExNjEuOCAxODYxLjUgMTE2My4wIEMgMTgzNS45IDExNjguNyAxODE1LjQgMTE3Mi43IDE3OTMuNSAxMTc2LjQgQyAxNzcwLjQgMTE4MC4zIDE3NjYuNCAxMTgwLjggMTc2NS43IDExODAuMSBDIDE3NjUuMyAxMTc5LjcgMTc2NS42IDExNzcuNiAxNzY2LjMgMTE3NS40IEMgMTc2Ny4wIDExNzMuMyAxNzY4LjMgMTE2OC44IDE3NjkuMCAxMTY1LjUgQyAxNzcwLjcgMTE1OC4wIDE3NzEuMiAxMTU3LjQgMTc3NS44IDExNTYuNiBDIDE3OTIuNiAxMTUzLjYgMTgzOS4zIDExNDIuNSAxODYyLjUgMTEzNS45IEMgMTkwMi44IDExMjQuNCAxOTU1LjkgMTEwMy42IDE5NzYuMyAxMDkxLjQgQyAyMDAzLjAgMTA3NS4zIDIwMjcuMSAxMDQ3LjUgMjA0NS4zIDEwMTEuOCBDIDIwNDkuMyAxMDAzLjkgMjA1My4zIDk5NS43IDIwNTQuMiA5OTMuNSBDIDIwNTguNiA5ODMuMiAyMDU5LjUgOTgxLjAgMjA2Mi4yIDk3My41IEMgMjA2Ni43IDk2MS4xIDIwNjcuNiA5NTguNSAyMDcxLjggOTQzLjUgQyAyMDc2LjAgOTI4LjcgMjA3Ny4zIDkyMy42IDIwNzguOSA5MTUuNSBDIDIwNzkuNSA5MTIuOCAyMDgwLjQgOTA4LjYgMjA4MC45IDkwNi4yIEMgMjA4MS40IDkwMy45IDIwODEuNSA5MDEuOCAyMDgxLjAgOTAxLjUgQyAyMDgwLjYgOTAxLjMgMjA3Ni41IDkwNC4wIDIwNzEuOSA5MDcuNiBDIDIwMzEuMyA5MzguOSAyMDA5LjEgOTU0LjIgMTk2NS45IDk4MC4zIEMgMTkzOS40IDk5Ni40IDE4ODUuOCAxMDI0LjcgMTg1MC41IDEwNDEuMyBDIDE4MjUuMyAxMDUzLjIgMTc4MS4zIDEwNzIuMCAxNzc4LjggMTA3Mi4wIEMgMTc3OC40IDEwNzIuMCAxNzc4LjAgMTA2Ny40IDE3NzguMCAxMDYxLjggTCAxNzc4LjAgMTA1MS41IEwgMTgwMS4zIDEwMzkuOCBDIDE4NTIuNCAxMDEzLjkgMTkxMS43IDk3OC43IDE5NDYuOSA5NTMuMSBDIDE5OTIuOCA5MTkuOCAyMDMwLjQgODg3LjcgMjA0Ni4wIDg2OC41IEMgMjA2OC4zIDg0MS4wIDIwODMuMCA4MDUuMyAyMDg5LjkgNzYxLjUgQyAyMDkxLjAgNzU0LjQgMjA5Mi40IDc0NS40IDIwOTMuMCA3NDEuNSBDIDIwOTQuNyA3MzAuOCAyMDk1LjQgNjY5LjUgMjA5NC4xIDY0Ny41IEMgMjA5My4xIDYzMC4yIDIwOTIuNSA2MjMuNSAyMDkwLjQgNjAxLjIgQyAyMDg5LjQgNTkwLjYgMjA4OS4zIDU5MC43IDIwNzkuMCA2MTAuNSBDIDIwNzUuMCA2MTguMiAyMDcxLjQgNjI1LjAgMjA3MS4wIDYyNS41IEMgMjA3MC42IDYyNi4wIDIwNjguNiA2MjkuNiAyMDY2LjUgNjMzLjUgQyAyMDU4LjIgNjQ4LjkgMjA1Ni40IDY1Mi4xIDIwNDcuMiA2NjcuMCBDIDIwMTcuNyA3MTUuMSAxOTgyLjkgNzYyLjcgMTk0OS4zIDgwMS4wIEMgMTkxNi4yIDgzOC44IDE4NjMuNCA4ODguNSAxODI0LjEgOTE4LjggQyAxNzk0LjIgOTQyLjAgMTc2MS4wIDk2NS41IDE3NjAuMCA5NjQuMyBDIDE3NTkuNCA5NjMuNiAxNzU0LjAgOTQ3LjggMTc1NC4wIDk0Ni43IEMgMTc1NC4wIDk0Ni41IDE3NTkuMyA5NDIuMSAxNzY1LjggOTM2LjkgQyAxODMxLjAgODg0LjggMTg4OC4zIDgyNi4xIDE5MzIuMiA3NjYuNCBDIDE5ODYuMiA2OTIuOSAyMDA3LjMgNjQ1LjcgMjAxNi42IDU3OC4wIEMgMjAxNy45IDU2OC42IDIwMTguNCA1NTcuOSAyMDE4LjQgNTM0LjUgQyAyMDE4LjUgNDk4LjggMjAxNy40IDQ4Ni43IDIwMTEuNCA0NTQuMCBDIDE5OTUuOSAzNzAuNyAxOTU3LjEgMjkzLjkgMTg5My4wIDIxOS42IEMgMTg4NC40IDIwOS43IDE4ODAuOSAyMDYuNyAxODgyLjQgMjEwLjcgQyAxODg0LjcgMjE2LjUgMTg5NS40IDI2MS4zIDE4OTcuOSAyNzUuNSBDIDE5MDUuNSAzMTguMiAxOTA4LjAgMzQzLjkgMTkwOC43IDM4OC4wIEMgMTkwOS4zIDQyNy43IDE5MDguMyA0NDkuNCAxOTA0LjQgNDgwLjAgQyAxODkwLjQgNTkwLjkgMTg1OS42IDY3NC44IDE4MDEuMSA3NjEuMiBDIDE3ODEuOCA3ODkuNiAxNzY5LjkgODA1LjEgMTc0Ny4wIDgzMS4zIEMgMTczNS43IDg0NC4yIDE2ODYuOSA4OTIuMyAxNjc0LjcgOTAyLjUgQyAxNjY4LjggOTA3LjQgMTY2NC4wIDkxMi4xIDE2NjQuMCA5MTIuOSBDIDE2NjQuMCA5MTMuNyAxNjY1LjggOTE3LjUgMTY2OC4xIDkyMS40IEMgMTY3OC4zIDkzOC45IDE2ODkuOCA5NjUuNSAxNjk1LjggOTg1LjAgQyAxNzEwLjMgMTAzMi4yIDE3MTEuMyAxMDg3LjAgMTY5OC41IDExMzEuNSBDIDE2OTIuMiAxMTUzLjMgMTY4MS43IDExNzcuOCAxNjcwLjggMTE5Ni4zIEMgMTY2OS4yIDExOTkuMCAxNjY4LjIgMTIwMS41IDE2NjguNSAxMjAxLjkgQyAxNjY4LjkgMTIwMi43IDE2ODYuNiAxMjEyLjkgMTcwMC41IDEyMjAuNSBDIDE3MDMuMiAxMjIyLjAgMTcwOC40IDEyMjUuMCAxNzEyLjAgMTIyNy4wIEMgMTcxNS42IDEyMjkuMSAxNzIyLjEgMTIzMi43IDE3MjYuNSAxMjM1LjAgQyAxNzMwLjkgMTIzNy4zIDE3MzYuOCAxMjQwLjUgMTczOS41IDEyNDIuMCBDIDE3NDIuMiAxMjQzLjUgMTc0OS45IDEyNDcuNiAxNzU2LjUgMTI1MS4wIEMgMTc2My4xIDEyNTQuNSAxNzcwLjAgMTI1OC4yIDE3NzEuOCAxMjU5LjIgTCAxNzc1LjAgMTI2MS4yIEwgMTc3NS4wIDEyODMuNiBDIDE3NzUuMCAxMzAyLjYgMTc3NS4yIDEzMDYuMCAxNzc2LjUgMTMwNi4wIEMgMTc3Ny4zIDEzMDYuMCAxNzgyLjEgMTMwNC41IDE3ODcuMiAxMzAyLjYgWiIKICAgICBpZD0icGF0aDYiIC8+CjxwYXRoCiAgICAgZmlsbC1ydWxlPSJub256ZXJvIgogICAgIGZpbGw9IiMwODE4MzMiCiAgICAgZD0iTSAxMDI5LjggMTYxMi41IEMgMTAzMC44IDE2MTIuMSAxMDMxLjAgMTU5Ni42IDEwMzAuNiAxNTM0LjggQyAxMDMwLjQgMTQ5Mi4zIDEwMzAuMyAxNDU2LjQgMTAzMC4zIDE0NTUuMCBDIDEwMzAuNCAxNDUzLjYgMTAzMC40IDE0MjEuNSAxMDMwLjQgMTM4My41IEwgMTAzMC41IDEzMTQuNSBMIDkwMi4xIDEzMTQuMiBDIDgyNS44IDEzMTQuMSA3NzMuMiAxMzE0LjQgNzcyLjcgMTMxNC45IEMgNzcxLjcgMTMxNS45IDc3MS4xIDE2MDkuNiA3NzIuMSAxNjEyLjAgQyA3NzIuNyAxNjEzLjQgNzg2LjEgMTYxMy42IDkwMC42IDE2MTMuMyBDIDk3MS4wIDE2MTMuMSAxMDI5LjEgMTYxMi44IDEwMjkuOCAxNjEyLjUgWiBNIDE3MzYuNSAxNDY0LjAgTCAxNzM2LjUgMTMxNC41IEwgMTYwNy42IDEzMTQuMiBDIDE1MDcuNyAxMzE0LjAgMTQ3OC41IDEzMTQuMyAxNDc3LjkgMTMxNS4yIEMgMTQ3Ny4wIDEzMTYuNiAxNDc2LjcgMTQ0OC4xIDE0NzcuNiAxNDUwLjQgQyAxNDc4LjIgMTQ1MS45IDE0ODkuNiAxNDUyLjAgMTYwNC4xIDE0NTIuMCBMIDE3MzAuMCAxNDUyLjAgTCAxNzMwLjAgMTQ1Ni4wIEwgMTczMC4wIDE0NjAuMCBMIDE2MDQuMSAxNDYwLjAgQyAxNTA0LjMgMTQ2MC4wIDE0NzguMSAxNDYwLjMgMTQ3Ny43IDE0NjEuMiBDIDE0NzYuOSAxNDYzLjQgMTQ3Ny4yIDE2MTEuNSAxNDc4LjAgMTYxMi41IEMgMTQ3OC42IDE2MTMuMiAxNTIzLjAgMTYxMy41IDE2MDcuNyAxNjEzLjUgTCAxNzM2LjUgMTYxMy41IEwgMTczNi41IDE0NjQuMCBaIE0gMTA1My4xIDE2MDEuOCBDIDEwNTYuNyAxNTk2LjcgMTA2Ni4yIDE1ODMuMiAxMDc0LjMgMTU3MS44IEwgMTA4OS4wIDE1NTEuMiBMIDEwODkuMiAxNDYyLjYgTCAxMDg5LjUgMTM3NC4wIEwgMTI1My45IDEzNzQuMCBDIDEzNDQuMyAxMzc0LjAgMTQxOC41IDEzNzQuMiAxNDE4LjcgMTM3NC40IEMgMTQxOC45IDEzNzQuNiAxNDE5LjAgMTQxNC4zIDE0MTkuMCAxNDYyLjcgTCAxNDE5LjAgMTU1MC42IEwgMTQyMi44IDE1NTYuMSBDIDE0MjQuOSAxNTU5LjEgMTQzMy4yIDE1NzAuNyAxNDQxLjEgMTU4Mi4wIEMgMTQ0OS4xIDE1OTMuMyAxNDU2LjkgMTYwNC40IDE0NTguNSAxNjA2LjggQyAxNDYwLjAgMTYwOS4xIDE0NjEuNyAxNjExLjAgMTQ2Mi4xIDE2MTEuMCBDIDE0NjIuNiAxNjExLjAgMTQ2Mi45IDE1NDYuNCAxNDYyLjggMTQ2Mi44IEwgMTQ2Mi41IDEzMTQuNSBMIDEyNTQuMCAxMzE0LjUgTCAxMDQ1LjUgMTMxNC41IEwgMTA0NS4yIDE0NjIuOCBDIDEwNDUuMSAxNTQ0LjMgMTA0NS4zIDE2MTEuMCAxMDQ1LjggMTYxMS4wIEMgMTA0Ni4yIDE2MTEuMCAxMDQ5LjUgMTYwNi44IDEwNTMuMSAxNjAxLjggWiBNIDg1OS42IDE1MjQuNCBDIDg1OS4zIDE1MjMuNiA4NTkuMCAxNTE5LjUgODU5LjAgMTUxNS40IEwgODU5LjAgMTUwOC4wIEwgOTAxLjAgMTUwOC4wIEwgOTQzLjEgMTUwOC4wIEwgOTQyLjggMTUxNi44IEwgOTQyLjUgMTUyNS41IEwgOTAxLjQgMTUyNS44IEMgODY0LjUgMTUyNi4wIDg2MC4yIDE1MjUuOSA4NTkuNiAxNTI0LjQgWiBNIDE1NjUuNyAxNTI1LjMgQyAxNTY1LjQgMTUyNC44IDE1NjUuMSAxNTIwLjkgMTU2NC45IDE1MTYuNSBMIDE1NjQuNSAxNTA4LjUgTCAxNjA2LjUgMTUwOC41IEwgMTY0OC41IDE1MDguNSBMIDE2NDguNSAxNTE3LjAgTCAxNjQ4LjUgMTUyNS41IEwgMTYwNy4zIDE1MjUuOCBDIDE1ODQuNyAxNTI1LjkgMTU2NS45IDE1MjUuNyAxNTY1LjcgMTUyNS4zIFogTSA3NzguNCAxNDU4LjYgQyA3NzguMSAxNDU3LjggNzc4LjAgMTQ1Ni4xIDc3OC4yIDE0NTQuOCBMIDc3OC41IDE0NTIuNSBMIDkwMS40IDE0NTIuNSBDIDEwMTcuMyAxNDUyLjUgMTAyNC4zIDE0NTIuNiAxMDI1LjQgMTQ1NC4yIEMgMTAyNi4yIDE0NTUuNSAxMDI2LjIgMTQ1Ni41IDEwMjUuNCAxNDU3LjggQyAxMDI0LjMgMTQ1OS40IDEwMTcuMiAxNDU5LjUgOTAxLjYgMTQ1OS44IEMgNzk1LjkgMTQ2MC4wIDc3OC45IDE0NTkuOCA3NzguNCAxNDU4LjYgWiBNIDg1OS43IDEzODYuMyBDIDg1OS4zIDEzODYuMCA4NTkuMCAxMzgyLjEgODU5LjAgMTM3Ny44IEwgODU5LjAgMTM3MC4wIEwgOTAwLjggMTM3MC4yIEwgOTQyLjUgMTM3MC41IEwgOTQyLjUgMTM3OC41IEwgOTQyLjUgMTM4Ni41IEwgOTAxLjQgMTM4Ni44IEMgODc4LjggMTM4Ni45IDg2MC4xIDEzODYuNyA4NTkuNyAxMzg2LjMgWiBNIDE1NjUuMCAxMzc4LjUgTCAxNTY1LjAgMTM3MC4wIEwgMTYwNi44IDEzNzAuMiBMIDE2NDguNSAxMzcwLjUgTCAxNjQ4LjUgMTM3OC41IEwgMTY0OC41IDEzODYuNSBMIDE2MDYuOCAxMzg2LjggTCAxNTY1LjAgMTM4Ny4wIEwgMTU2NS4wIDEzNzguNSBaIE0gMTc1MS44IDEyODguMSBDIDE3NTIuMCAxMjgzLjUgMTc1MS43IDEyNzkuMyAxNzUxLjMgMTI3OC45IEMgMTc1MC44IDEyNzguNCAxNzQwLjYgMTI3NC43IDE3MjguNSAxMjcwLjYgQyAxNjk1LjUgMTI1OS40IDE2NzEuOSAxMjUxLjAgMTY0Mi4yIDEyNDAuMSBDIDE2MzcuNyAxMjM4LjQgMTYzMC4zIDEyMzUuNiAxNjI1LjggMTIzNC4wIEwgMTYxNy43IDEyMzEuMCBMIDEyNTQuNCAxMjMxLjAgQyA5ODkuNCAxMjMxLjAgODkwLjQgMTIzMS4zIDg4OC4zIDEyMzIuMSBDIDg4Ni44IDEyMzIuNyA4ODEuOSAxMjM0LjUgODc3LjUgMTIzNi4wIEMgODczLjEgMTIzNy42IDg2NS43IDEyNDAuMyA4NjEuMCAxMjQyLjAgQyA4NTYuMyAxMjQzLjggODUwLjAgMTI0Ni4xIDg0Ny4wIDEyNDcuMiBDIDgzOC43IDEyNTAuMyA4MTAuNSAxMjYwLjEgNzgxLjggMTI2OS43IEwgNzU2LjAgMTI3OC40IEwgNzU2LjAgMTI4Ny43IEwgNzU2LjAgMTI5Ny4wIEwgMTI1My44IDEyOTYuOCBMIDE3NTEuNSAxMjk2LjUgTCAxNzUxLjggMTI4OC4xIFoiCiAgICAgaWQ9InBhdGg3IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7ZmlsbC1vcGFjaXR5OjEiIC8+Cjwvc3ZnPg=="><span class="brand-name">DESK<span class="lo">LESS</span></span></a><div class="shipline"><span>Card 36/50</span><i>Beats Working</i></div></header>
+<section class="hero"><p class="eyebrow disarm"><i>Beats Working.</i> Automating the report beats doing it. Fixed price to make that true.</p>
+<h1>Your numbers are wrong somewhere.</h1>
+<p class="lede">We find where, document what is going wrong, and work with your teams to fix it. Data system evaluations and audits, specializing in Analytics and Marketing Data Platforms: Adobe AA/CJA/AEP migrations, GA4/GTM tracking and more.</p>
+<div class="ctas"><a class="cta" href="https://cal.com/deskless/30min">Book 30 minutes <small>cal.com/deskless</small></a><a class="cta ghost" href="tel:+19703029907">Call or text <small>(970) 302-9907</small></a></div></section>
+<section><p class="eyebrow" style="margin-bottom:8px">Two ways in</p><p class="intro">Two ways to start working together.</p><div class="offers"><div class="offer"><h3>Teardown</h3><p class="price">$1,500 · one week · written findings</p><p>Every tag, event and data-layer call, checked against what the reports claim. We work with your team to deliver complete documentation and a fix list, ranked by how much risk each error moves.</p></div><div class="offer"><h3>Fix Sprint</h3><p class="price">$3,500-5,000 · two weeks · fixed scope</p><p>Everything in the teardown, then we work with your team on the fixes. You get a comprehensive before-and-after view of what changed and why.</p></div></div></section>
+<section class="receipt"><b>Recent work:</b> A retailer's GA4 purchase count was 41% over Shopify's, all from one duplicated tag firing on the thank-you page reload. Two hours to prove it, forty minutes to fix it.</section>
+<section><p class="eyebrow" style="margin-bottom:8px">Contact</p><h2 class="h2">We would love to hear from you</h2><p class="intro">Call, text or email, whatever is easiest.</p>
+<a class="phone" href="tel:+19703029907"><small>Call or text</small>(970) 302-9907</a>
+<div class="contact" style="margin-top:14px"><div><span>Email</span><a href="mailto:dan@desklessconsulting.com">dan@desklessconsulting.com</a></div><div><span>Pick a time</span><a href="https://cal.com/deskless/30min">cal.com/deskless/30min</a></div><div><span>Based</span><a href="https://desklessconsulting.com">Fort Collins, Colorado</a></div><div><span>Save</span><a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3ABonomo%3BDan%3B%3B%3B%0AFN%3ADan%20Bonomo%0AORG%3ADeskless%20Consulting%0ATITLE%3AData%20system%20evaluations%20and%20audits%0ATEL%3BTYPE%3DCELL%3A%2B19703029907%0AEMAIL%3BTYPE%3DINTERNET%3Adan%40desklessconsulting.com%0AURL%3Ahttps%3A//desklessconsulting.com%0AADR%3BTYPE%3DWORK%3A%3B%3B%3BFort%20Collins%3BCO%3B%3BUSA%0AEND%3AVCARD%0A" download="dan-bonomo.vcf">Add Dan to your contacts</a></div></div></section>
+<section class="dict"><p class="eyebrow" style="margin-bottom:10px">Why "Deskless"</p><p><span class="w">desk·less</span><span class="pos">adj.</span></p><ol><li>Working where the work is.</li><li>Free of the reports, reconciliations and busywork that keep you at one.</li><li>of a consultant: gone, on purpose, leaving the system running.</li></ol></section>
+<section class="lore"><p class="eyebrow" style="margin-bottom:10px">About the name on your card</p><p>Every Deskless card is named for a ship from my favourite novels, Iain M. Banks's Culture books, where the AIs do the tedious work so people can do the interesting kind, and name themselves like they're in on a joke. I'd tell you this one is the best of the fifty, but I say that about all of them.</p><p>This one is the <i>Beats Working</i>, from <i>The Hydrogen Sonata</i>. The smallest class of Contact Unit: eighty metres long, crew of five. The teardown is the small ship. One consultant, one week.</p></section>
+<footer class="foot"><div>One of fifty cards, and this one found its way to you.</div><code>BEATS WORKING · 36/50 · desklessconsulting.com/qr/beats-working</code></footer>
+</main>
+<script>
+(function(){
+function rng(seed){let h=1779033703^seed.length;for(let i=0;i<seed.length;i++){h=Math.imul(h^seed.charCodeAt(i),3432918353);h=h<<13|h>>>19}return()=>{h=Math.imul(h^h>>>16,2246822507);h=Math.imul(h^h>>>13,3266489909);return((h^=h>>>16)>>>0)/4294967296}}
+function makeNoise(r){const P=new Uint8Array(512);const p=[...Array(256).keys()];for(let i=255;i>0;i--){const j=Math.floor(r()*(i+1));[p[i],p[j]]=[p[j],p[i]]}for(let i=0;i<512;i++)P[i]=p[i&255];const fade=t=>t*t*(3-2*t);
+  const val=(x,y)=>{const X=Math.floor(x)&255,Y=Math.floor(y)&255,fx=x-Math.floor(x),fy=y-Math.floor(y);const a=P[P[X]+Y]/255,b=P[P[X+1]+Y]/255,c=P[P[X]+Y+1]/255,d=P[P[X+1]+Y+1]/255;const u=fade(fx),v=fade(fy);return a+(b-a)*u+(c-a)*v+(a-b-c+d)*u*v};
+  return(x,y,oct=5)=>{let s=0,a=1,f=1,n=0;for(let i=0;i<oct;i++){s+=a*val(x*f,y*f);n+=a;a*=.5;f*=2.05}return s/n}}
+function nebula(w,h,noise,o){const{c1,c2,thresh=.45,gain=1.6,alpha=.9,scale=3,warp=1.2,ox=0,oy=0}=o;const cv=document.createElement("canvas");cv.width=w;cv.height=h;const ctx=cv.getContext("2d");const img=ctx.createImageData(w,h),d=img.data;
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){const u=x/w*scale+ox,v=y/h*scale*(h/w)+oy;const wx=noise(u*.7+9.1,v*.7+3.3,3)*warp,wy=noise(u*.7+1.7,v*.7+7.7,3)*warp;let m=(noise(u+wx,v+wy,6)-thresh)/(1-thresh);m=m<0?0:Math.pow(m,gain);const t=noise(u*1.6+21,v*1.6+13,3);const i=(y*w+x)*4;d[i]=c1[0]+(c2[0]-c1[0])*t;d[i+1]=c1[1]+(c2[1]-c1[1])*t;d[i+2]=c1[2]+(c2[2]-c1[2])*t;d[i+3]=Math.min(255,m*alpha*255)}
+  ctx.putImageData(img,0,0);return cv}
+function stars(w,h,r,n){const cv=document.createElement("canvas");cv.width=w;cv.height=h;const c=cv.getContext("2d");for(let i=0;i<n;i++){const s=r()<.88?1:2,a=.25+r()*.7;c.fillStyle=`rgba(235,242,255,${a})`;c.fillRect(r()*w,r()*h,s,s)}return cv}
+function bokeh(w,h,r,n,col){const cv=document.createElement("canvas");cv.width=w;cv.height=h;const c=cv.getContext("2d");for(let i=0;i<n;i++){const x=r()*w,y=r()*h,rad=2+r()*r()*9,a=.25+r()*.5;const g=c.createRadialGradient(x,y,0,x,y,rad);g.addColorStop(0,`rgba(${col},${a*.55})`);g.addColorStop(.72,`rgba(${col},${a})`);g.addColorStop(1,`rgba(${col},0)`);c.fillStyle=g;c.beginPath();c.arc(x,y,rad,0,7);c.fill()}return cv}
+function hullGeometry(kind){const T=THREE;let g;switch(kind){
+  case"ovoid":g=new T.SphereGeometry(1,72,48);g.scale(1.7,.68,.95);break;
+  case"slab":g=new T.CapsuleGeometry(.5,3.1,12,40);g.rotateZ(Math.PI/2);g.scale(1,.5,1);break;
+  case"lens":g=new T.SphereGeometry(1,72,48);g.scale(1.85,.3,1.05);break;
+  case"sphere":g=new T.SphereGeometry(1.15,72,48);break;
+  case"capsule":g=new T.CapsuleGeometry(.46,2.4,16,48);g.rotateZ(Math.PI/2);break;
+  case"drop":{const pts=[];for(let i=0;i<=40;i++){const t=i/40;const rr=Math.pow(Math.sin(Math.PI*t),.55)*(1-t*.45)*.7;pts.push(new T.Vector2(Math.max(rr,.001),(t-.5)*3.4))}g=new T.LatheGeometry(pts,64);g.rotateZ(Math.PI/2);g.rotateY(Math.PI);break}
+  default:g=new T.SphereGeometry(1,72,48)}return g}
+let _puff=null;function puffTexture(){if(_puff)return _puff;const cv=document.createElement("canvas");cv.width=cv.height=128;const c=cv.getContext("2d");const g=c.createRadialGradient(64,64,0,64,64,64);g.addColorStop(0,"rgba(255,255,255,.55)");g.addColorStop(.35,"rgba(255,255,255,.22)");g.addColorStop(.7,"rgba(255,255,255,.05)");g.addColorStop(1,"rgba(255,255,255,0)");c.fillStyle=g;c.fillRect(0,0,128,128);_puff=new THREE.CanvasTexture(cv);return _puff}
+function gauss(r){return (r()+r()+r()-1.5)*1.2}
+function buildCloud(scene,cf,r){const T=THREE,tex=puffTexture(),group=new T.Group();const c1=new T.Color(cf.c1),c2=new T.Color(cf.c2);const centers=[];
+  for(let i=0;i<cf.clumps;i++){const az=r()*Math.PI*2,el=(r()-.5)*1.6,rad=cf.inner+r()*(cf.outer-cf.inner);centers.push(new T.Vector3(rad*Math.cos(el)*Math.cos(az),rad*Math.sin(el)*.6,rad*Math.cos(el)*Math.sin(az)))}
+  for(let i=0;i<cf.count;i++){const ctr=centers[Math.floor(r()*centers.length)];const col=c1.clone().lerp(c2,r());const m=new T.SpriteMaterial({map:tex,color:col,transparent:true,opacity:cf.opacity*(0.6+r()*.8),depthWrite:false,blending:r()<cf.additive?T.AdditiveBlending:T.NormalBlending,fog:true});const sp=new T.Sprite(m);sp.position.set(ctr.x+gauss(r)*cf.spread,ctr.y+gauss(r)*cf.spread*.6,ctr.z+gauss(r)*cf.spread);const sz=cf.size*(0.5+r()*1.2);sp.scale.set(sz,sz,1);sp.material.rotation=r()*6.28;group.add(sp)}
+  scene.add(group);return group}
+function buildShip(scene,spec,r){const T=THREE,group=new T.Group();
+  const mat=new T.MeshStandardMaterial({color:spec.hull,metalness:.35,roughness:.42,transparent:(spec.hullOpacity??1)<1,opacity:spec.hullOpacity??1});
+  const rimMat=new T.MeshBasicMaterial({color:spec.rimHex,transparent:true,opacity:spec.rimOpacity??.18,side:T.BackSide,blending:T.AdditiveBlending,depthWrite:false});
+  const parts=spec.shape==="twin"?[{k:"slab",p:[0,.42,0],s:[1,.9,.9]},{k:"slab",p:[.1,-.42,.1],s:[.78,.9,.9]}]:[{k:spec.shape,p:[0,0,0],s:[1,1,1]}];
+  parts.forEach(pt=>{const g=hullGeometry(pt.k);const m=new T.Mesh(g,mat);m.position.set(...pt.p);m.scale.set(...pt.s);group.add(m);const rim=new T.Mesh(g,rimMat);rim.position.copy(m.position);rim.scale.copy(m.scale).multiplyScalar(1.035);group.add(rim);
+    const pos=g.attributes.position,pts=[];for(let i=0;i<spec.lights;i++){const idx=Math.floor(r()*pos.count);const v=new T.Vector3().fromBufferAttribute(pos,idx).multiply(m.scale).add(m.position);pts.push(v.x,v.y,v.z)}
+    if(pts.length){const pg=new T.BufferGeometry();pg.setAttribute("position",new T.Float32BufferAttribute(pts,3));group.add(new T.Points(pg,new T.PointsMaterial({color:spec.rimHex,size:2.4,sizeAttenuation:false,transparent:true,opacity:.95,depthWrite:false})))}});
+  group.rotation.z=spec.roll;group.rotation.x=spec.pitch;scene.add(group);
+  const key=new T.DirectionalLight(spec.keyHex,2.6);key.position.set(...spec.keyDir);scene.add(key);
+  const fill=new T.DirectionalLight(spec.fillHex,.9);fill.position.set(-spec.keyDir[0],-spec.keyDir[1]*.5,-spec.keyDir[2]);scene.add(fill);
+  scene.add(new T.HemisphereLight(0x223355,0x050810,.5));return group}
+
+window.startWorld=function(s){
+  const stack=document.getElementById("world"),bg=stack.querySelector(".bg"),gl=stack.querySelector(".gl"),fg=stack.querySelector(".fg");
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches,dpr=Math.min(devicePixelRatio||1,2),OVER=1.5;
+  const noise=makeNoise(rng("neb"+s.name));let L=null,bw=0,bh=0,lastT=-1;
+  let renderer=null,scene,cam,ship,cloud;
+  try{renderer=new THREE.WebGLRenderer({canvas:gl,alpha:true,antialias:true});renderer.setPixelRatio(dpr);renderer.setClearColor(0,0);scene=new THREE.Scene();cam=new THREE.PerspectiveCamera(34,1,.1,50);ship=buildShip(scene,s,rng("ship"+s.name));scene.fog=new THREE.FogExp2(s.fogColor,s.fogDensity);cloud=buildCloud(scene,s.cloud,rng("cloud"+s.name))}catch(e){renderer=null}
+  function build(w,h){const lw=Math.round(w*OVER),lh=Math.round(h*OVER),rr=rng(s.name);L={lw,lh,stars:stars(lw,lh,rr,Math.round(w*h/2600)),back:nebula(Math.round(lw/3),Math.round(lh/3),noise,s.back),bokeh:bokeh(lw,lh,rr,Math.round(w*h/9000),s.dust)};bw=w;bh=h;lastT=-1;[bg,fg].forEach(c=>{c.width=w*dpr;c.height=h*dpr});if(renderer){renderer.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}}
+  function draw2d(t,w,h){const k=t-.5;const put=(c,img,dx,dy)=>c.drawImage(img,(w-L.lw)/2+dx,(h-L.lh)/2+dy,L.lw,L.lh);
+    let c=bg.getContext("2d");c.setTransform(dpr,0,0,dpr,0,0);const g=c.createLinearGradient(0,0,0,h);g.addColorStop(0,s.bgTop);g.addColorStop(1,s.bgBot);c.fillStyle=g;c.fillRect(0,0,w,h);put(c,L.stars,-k*w*.10,k*h*.04);c.globalCompositeOperation="screen";put(c,L.back,-k*w*.22,k*h*.08);c.globalCompositeOperation="source-over";
+    c=fg.getContext("2d");c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,w,h);c.globalAlpha=.7;put(c,L.bokeh,k*w*.5,-k*h*.18);c.globalAlpha=1}
+  let last=performance.now();
+  function loop(now){const dt=Math.min(.05,(now-last)/1000);last=now;const w=innerWidth,h=innerHeight;if(!L||bw!==w||bh!==h)build(w,h);
+    const max=Math.max(1,document.documentElement.scrollHeight-h),t=reduce?.35:Math.min(1,scrollY/max);
+    if(t!==lastT){draw2d(t,w,h);lastT=t}
+    if(renderer){if(!reduce){ship.rotation.y+=dt*.05;cloud.rotation.y-=dt*.012}const az=(t-.5)*1.9+s.az0,el=.5-t*.7,d=s.dist||6.2;cam.position.set(d*Math.cos(el)*Math.sin(az),d*Math.sin(el),d*Math.cos(el)*Math.cos(az));cam.lookAt(s.look||0,0,0);renderer.render(scene,cam)}
+    requestAnimationFrame(loop)}
+  requestAnimationFrame(loop)}
+})();
+
+startWorld({"hull": 1845056, "rimHex": 12572927, "keyHex": 8368383, "fillHex": 16751178, "keyDir": [-2, 2.4, -1.5], "lights": 5, "rimOpacity": 0.14, "fogColor": 662077, "fogDensity": 0.06, "cloud": {"c1": 3107839, "c2": 16751178, "clumps": 6, "count": 80, "inner": 2.0, "outer": 4.6, "spread": 1.2, "size": 2.6, "opacity": 0.11, "additive": 0.5}, "back": {"c1": [20, 70, 190], "c2": [23, 134, 212], "thresh": 0.42, "gain": 1.8, "alpha": 0.85, "scale": 2.6, "ox": 0.3, "oy": 0.1}, "dust": "255,122,26", "bgTop": "#0a1a3d", "bgBot": "#03070f", "accent": "#FF7A1A", "accentFg": "#081833", "name": "Beats Working", "shape": "ovoid", "roll": 0.07, "pitch": 0.08, "az0": -0.28, "dist": 6.4, "look": -1.2});
+</script>
+<script src="/qr/ping.js" defer></script>
+</body>
+</html>
