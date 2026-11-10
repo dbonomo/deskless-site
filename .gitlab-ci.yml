@@ -15,8 +15,12 @@ pages:
     - mkdir -p public
     - cp deskless-site/index.html public/
     - cp deskless-site/scorecard.html public/
+    - cp deskless-site/deskless.css public/
     - cp deskless-site/styles.css public/
     - cp deskless-site/.nojekyll public/
+    - cp -r deskless-site/adobe public/
+    - cp -r deskless-site/assets public/
+    - cp -r deskless-site/content public/
   artifacts:
     paths:
       - public

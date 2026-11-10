@@ -1,7 +1,21 @@
 # Deploy — desklessconsulting.com
 
-A static, single-page site. No build step, no dependencies. Just `index.html`,
-`styles.css`, and `.nojekyll`. Pick either path below.
+A static site. No build step, no dependencies. Two pages — `index.html` and
+`adobe/index.html` — sharing one stylesheet, `deskless.css`, plus `assets/`,
+`content/` and `.nojekyll`. (`styles.css` is the older stylesheet and is used
+only by `scorecard.html`.) Pick either path below.
+
+**Updated 2026-11-09 (v4 copy):** the homepage card is now three offers — Get Your
+Team Using AI ($2,500 half day / $4,000 full day), Bring Me a Problem ($500 / 90
+min), Fix It / Build It ($4,000 up to 22 hrs / $9,000 up to 45 hrs). The Adobe
+material (config health & drift audit, partner overflow delivery) moved to
+`/adobe/`. The design system moved out of index.html's inline `<style>` into
+`deskless.css` so both pages share it — deploy that file or both pages render
+unstyled.
+
+**Open before launch:** `<meta name="robots" content="noindex, nofollow">` and
+`robots.txt` still block search engines. Anyone who meets Dan and then googles
+"Deskless Consulting" will find nothing until both are removed. Dan's call.
 
 > Do not deploy until the placeholders in the next section are filled.
 
@@ -14,7 +28,8 @@ Every spot is marked in the source with `TODO[PLACEHOLDER...]`. Search the repo 
 
 | Placeholder | Where | Action needed |
 |---|---|---|
-| `BOOKING_LINK` | every `[data-book]` CTA | Resolved 2026-08-21: `BOOKING_URL = https://cal.com/deskless/30min` (profile also has `/15min`). The `mailto:` hrefs remain in markup as no-JS fallback. |
+| `BOOKING_LINK` | every `[data-book]` CTA | Resolved 2026-08-21: `BOOKING_URL = https://cal.com/deskless/30min` (profile also has `/15min`). The `mailto:` hrefs remain in markup as no-JS fallback, with per-offer subject lines. The constant is declared once per page — keep `index.html` and `adobe/index.html` in sync. |
+| `PLACEHOLDER-DBT-REPO-URL` | proof tile in `index.html`, intro paragraph in `adobe/index.html` | **Open.** Verified 2026-11-09: there is no public repo named `dbt-adobe-events` (github.com/dbonomo/dbt-adobe-events returns 404; GitHub search returns nothing). The copy claims authorship but deliberately does not say "it's public, go read it" and carries no link. Publish the repo, then uncomment the link in both files. |
 | `EMAIL` | header CTA, all CTAs, footer | Resolved: all CTAs use `dan@desklessconsulting.com` consistently (matches approved copy). |
 | `PHONE` | footer | Optional. No phone is shown yet. Add one if desired. |
 | `og:url` / canonical | `<head>` | Confirm `https://desklessconsulting.com` once the domain is pointed. |

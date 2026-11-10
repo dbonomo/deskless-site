@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Adobe Analytics, CJA and AEP — Deskless Consulting</title>
+<meta name="description" content="The deep end of what Deskless does: AA→CJA migration work, data-view and schema configuration, parity QA, and drift detection with my own tooling. Config health and drift audit, $2,500 fixed. Overflow migration delivery for partner practices, $8,000 fixed per property." />
+
+<!-- PRE-LAUNCH: keep this site out of search until we're ready. Remove both this
+     meta tag and /robots.txt's Disallow when we want to be indexed. -->
+<meta name="robots" content="noindex, nofollow" />
+
+<!-- Open Graph / social preview -->
+<meta property="og:title" content="Adobe Analytics, CJA and AEP — Deskless Consulting" />
+<meta property="og:description" content="AA→CJA migration work, drift detection with my own tooling, and the Adobe dbt package that didn't exist. Fixed price, written findings, no retainers." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://desklessconsulting.com/adobe/" />
+
+<link rel="icon" type="image/svg+xml" href="../assets/deskless-badge.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" />
+<link rel="stylesheet" href="../deskless.css" />
+</head>
+<body id="top">
+
+<span class="reg tl" aria-hidden="true"></span>
+<span class="reg tr" aria-hidden="true"></span>
+<span class="reg bl" aria-hidden="true"></span>
+<span class="reg br" aria-hidden="true"></span>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../" aria-label="Deskless Consulting home">
+      <span class="brand-mark" aria-hidden="true">
+        <img src="../assets/deskless-badge.svg" alt="" width="34" height="34" />
+      </span>
+      <span class="brand-name">DESK<span class="lo">LESS</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="../#offers">Offers</a>
+      <a href="../#proof">Proof</a>
+      <a href="../#about">About</a>
+      <a href="../#faq">FAQ</a>
+      <a class="nav-cta" data-book href="mailto:dan@desklessconsulting.com?subject=Bring%20Me%20a%20Problem%20%E2%80%94%20%24500">Book 90 minutes</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" style="padding-bottom:clamp(2rem,4vw,3rem)">
+    <div class="container hero-inner" style="max-width:740px">
+      <p class="eyebrow">Specialty page</p>
+      <h1 class="hero-headline" style="font-size:clamp(2rem,4.6vw,3.1rem)">Adobe Analytics, CJA and AEP</h1>
+      <p class="hero-sub">
+        This is the deep end of what Deskless does. It lives on its own page because most of my
+        clients have never heard of a data view, and shouldn&rsquo;t have to.
+      </p>
+      <p class="hero-sub">
+        I do AA&rarr;CJA migration work: component mapping, data-view configuration, schema and
+        identity review, parity QA, and drift detection with my own tooling. I also wrote the Adobe
+        dbt package that didn&rsquo;t exist &mdash; <code class="mono">dbt-adobe-events</code>
+        turns AEP/Web SDK, CJA and Adobe Analytics Data Feed exports into tested sessions,
+        page-views and users tables. Apache-2.0, mine. That&rsquo;s the fastest way to check
+        whether I know this stack without taking my word for it.
+        <!-- TODO[PLACEHOLDER-DBT-REPO-URL]: verified 2026-11-09 that no public repo named
+             dbt-adobe-events exists yet (github.com/dbonomo/dbt-adobe-events -> 404, GitHub
+             search -> 0 results). Link it here the day it is public. Until then this page must
+             not say "go read it", and must not carry a dead link. -->
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://dbonomo.github.io/aep-audit-demo/demo-index.html">Read a sample drift-audit report <span aria-hidden="true">&rarr;</span></a>
+        <a class="hero-secondary" href="#audit">See the two Adobe offers &darr;</a>
+      </div>
+      <p class="hero-terms">
+        Real format, synthetic data &mdash; the same depth you&rsquo;d get, your data instead.
+        No production access. Exported snapshots or read-only. NDA on request, and I delete what
+        you send on delivery.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== 01 · CONFIG HEALTH AND DRIFT AUDIT ===================== -->
+  <section class="section" id="audit">
+    <div class="container narrow">
+      <div class="sec-head">
+        <span class="sec-num">01</span>
+        <span class="sec-label">Offer specification</span>
+      </div>
+      <div class="about-frame">
+        <span class="coord" aria-hidden="true">SPEC-A1 &middot; CONFIG HEALTH &amp; DRIFT AUDIT</span>
+        <h2 class="section-title" style="font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:1rem">Config health and drift audit</h2>
+        <p class="partner-terms">$2,500 fixed &middot; one week</p>
+        <p class="card-for">The Adobe shape of <em>What&rsquo;s True and What&rsquo;s Broken</em>.</p>
+        <p style="color:var(--ink-dim);margin-bottom:1rem">
+          You export config snapshots &mdash; schemas, datasets, data views, identity &mdash; with
+          the instructions I send. I run an automated health pass over them, then read every
+          finding myself and write it up: what&rsquo;s inconsistent, what&rsquo;s drifted,
+          what&rsquo;s silently broken, ranked, with a specific fix for each one.
+        </p>
+        <p style="color:var(--ink-dim);margin-bottom:1rem">
+          <strong style="color:var(--off)">Mid-migration?</strong> Add a review of your AA&rarr;CJA
+          component mapping and a parity check of sample reports between the old suite and the new
+          data view, so you find out where the numbers diverge before your stakeholders do.
+        </p>
+        <p class="card-fine" style="border-top:1px dashed var(--line);padding-top:.9rem">no production access &middot; exported snapshots or read-only &middot; NDA on request &middot; I delete what you send on delivery.</p>
+        <div class="card-actions">
+          <a class="card-link" data-book href="mailto:dan@desklessconsulting.com?subject=CJA%2FAEP%20config%20health%20%26%20drift%20audit">Book the audit <span aria-hidden="true">&rarr;</span></a>
+          <a class="card-link" href="https://dbonomo.github.io/aep-audit-demo/demo-index.html">Sample report <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 02 · OVERFLOW DELIVERY FOR PARTNERS ===================== -->
+  <section class="section partners" id="partners">
+    <div class="container">
+      <div class="partner-frame">
+        <span class="coord" aria-hidden="true">02 &middot; FOR ADOBE PARTNER PRACTICES</span>
+        <h2>Overflow migration delivery, for partner practices.</h2>
+        <p class="partner-terms">$8,000 fixed per property</p>
+        <p>
+          Backlog with no bench? I take scoped AA&rarr;CJA slices &mdash; component mapping,
+          data-view configuration, parity QA &mdash; under your master subcontractor agreement and
+          NDA, asynchronously in your tooling, invisible to the client unless you say otherwise.
+        </p>
+        <p>
+          A slice is one report suite mapped into one CJA data view: component mapping, data-view
+          configuration, and parity QA on an agreed sample of reports. One property slice at a
+          time. Scope in writing before I start. Fixed fee, so the risk of overrun is mine.
+          <strong>If I don&rsquo;t finish the slice, you don&rsquo;t pay the balance.</strong>
+          Two scheduled business-hours calls a week, US Mountain or Central.
+        </p>
+        <p>
+          Smaller property, smaller bite? Say so and I&rsquo;ll quote a smaller fixed slice. I
+          don&rsquo;t sell hours to partners &mdash; fixed scope is the whole point, for both of us.
+        </p>
+        <p>
+          Work sample in ten minutes:
+          <a href="https://dbonomo.github.io/aep-audit-demo/demo-index.html" style="color:var(--cyan);text-decoration:underline;text-underline-offset:2px">the drift-audit report</a>.
+        </p>
+        <a class="btn btn-ghost" href="mailto:dan@desklessconsulting.com?subject=AA%E2%86%92CJA%20overflow%20%E2%80%94%20property%20scope">Email me the property <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 03 · ALSO IN THIS WORLD ===================== -->
+  <section class="section about section-light" id="also">
+    <div class="container narrow">
+      <div class="sec-head">
+        <span class="sec-num">03</span>
+        <span class="sec-label">Also in this world</span>
+      </div>
+      <h2 class="section-title" style="margin-bottom:2rem">Also in this world</h2>
+      <div class="about-frame">
+        <span class="coord" aria-hidden="true">REF &middot; DAN BONOMO</span>
+        <p>
+          Moving Adobe Analytics or GA4 data into Snowflake, BigQuery or Fabric &mdash; export
+          design, the eVar/prop &rarr; XDM &rarr; warehouse-table translation, and dbt models your
+          BI team can actually use.
+        </p>
+        <p>
+          <strong>Dan Bonomo, Fort Collins, Colorado.</strong> Fifteen years in analytics and data
+          systems: enterprise Adobe work at a large software company, a UN disaster-data pipeline
+          across 100+ countries, a web company&rsquo;s analytics built from zero.
+        </p>
+        <p class="emphasis">Adobe is a specialty, not the boundary. <a href="../#offers" style="color:inherit;text-decoration:underline;text-underline-offset:3px">The rest of what I do &rarr;</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA BAND ===================== -->
+  <section class="section cta-band">
+    <div class="container narrow cta-inner">
+      <i class="tick a"></i><i class="tick d"></i>
+      <h2>Not sure which end of this you&rsquo;ve got?</h2>
+      <p class="mono" style="font-size:.9rem">Ninety minutes, $500, one problem. You get a written plan and a straight answer, including the free one: don&rsquo;t pay anyone for this.</p>
+      <a class="btn btn-primary" data-book href="mailto:dan@desklessconsulting.com?subject=Bring%20Me%20a%20Problem%20%E2%80%94%20%24500">Bring me a problem <span aria-hidden="true">&rarr;</span></a>
+      <p class="mono" style="margin-top:1.2rem;font-size:.85rem;margin-bottom:0"><a href="mailto:dan@desklessconsulting.com" style="color:var(--blue)">dan@desklessconsulting.com</a></p>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="footer-brandline">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="../assets/deskless-mark-white.svg" alt="" width="28" height="24" />
+        </span>
+        <span class="brand-name">DESK<span class="lo">LESS</span></span>
+      </span>
+      <p class="footer-tag">AI that works for the people doing the work.</p>
+      <p class="footer-parent"><strong>A <a href="https://btf4e.com">BTF4E</a> Company</strong> &middot; <a href="https://btf4e.com">btf4e.com</a></p>
+    </div>
+    <div class="footer-contact">
+      <p><a href="mailto:dan@desklessconsulting.com">dan@desklessconsulting.com</a></p>
+      <p><a href="../">desklessconsulting.com</a></p>
+    </div>
+  </div>
+  <p class="copyright container">&copy; <span id="year">2026</span> Deskless Consulting. Fort Collins, Colorado.</p>
+</footer>
+
+<script>
+  // keep the copyright year current
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ------------------------------------------------------------------
+  // ONE booking URL for the whole site. Every CTA tagged data-book reads
+  // from here, so swapping to Calendly/Cal.com is a one-line edit.
+  // Keep this value identical to the one in ../index.html.
+  // The mailto: hrefs in the markup are the no-JS fallback.
+  // ------------------------------------------------------------------
+  const BOOKING_URL = "https://cal.com/deskless/30min";
+  document.querySelectorAll('a[data-book]').forEach(function (a) {
+    a.setAttribute('href', BOOKING_URL);
+  });
+</script>
+</body>
+</html>

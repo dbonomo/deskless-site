@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Deskless — Analytics-plumbing teardowns and fixes. Fixed price, written findings.</title>
-<meta name="description" content="Your numbers are wrong somewhere. Deskless does analytics-plumbing teardowns and fixes — Adobe CJA/AEP migrations and GA4/GTM ad-tracking — at fixed prices with written findings. No retainers." />
+<title>Deskless Consulting — Point me at the thing that isn't working.</title>
+<meta name="description" content="Deskless is one senior engineer in Fort Collins. Point me at the thing that's wrong — a process eating your Thursdays, a report that disagrees with itself, an AI tool giving confident wrong answers. Fixed price, written findings, no retainers. Team AI days from $2,500, a 90-minute session for $500, fixes and builds from $4,000." />
 
 <!-- PRE-LAUNCH: keep this site out of search until we're ready. Remove both this
      meta tag and /robots.txt's Disallow when we want to be indexed. -->
 <meta name="robots" content="noindex, nofollow" />
 
 <!-- Open Graph / social preview -->
-<meta property="og:title" content="Deskless Consulting" />
-<meta property="og:description" content="Your numbers are wrong somewhere. I find where, then fix it. Analytics-plumbing teardowns and fixes — fixed prices, written findings, no retainers." />
+<meta property="og:title" content="Deskless Consulting — one senior engineer, Fort Collins" />
+<meta property="og:description" content="Something here isn't working. I'll tell you what, and whether it's worth paying anyone, me included, to fix it. Fixed price, written findings, no retainers." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://desklessconsulting.com" />
 
@@ -20,368 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" />
-<style>
-  :root{
-    --navy:#081833;
-    --navy-deep:#050f22;
-    --blueprint:#0a1428;
-    --slate:#2F3C52;
-    --blue:#2F6BFF;
-    --cyan:#1786D4;
-    --orange:#FF7A1A;
-    --off:#F5F7FA;
-    --gray:#E6E8EC;
-    --line:rgba(47,107,255,.22);
-    --line-soft:rgba(47,107,255,.10);
-    --ink-dim:#9fb4d8;
-    --ink-mute:#6c82a8;
-    --mono:'JetBrains Mono',ui-monospace,monospace;
-    --sans:'Manrope',system-ui,sans-serif;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    font-family:var(--sans);
-    background:var(--blueprint);
-    color:var(--off);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-    position:relative;
-  }
-  /* ---------- graph-paper grid + registration field ---------- */
-  body::before{
-    content:"";
-    position:fixed;inset:0;
-    background-image:
-      linear-gradient(var(--line-soft) 1px,transparent 1px),
-      linear-gradient(90deg,var(--line-soft) 1px,transparent 1px),
-      linear-gradient(rgba(47,107,255,.05) 1px,transparent 1px),
-      linear-gradient(90deg,rgba(47,107,255,.05) 1px,transparent 1px);
-    background-size:120px 120px,120px 120px,24px 24px,24px 24px;
-    background-position:-1px -1px;
-    pointer-events:none;
-    z-index:0;
-    -webkit-mask-image:radial-gradient(120% 100% at 50% 0%,#000 40%,transparent 100%);
-    mask-image:radial-gradient(120% 100% at 50% 0%,#000 40%,transparent 100%);
-  }
-  a{color:inherit;text-decoration:none}
-  img{max-width:100%;display:block}
-  .container{width:min(1160px,92vw);margin-inline:auto;position:relative;z-index:2}
-  .narrow{width:min(760px,92vw)}
-  .mono{font-family:var(--mono)}
-
-  /* corner registration marks on the whole page */
-  .reg{position:fixed;z-index:1;width:34px;height:34px;pointer-events:none;color:rgba(47,107,255,.4)}
-  .reg::before,.reg::after{content:"";position:absolute;background:currentColor}
-  .reg::before{width:100%;height:1px;top:50%}
-  .reg::after{height:100%;width:1px;left:50%}
-  .reg.tl{top:14px;left:14px}.reg.tr{top:14px;right:14px}
-  .reg.bl{bottom:14px;left:14px}.reg.br{bottom:14px;right:14px}
-  @media(max-width:700px){.reg{display:none}}
-
-  /* ---------- header ---------- */
-  .site-header{
-    position:sticky;top:0;z-index:40;
-    backdrop-filter:blur(8px);
-    background:linear-gradient(180deg,rgba(8,24,51,.92),rgba(8,24,51,.7));
-    border-bottom:1px solid var(--line);
-  }
-  .header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.85rem 0}
-  .brand{display:flex;align-items:center;gap:.6rem}
-  .brand-mark{display:grid;place-items:center;width:34px;height:34px}
-  .brand-mark svg,.brand-mark img{width:100%;height:100%}
-  .brand-name{font-weight:800;letter-spacing:.14em;font-size:1.05rem;text-transform:uppercase}
-  .brand-name .lo{color:var(--blue)}
-  .site-nav{display:flex;align-items:center;gap:1.6rem}
-  .site-nav a{font-family:var(--mono);font-size:.8rem;letter-spacing:.04em;color:var(--ink-dim);transition:color .2s}
-  .site-nav a:hover{color:var(--off)}
-  .nav-cta{
-    color:var(--navy)!important;background:var(--orange);
-    padding:.5rem .9rem;border-radius:2px;font-weight:700;
-    box-shadow:0 0 0 1px var(--orange),0 0 22px rgba(255,122,26,.3);
-  }
-  .nav-cta:hover{filter:brightness(1.08)}
-  .nav-toggle{display:none}
-  @media(max-width:760px){
-    .site-nav{gap:1rem}
-    .site-nav a:not(.nav-cta){display:none}
-  }
-
-  /* ---------- hero ---------- */
-  .hero{position:relative;overflow:hidden;padding:clamp(3rem,7vw,6rem) 0 clamp(3rem,6vw,5rem)}
-  .hero-watermark{
-    position:absolute;top:50%;left:70%;transform:translate(-50%,-50%);
-    width:min(1150px,120vw);color:var(--blue);
-    opacity:.5;z-index:1;pointer-events:none;
-    -webkit-mask-image:radial-gradient(70% 70% at 50% 50%,#000 55%,transparent 100%);
-    mask-image:radial-gradient(70% 70% at 50% 50%,#000 55%,transparent 100%);
-  }
-  .hero-watermark svg{width:100%;height:auto;overflow:visible}
-  .hero-watermark path{
-    stroke-width:5;
-    stroke-dasharray:14000;
-    stroke-dashoffset:14000;
-    animation:draw 4s ease-out .3s forwards;
-    filter:drop-shadow(0 0 6px rgba(47,107,255,.35));
-  }
-  @keyframes draw{to{stroke-dashoffset:0}}
-  @media(prefers-reduced-motion:reduce){.hero-watermark path{animation:none;stroke-dashoffset:0}}
-
-  /* dimension line around the watermark */
-  .hero-dim{
-    position:absolute;top:50%;left:70%;transform:translate(-50%,-50%);
-    width:min(760px,80vw);aspect-ratio:1/.86;z-index:1;pointer-events:none;
-    display:none;
-  }
-  @media(min-width:900px){.hero-dim{display:block}}
-  .hero-badge{
-    position:absolute;top:56%;left:79%;transform:translate(-50%,-50%);
-    width:min(258px,26vw);height:auto;z-index:2;pointer-events:none;
-    filter:drop-shadow(0 18px 44px rgba(4,10,22,.6));
-    opacity:0;animation:badge-in 1s ease-out 1.2s forwards;
-  }
-  @keyframes badge-in{from{opacity:0;transform:translate(-50%,-46%) scale(.94)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
-  @media(prefers-reduced-motion:reduce){.hero-badge{animation:none;opacity:1}}
-  @media(max-width:820px){
-    .hero-badge{position:static;transform:none;display:block;margin:0 auto 1.5rem;width:180px;animation:none;opacity:1}
-    .hero-watermark,.hero-dim{opacity:.28}
-  }
-  .hero-inner{position:relative;z-index:3;max-width:640px}
-  .eyebrow{
-    font-family:var(--mono);font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
-    color:var(--cyan);display:flex;align-items:center;gap:.7rem;margin-bottom:1.3rem;
-  }
-  .eyebrow::before{content:"";width:38px;height:1px;background:var(--cyan)}
-  .hero-headline{
-    font-size:clamp(2.2rem,5.5vw,3.7rem);line-height:1.05;font-weight:800;
-    letter-spacing:-.02em;margin-bottom:1.1rem;
-  }
-  .hero-headline .hl{color:var(--blue)}
-  .hero-tagline{
-    font-family:var(--mono);font-size:clamp(.95rem,2vw,1.15rem);color:var(--orange);
-    font-weight:500;letter-spacing:.02em;margin-bottom:1.3rem;
-    padding-left:1rem;border-left:2px solid var(--orange);
-  }
-  .hero-sub{color:var(--ink-dim);font-size:1.05rem;max-width:36rem;margin-bottom:2rem}
-  .hero-actions{display:flex;flex-wrap:wrap;gap:1rem}
-  .btn{
-    display:inline-flex;align-items:center;gap:.55rem;font-weight:700;
-    padding:.85rem 1.4rem;border-radius:3px;font-size:.98rem;transition:all .2s;
-    font-family:var(--sans);cursor:pointer;
-  }
-  .btn-primary{background:var(--orange);color:var(--navy);box-shadow:0 0 26px rgba(255,122,26,.28)}
-  .btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
-  .btn-ghost{border:1px solid var(--line);color:var(--off);background:rgba(47,107,255,.04);font-family:var(--mono);font-size:.82rem}
-  .btn-ghost:hover{border-color:var(--blue);background:rgba(47,107,255,.1)}
-
-  /* hero spec readout */
-  .hero-readout{
-    margin-top:2.4rem;display:flex;flex-wrap:wrap;gap:1.4rem 2.4rem;
-    font-family:var(--mono);font-size:.72rem;color:var(--ink-mute);letter-spacing:.05em;
-    border-top:1px dashed var(--line);padding-top:1.2rem;
-  }
-  .hero-readout b{color:var(--cyan);font-weight:500;display:block;font-size:.68rem;margin-bottom:.15rem;letter-spacing:.14em}
-  .hero-readout span{color:var(--off);font-size:.82rem}
-
-  /* ---------- section scaffolding ---------- */
-  .section{padding:clamp(3.5rem,7vw,6rem) 0;position:relative;border-top:1px solid var(--line-soft)}
-  .sec-head{display:flex;align-items:baseline;gap:1.1rem;margin-bottom:2rem}
-  .sec-num{
-    font-family:var(--mono);font-size:.95rem;color:var(--orange);font-weight:700;
-    padding:.15rem .55rem;border:1px solid var(--line);border-radius:2px;flex:none;
-  }
-  .sec-label{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-mute)}
-  .section-title{font-size:clamp(1.7rem,3.5vw,2.5rem);font-weight:800;letter-spacing:-.02em;line-height:1.1}
-  .section-title.centered{text-align:center}
-
-  .lead{font-size:1.25rem;color:var(--off);font-weight:600;margin-bottom:1.1rem;line-height:1.4}
-  .problem p{color:var(--ink-dim);margin-bottom:1rem;font-size:1.05rem}
-  .close-line{
-    font-family:var(--mono);color:var(--orange)!important;font-weight:700;font-size:1.3rem!important;
-    display:inline-flex;align-items:center;gap:.6rem;margin-top:.5rem;
-  }
-  .close-line::before{content:"→";color:var(--cyan)}
-
-  /* ---------- services / spec sheets ---------- */
-  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1.3rem;margin-bottom:3rem}
-  @media(max-width:900px){.cards{grid-template-columns:1fr}}
-  .card{
-    position:relative;background:linear-gradient(180deg,rgba(10,20,40,.6),rgba(6,15,34,.75));
-    border:1px solid var(--line);border-radius:4px;padding:1.6rem 1.5rem;
-    display:flex;flex-direction:column;overflow:hidden;
-  }
-  .card::before{
-    content:"";position:absolute;inset:0;pointer-events:none;
-    background-image:linear-gradient(90deg,var(--line-soft) 1px,transparent 1px),linear-gradient(var(--line-soft) 1px,transparent 1px);
-    background-size:20px 20px;opacity:.5;
-  }
-  .card>*{position:relative;z-index:1}
-  /* corner ticks on cards */
-  .card i.tick{position:absolute;width:9px;height:9px;border:1px solid var(--cyan);z-index:2;opacity:.65}
-  .card i.tick.a{top:8px;left:8px;border-right:0;border-bottom:0}
-  .card i.tick.b{top:8px;right:8px;border-left:0;border-bottom:0}
-  .card i.tick.c{bottom:8px;left:8px;border-right:0;border-top:0}
-  .card i.tick.d{bottom:8px;right:8px;border-left:0;border-top:0}
-  .card-featured{border-color:var(--orange);box-shadow:0 0 0 1px rgba(255,122,26,.25),0 18px 40px -20px rgba(255,122,26,.35)}
-  .card-featured i.tick{border-color:var(--orange)}
-  .card-tag{
-    font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;
-    color:var(--navy);background:var(--orange);align-self:flex-start;padding:.2rem .55rem;
-    border-radius:2px;margin-bottom:1rem;font-weight:700;
-  }
-  .spec-id{font-family:var(--mono);font-size:.68rem;color:var(--ink-mute);letter-spacing:.1em;margin-bottom:.55rem}
-  .card h3{font-size:1.25rem;font-weight:800;letter-spacing:-.01em;margin-bottom:.7rem;line-height:1.2}
-  .card-price{
-    font-family:var(--mono);font-size:.82rem;color:var(--cyan);font-weight:500;
-    padding:.5rem .7rem;background:rgba(23,134,212,.08);border:1px dashed rgba(23,134,212,.4);
-    border-radius:3px;margin-bottom:1rem;
-  }
-  .card-featured .card-price{color:var(--orange);border-color:rgba(255,122,26,.45);background:rgba(255,122,26,.07)}
-  .card p{color:var(--ink-dim);font-size:.95rem;margin-bottom:1rem}
-  .card p:last-child{margin-bottom:0}
-  .card-link{
-    font-family:var(--mono);font-size:.8rem;color:var(--blue);font-weight:500;
-    margin-top:auto;display:inline-flex;gap:.4rem;letter-spacing:.02em;
-  }
-  .card-link:hover{color:var(--cyan)}
-  .card-note{font-size:.82rem!important;color:var(--ink-mute)!important;margin-top:1rem!important}
-  .card-note a{color:var(--cyan);text-decoration:underline;text-underline-offset:2px}
-
-  /* who we work with */
-  .who{
-    margin-inline:auto;text-align:center;border:1px solid var(--line);border-radius:4px;
-    padding:2rem 1.8rem;background:rgba(10,20,40,.4);position:relative;
-  }
-  .who-title{font-family:var(--mono);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:1rem}
-  .who p{color:var(--ink-dim);font-size:1.05rem}
-
-  /* ---------- about ---------- */
-  .about p{color:var(--ink-dim);font-size:1.08rem;margin-bottom:1.1rem}
-  .about strong{color:var(--off)}
-  .emphasis{
-    font-family:var(--mono)!important;color:var(--orange)!important;font-weight:700;
-    font-size:1.1rem!important;border-left:2px solid var(--orange);padding-left:1rem;margin-top:.5rem;
-  }
-  .about-frame{border:1px solid var(--line);border-radius:4px;padding:clamp(1.6rem,4vw,2.6rem);background:rgba(10,20,40,.4);position:relative}
-  .about-frame .coord{position:absolute;top:-.6rem;left:1.4rem;background:var(--blueprint);padding:0 .6rem;font-family:var(--mono);font-size:.68rem;color:var(--ink-mute);letter-spacing:.14em}
-
-  /* ---------- faq ---------- */
-  .faq details{border:1px solid var(--line);border-radius:4px;margin-bottom:.8rem;background:rgba(10,20,40,.4);overflow:hidden}
-  .faq summary{
-    list-style:none;cursor:pointer;padding:1.1rem 1.3rem;font-weight:700;font-size:1.02rem;
-    display:flex;align-items:center;gap:.9rem;transition:background .2s;
-  }
-  .faq summary::-webkit-details-marker{display:none}
-  .faq summary:hover{background:rgba(47,107,255,.06)}
-  .faq summary .q{font-family:var(--mono);color:var(--cyan);font-size:.8rem;flex:none}
-  .faq summary .plus{margin-left:auto;font-family:var(--mono);color:var(--orange);font-size:1.3rem;transition:transform .25s;flex:none}
-  .faq details[open] summary .plus{transform:rotate(45deg)}
-  .faq details p{padding:0 1.3rem 1.2rem 1.3rem;color:var(--ink-dim);margin-left:0}
-  @media(min-width:560px){.faq details p{padding-left:3.6rem}}
-
-  /* ---------- cta band ---------- */
-  .cta-band{text-align:center;border-top:1px solid var(--line)}
-  .cta-inner{margin-inline:auto;border:1px solid var(--orange);border-radius:6px;padding:clamp(2.2rem,5vw,3.4rem);position:relative;background:radial-gradient(120% 120% at 50% 0%,rgba(255,122,26,.08),rgba(10,20,40,.5))}
-  .cta-inner h2{font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:800;letter-spacing:-.02em;margin-bottom:1rem}
-  .cta-inner p{color:var(--ink-dim);max-width:34rem;margin:0 auto 1.8rem}
-  .cta-inner .tick{position:absolute;width:12px;height:12px;border:1px solid var(--orange)}
-  .cta-inner .tick.a{top:10px;left:10px;border-right:0;border-bottom:0}
-  .cta-inner .tick.d{bottom:10px;right:10px;border-left:0;border-top:0}
-
-  /* ---------- light "paper" sections ---------- */
-  /* White spec-sheets laid on the drawing board — breaks up the one-pager. */
-  .section-light{
-    background:var(--off);
-    color:var(--navy);
-    border-top:1px solid var(--gray);
-    border-bottom:1px solid var(--gray);
-  }
-  .section-light::before{
-    content:"";position:absolute;inset:0;pointer-events:none;
-    background-image:
-      linear-gradient(rgba(47,107,255,.06) 1px,transparent 1px),
-      linear-gradient(90deg,rgba(47,107,255,.06) 1px,transparent 1px);
-    background-size:24px 24px;
-  }
-  .section-light .sec-label{color:#64789c}
-  .section-light .sec-num{border-color:rgba(47,107,255,.35);background:#fff}
-  .section-light .lead{color:var(--navy)}
-  .section-light p{color:var(--slate)}
-  .section-light .close-line{color:var(--orange)!important}
-  .section-light strong{color:var(--navy)}
-  .section-light .about-frame{
-    background:#fff;border-color:rgba(47,107,255,.28);
-    box-shadow:0 16px 38px -22px rgba(8,24,51,.25);
-  }
-  .section-light .about-frame .coord{background:var(--off);color:#64789c}
-
-  /* ---------- footer ---------- */
-  .site-footer{border-top:1px solid var(--line);padding:3rem 0 2rem;background:rgba(5,15,34,.6)}
-  .footer-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2rem}
-  .footer-brandline{display:flex;align-items:center;gap:.55rem;margin-bottom:1rem}
-  .footer-brandline .brand-mark{width:28px;height:24px}
-  .footer-tag{color:var(--ink-dim);font-size:.95rem;margin-bottom:.4rem;max-width:24rem}
-  .footer-parent{font-size:.88rem;color:var(--ink-mute)}
-  .footer-parent strong{color:var(--cyan)}
-  .footer-contact{font-family:var(--mono);font-size:.85rem;text-align:right}
-  .footer-contact a{color:var(--blue)}
-  .footer-contact .muted{color:var(--ink-mute)}
-  @media(max-width:640px){.footer-contact{text-align:left}}
-  .copyright{font-family:var(--mono);font-size:.72rem;color:var(--ink-mute);margin-top:2.4rem;letter-spacing:.06em;border-top:1px dashed var(--line-soft);padding-top:1.4rem}
-
-  /* ---------- v3 additions: how-it-works strip, 3-up offers, proof tiles, partner strip ---------- */
-  .how{border-top:1px solid var(--line-soft);padding:2rem 0 1.8rem}
-  .how-head{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:1.1rem}
-  .path{display:grid;grid-template-columns:1fr;gap:1rem 0;margin:0;padding:0;list-style:none}
-  .path li{position:relative;padding-right:0;font-size:.95rem;color:var(--ink-dim);line-height:1.55}
-  .path b{display:block;font-family:var(--mono);font-size:.82rem;font-weight:700;color:var(--off);margin-bottom:.3rem;letter-spacing:.02em}
-  .path .arrow{color:var(--orange);font-family:var(--mono);margin-right:.45rem}
-  @media(min-width:900px){
-    .path{grid-template-columns:repeat(4,1fr);gap:0 2.2rem}
-    .path li{padding-right:.4rem}
-    .path li+li::before{content:"→";position:absolute;left:-1.55rem;top:-.05rem;color:var(--orange);font-family:var(--mono);font-size:.95rem}
-    .path .arrow{display:none}
-  }
-  @media(max-width:899px){.path li:first-child .arrow{display:none}}
-  .how-who{font-family:var(--mono);font-size:.78rem;color:var(--ink-mute);margin-top:1.3rem;border-top:1px dashed var(--line);padding-top:.9rem}
-  .how-who b{color:var(--ink-dim);font-weight:500}
-  .next{margin:2.2rem 0 1.8rem;border:1px solid var(--line);border-radius:4px;padding:clamp(1.3rem,3vw,1.9rem) clamp(1.3rem,3vw,2rem);background:rgba(10,20,40,.4)}
-  .next h3{font-size:clamp(1.15rem,2.2vw,1.4rem);font-weight:800;letter-spacing:-.01em;margin-bottom:.35rem;color:var(--off)}
-  .next .next-sub{font-size:.9rem;color:var(--ink-mute);font-style:italic;margin-bottom:1.1rem}
-  .next ul{list-style:none;margin:0 0 1.1rem;padding:0}
-  .next li{position:relative;padding-left:1.2rem;color:var(--ink-dim);font-size:.95rem;line-height:1.6;margin-bottom:.55rem}
-  .next li::before{content:"·";position:absolute;left:.2rem;top:0;color:var(--orange);font-weight:700}
-  .next .next-close{font-size:.95rem;color:var(--off);margin:0;border-top:1px dashed var(--line);padding-top:.9rem}
-  .cards.three{grid-template-columns:repeat(3,1fr);margin-bottom:1.6rem}
-  @media(max-width:1000px){.cards.three{grid-template-columns:1fr}}
-  .card-for{font-family:var(--mono);font-size:.76rem!important;color:var(--cyan)!important;letter-spacing:.02em}
-  .card-fine{font-family:var(--mono);font-size:.7rem!important;color:var(--ink-mute)!important;line-height:1.6;border-top:1px dashed var(--line);padding-top:.8rem;margin-top:auto;margin-bottom:.9rem!important}
-  .card-actions{display:flex;flex-wrap:wrap;gap:.5rem 1.2rem}
-  .card-actions .card-link{margin-top:0}
-  .also{font-family:var(--mono);font-size:.8rem;color:var(--ink-mute);border-left:2px solid var(--line);padding-left:1rem;max-width:56rem}
-  .also b{color:var(--ink-dim);font-weight:500}
-  .tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem;margin-bottom:1.6rem}
-  @media(max-width:760px){.tiles{grid-template-columns:1fr}}
-  .tile{background:#fff;border:1px solid rgba(47,107,255,.28);border-radius:4px;padding:1.3rem 1.3rem 1.1rem;position:relative;display:flex;flex-direction:column;box-shadow:0 16px 38px -22px rgba(8,24,51,.25)}
-  .tile-id{font-family:var(--mono);font-size:.66rem;color:#64789c;letter-spacing:.14em;margin-bottom:.5rem}
-  .tile-num{font-family:var(--mono);font-size:clamp(1.25rem,2.6vw,1.6rem);font-weight:700;color:var(--orange);letter-spacing:-.01em;line-height:1.2;margin-bottom:.5rem}
-  .tile p{font-size:.92rem;margin-bottom:.8rem}
-  .tile .card-link{margin-top:auto}
-  .ballast{font-family:var(--mono);font-size:.78rem;color:#64789c;display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;margin-bottom:.7rem}
-  .ballast span::before{content:"▪ ";color:var(--orange)}
-  .case-line{font-size:.92rem;color:var(--slate)}
-  .case-line a{color:var(--blue);font-family:var(--mono);font-size:.82rem}
-  .partners{background:var(--navy-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .partner-frame{border:1px solid var(--line);border-radius:4px;padding:clamp(1.4rem,3.5vw,2.2rem);background:rgba(10,20,40,.5);position:relative}
-  .partner-frame .coord{position:absolute;top:-.6rem;left:1.4rem;background:var(--navy-deep);padding:0 .6rem;font-family:var(--mono);font-size:.68rem;color:var(--ink-mute);letter-spacing:.14em}
-  .partner-frame h2{font-size:clamp(1.3rem,2.6vw,1.7rem);font-weight:800;letter-spacing:-.01em;line-height:1.2;margin-bottom:.8rem}
-  .partner-frame p{color:var(--ink-dim);font-size:.98rem;margin-bottom:.9rem}
-  .partner-frame strong{color:var(--off)}
-  .partner-terms{font-family:var(--mono);font-size:.8rem;color:var(--cyan);border:1px dashed rgba(23,134,212,.4);background:rgba(23,134,212,.08);border-radius:3px;padding:.5rem .7rem;display:inline-block;margin-bottom:1rem}
-  .hero-secondary{font-family:var(--mono);font-size:.82rem;color:var(--ink-dim);align-self:center;text-decoration:underline;text-underline-offset:3px}
-  .hero-secondary:hover{color:var(--off)}
-</style>
+<link rel="stylesheet" href="deskless.css" />
 </head>
 <body id="top">
 
@@ -402,10 +41,10 @@
     <nav class="site-nav" aria-label="Primary">
       <a href="#offers">Offers</a>
       <a href="#proof">Proof</a>
-      <a href="#partners">For Adobe partners</a>
+      <a href="adobe/">Adobe</a>
       <a href="#about">About</a>
       <a href="#faq">FAQ</a>
-      <a class="nav-cta" data-book href="mailto:dan@desklessconsulting.com?subject=Discovery%20Call">Book a call</a>
+      <a class="nav-cta" data-book href="mailto:dan@desklessconsulting.com?subject=Bring%20Me%20a%20Problem%20%E2%80%94%20%24500">Book 90 minutes</a>
     </nav>
   </div>
 </header>
@@ -432,18 +71,40 @@
 
     <div class="container hero-inner">
       <p class="eyebrow">Deskless Consulting</p>
-      <h1 class="hero-headline">Your numbers are wrong <span class="hl">somewhere</span>. I find where, then fix it.</h1>
+      <h1 class="hero-headline">Something here isn't working. I'll tell you what — and whether it's <span class="hl">worth paying anyone, me included,</span> to fix it.</h1>
       <p class="hero-sub">
-        Deskless does analytics-plumbing teardowns and fixes — Adobe CJA/AEP migrations and
-        GA4/GTM ad-tracking — for teams whose spend and decisions ride on numbers nobody has
-        audited. Fixed prices. Written findings. No retainers.
+        Deskless is one senior engineer. Point me at the thing that's wrong:
+      </p>
+      <ul class="hero-list">
+        <li>a process eating your Thursdays</li>
+        <li>a report that disagrees with itself</li>
+        <li>data nobody trusts</li>
+        <li>an AI tool giving confident wrong answers</li>
+      </ul>
+      <p class="hero-sub">
+        I'll tell you in writing what's actually true and what's actually broken. Then I fix it,
+        or build the thing you needed instead.
+      </p>
+      <p class="hero-tagline">
+        For owners of 5–50 person companies, and for the person inside a bigger one who owns the
+        number.
       </p>
       <div class="hero-actions">
-        <a class="btn btn-primary" data-book href="mailto:dan@desklessconsulting.com?subject=Book%20a%20Call">Book a call <span aria-hidden="true">→</span></a>
-        <a class="hero-secondary" href="#proof">See a sample report ↓</a>
+        <a class="btn btn-primary" data-book href="mailto:dan@desklessconsulting.com?subject=Bring%20Me%20a%20Problem%20%E2%80%94%20%24500">Bring me a problem — $500 <span aria-hidden="true">→</span></a>
+        <a class="hero-secondary" href="#offers">See the three ways to start ↓</a>
       </div>
+      <p class="hero-proof">
+        Fifteen years of this: enterprise analytics and data systems at a large software company,
+        a UN disaster-data pipeline across 100+ countries, a web company's analytics built from
+        zero. I wrote the Adobe dbt package that didn't exist.
+      </p>
+      <p class="hero-terms">
+        Fixed price. Written findings. No retainers. I do the work myself. NDA on request, and I
+        delete what you send on delivery. If day one shows the job is bigger than the box, I tell
+        you then and you can stop at no charge.
+      </p>
       <dl class="hero-readout">
-        <div><b>REV.</b><span>2026.08</span></div>
+        <div><b>REV.</b><span>2026.11</span></div>
         <div><b>PRICE</b><span>FIXED PRICE</span></div>
         <div><b>TERMS</b><span>NO RETAINER</span></div>
       </dl>
@@ -455,12 +116,12 @@
     <div class="container">
       <p class="how-head">How this usually goes</p>
       <ol class="path">
-        <li><b>Check</b> a fixed-price teardown or config audit. Small on purpose. It's the only thing I ask a stranger to buy.</li>
-        <li><b><span class="arrow" aria-hidden="true">→</span>Fix</b> a five-day sprint on the top item from the list, or your team takes the list and I'm out of the way.</li>
-        <li><b><span class="arrow" aria-hidden="true">→</span>Build</b> once I know your systems, the bigger stuff: the pipeline into your warehouse, the schema translation, the internal tool you've been putting off. Quoted fixed, one at a time.</li>
-        <li><b><span class="arrow" aria-hidden="true">→</span>Stay</b> not a retainer. Most people just keep the number of the person who already knows where the bodies are.</li>
+        <li><b>Say what's wrong</b> Two sentences in an email is plenty. I've never needed a brief.</li>
+        <li><b><span class="arrow" aria-hidden="true">→</span>Ninety minutes</b> You show me the actual screens, I ask the annoying questions, and you get a written plan and a straight answer — including "don't pay anyone for this."</li>
+        <li><b><span class="arrow" aria-hidden="true">→</span>Fix it or build it</b> If it's worth doing, I do it. Hours capped and written down before I start. You keep the code.</li>
+        <li><b><span class="arrow" aria-hidden="true">→</span>Or start at the other end</b> If the real problem is that your team got told to use AI and nobody knows how, skip the diagnosis and book the day.</li>
       </ol>
-      <p class="how-who"><b>I do the work myself.</b> Automated checks run first; I read every finding and write every fix. Everything is written down — scope, findings, fixes — nothing lives only in my head.</p>
+      <p class="how-who"><b>I do the work myself.</b> Automated checks run first; I read every finding and write every fix. Scope, findings, fixes — all written down, so nothing important lives only in my head.</p>
     </div>
   </section>
 
@@ -476,90 +137,84 @@
       <div class="cards three">
         <article class="card card-featured">
           <i class="tick a"></i><i class="tick b"></i><i class="tick c"></i><i class="tick d"></i>
-          <p class="card-tag">Start here</p>
-          <p class="spec-id">SPEC-01 · TRACKING TEARDOWN</p>
-          <h3>Tracking Teardown</h3>
-          <p class="card-price">$1,500, fixed · 3–5 business days</p>
-          <p class="card-for">For businesses spending real money on Google/Meta ads, and the agencies that run them.</p>
+          <p class="card-tag">No slides</p>
+          <p class="spec-id">SPEC-01 &middot; GET YOUR TEAM USING AI</p>
+          <h3>Get Your Team Using AI</h3>
+          <p class="card-price">$2,500 &middot; half day &nbsp;|&nbsp; $4,000 &middot; full day &nbsp;|&nbsp; up to 8 people</p>
+          <p class="card-for">For the manager whose team got told to use AI and nobody knows how.</p>
           <p>
-            I audit your conversion tracking — GA4, tag manager, pixels, consent settings — across
-            up to three domains or subdomains (a booking, checkout, or app subdomain counts as
-            one), from your public site and (if you want spend figures) read-only
-            ad-account access. You get a written report of what's broken, ranked by how much ad
-            spend it affects, a specific fix for each item, and a 45-minute readout.
-            <em>Who does the fix:</em> you, with the list — or me, in a Fix Sprint.
+            Spend a half day with someone who does this for a living &mdash; on your tools, your
+            files, your actual work, not slides. <strong>Everyone leaves with one thing that runs
+            on Monday.</strong>
           </p>
-          <p class="card-fine">works on third-party booking/checkout platforms too (Shopify, Calendly, etc.) · no retainer · no ongoing account access · no percentage of spend · I delete anything you send me when the report is delivered.</p>
+          <p>
+            Full day if you want everyone to leave with two things and a written playbook for the
+            rest.
+          </p>
+          <p class="card-fine">up to 8 people &middot; in person on the Front Range, or remote &middot; your tools, not mine &middot; NDA on request, and I delete what you send on delivery.</p>
           <div class="card-actions">
-            <a class="card-link" href="content/sample-tracking-teardown.html">Sample report <span aria-hidden="true">→</span></a>
-            <a class="card-link" data-book href="mailto:dan@desklessconsulting.com?subject=Tracking%20Teardown">Book a call <span aria-hidden="true">→</span></a>
+            <a class="card-link" data-book href="mailto:dan@desklessconsulting.com?subject=Get%20Your%20Team%20Using%20AI">Book a half day <span aria-hidden="true">&rarr;</span></a>
           </div>
-          <p class="card-fine" style="margin-top:.6rem;margin-bottom:0!important;border-top:0;padding-top:0">Real findings from two pre-sale teardowns, names and IDs removed. The client version includes the raw tag/pixel inventory as a CSV.</p>
         </article>
 
         <article class="card">
           <i class="tick a"></i><i class="tick b"></i><i class="tick c"></i><i class="tick d"></i>
-          <p class="spec-id">SPEC-02 · CJA / AEP CONFIG HEALTH &amp; DRIFT AUDIT</p>
-          <h3>CJA / AEP Config Health &amp; Drift Audit</h3>
-          <p class="card-price">$1,500 Lite (async) · $3,500 Full</p>
-          <p class="card-for">For teams on Adobe Customer Journey Analytics / Experience Platform mid-migration or suspicious of their numbers.</p>
+          <p class="spec-id">SPEC-02 &middot; BRING ME A PROBLEM</p>
+          <h3>Bring Me a Problem</h3>
+          <p class="card-price">$500 &middot; 90 minutes</p>
+          <p class="card-for">For the owner or lead who has a thing that isn&rsquo;t working and no straight answer about it.</p>
           <p>
-            <strong>Lite:</strong> you export config snapshots (schemas, datasets, data views,
-            identity) with the instructions I send; I run an automated health pass and return a
-            ranked written report of what's inconsistent, drifted, or silently broken — no
-            production access, no call required.
+            Bring one problem: a process eating your Thursdays, a report that disagrees with
+            itself, a number you&rsquo;ve stopped trusting. We spend 90 minutes on it &mdash; me
+            asking, you showing me the actual screens. You get a recording, a one-page written
+            plan, and a straight answer about whether it&rsquo;s worth paying anyone, me included,
+            to fix it.
           </p>
-          <p>
-            <strong>Full (~2 weeks):</strong> Lite, plus a review of your AA→CJA mapping, a parity
-            check of sample reports between old and new, a prioritized fix list, and a 60-minute
-            readout with your team.
-          </p>
-          <p class="card-fine">read-only or exported snapshots only · NDA on request · snapshots deleted on delivery.</p>
+          <p class="card-fine">credited in full against any project you book &middot; one problem, not a tour of the company &middot; NDA on request, and I delete what you send on delivery.</p>
           <div class="card-actions">
-            <a class="card-link" href="https://dbonomo.github.io/aep-audit-demo/">Sample report <span aria-hidden="true">→</span></a>
-            <a class="card-link" data-book href="mailto:dan@desklessconsulting.com?subject=CJA%2FAEP%20Config%20Health%20%26%20Drift%20Audit">Book a call <span aria-hidden="true">→</span></a>
+            <a class="card-link" data-book href="mailto:dan@desklessconsulting.com?subject=Bring%20Me%20a%20Problem%20%E2%80%94%20%24500">Book 90 minutes <span aria-hidden="true">&rarr;</span></a>
           </div>
-          <p class="card-fine" style="margin-top:.6rem;margin-bottom:0!important;border-top:0;padding-top:0">Real findings from two pre-sale teardowns, names and IDs removed. The client version includes the raw tag/pixel inventory as a CSV.</p>
         </article>
 
         <article class="card">
           <i class="tick a"></i><i class="tick b"></i><i class="tick c"></i><i class="tick d"></i>
-          <p class="spec-id">SPEC-03 · FIX SPRINT</p>
-          <h3>Fix Sprint</h3>
-          <p class="card-price">$3,500, fixed · five working days</p>
+          <p class="spec-id">SPEC-03 &middot; FIX IT / BUILD IT</p>
+          <h3>Fix It / Build It</h3>
+          <p class="card-price">$4,000 &middot; up to 22 hours &nbsp;|&nbsp; $9,000 &middot; up to 45 hours</p>
+          <p class="card-for">For the lead who already knows what&rsquo;s wrong &mdash; or who has been putting off building the thing for two years.</p>
           <p>
-            One specific repair or automation, scoped in writing on day one, working by day five:
-            repairing a broken tracking setup end to end, or one internal automation (an intake
-            that files itself, a weekly report that assembles itself, a feed between two systems
-            you already use). Documentation and two weeks of support included.
+            One thing that doesn&rsquo;t work, working. Or one thing that doesn&rsquo;t exist,
+            existing. Scoped in writing on day one; if day one shows it&rsquo;s bigger than the
+            box, I tell you then and you can stop at no charge. Documentation, two weeks of
+            support, and you keep the code.
           </p>
-          <p><strong>If day-one scoping shows it's bigger than five days, I tell you then and you can stop — no charge.</strong></p>
           <p>
-            Larger builds (a tool with a UI, multiple systems) are quoted as a fixed price,
-            typically $7,500 for two weeks; you keep the code.
+            I have a day job. So you get my hours, capped and written down, instead of a fake
+            sprint &mdash; with a start date and a finish date quoted alongside the scope.
           </p>
+          <p class="card-fine">fixed price, so an overrun is my problem &middot; no retainer, no ongoing account access &middot; NDA on request, and I delete what you send on delivery.</p>
           <div class="card-actions">
-            <a class="card-link" data-book href="mailto:dan@desklessconsulting.com?subject=Fix%20Sprint">Book a call <span aria-hidden="true">→</span></a>
+            <a class="card-link" data-book href="mailto:dan@desklessconsulting.com?subject=Fix%20It%20%2F%20Build%20It">Scope a fix <span aria-hidden="true">&rarr;</span></a>
           </div>
         </article>
       </div>
 
       <div class="next" id="where-next">
         <h3>Where this usually goes</h3>
-        <p class="next-sub">None of this is on the card. It's what tends to happen after the first slice is good.</p>
+        <p class="next-sub">None of this is on the card. It&rsquo;s what tends to happen once the first piece of work is good.</p>
         <ul>
-          <li>The Adobe Analytics or GA4 data you're moving into Snowflake, BigQuery, or Fabric — export design, the eVar/prop → XDM → warehouse-table translation, dbt models your BI team can use.</li>
-          <li>The reporting setup that quietly disagrees with itself — traced back to source, fixed at the source.</li>
-          <li>The internal tool that's been "next quarter" for two years — built in a week or two, yours to keep.</li>
-          <li>A pile of documents nobody can read — tens of thousands of reports, surveys, PDFs — turned into a dataset you can query and a report you can stand behind. (I've done this for the UN.)</li>
+          <li>Sometimes the honest answer after 90 minutes is &ldquo;we don&rsquo;t know what&rsquo;s true yet.&rdquo; Then the next step is a week of me checking the system your decisions ride on, from the outside in, and writing down what&rsquo;s true, what&rsquo;s broken, and what each broken thing is costing you &mdash; ranked, with a fix for each one.</li>
+          <li>The Adobe Analytics or GA4 data you&rsquo;re moving into Snowflake, BigQuery or Fabric &mdash; export design, the eVar/prop &rarr; XDM &rarr; warehouse-table translation, dbt models your BI team can actually use.</li>
+          <li>The reporting setup that quietly disagrees with itself &mdash; traced back to the source and fixed there, not papered over in the dashboard.</li>
+          <li>The internal tool that&rsquo;s been &ldquo;next quarter&rdquo; for two years.</li>
+          <li>A pile of documents nobody can read &mdash; tens of thousands of reports, surveys, PDFs &mdash; turned into a dataset you can query and a report you can stand behind. (I&rsquo;ve done this for the UN.)</li>
         </ul>
-        <p class="next-close">If one of those is you, start with the Check anyway. It's cheaper for both of us to find out on a $1,500 slice whether we work well together.</p>
+        <p class="next-close">If one of those is you, start with the 90 minutes anyway. It&rsquo;s cheaper for both of us to find out on $500 whether we work well together.</p>
       </div>
 
       <p class="also">
-        <b>Also available on request:</b> a half-day hands-on working session on AI-assisted
-        development workflows for dev/analytics teams ($2,000, up to 8 people), and independent
-        evaluation of shipped AI features. Ask.
+        <b>Adobe Analytics, CJA and AEP are a specialty, not the boundary.</b>
+        <a href="adobe/" style="color:var(--cyan);text-decoration:underline;text-underline-offset:2px">The Adobe page &rarr;</a>
       </p>
     </div>
   </section>
@@ -575,144 +230,131 @@
 
       <div class="tiles">
         <article class="tile">
-          <p class="tile-id">PROOF · 01 · IN PROGRESS</p>
-          <p class="tile-num">33 properties · 135+ datasets</p>
-          <p>Currently leading one of the larger Adobe Analytics → CJA migrations in market, single-handed, with my own mapping and drift tooling.</p>
+          <p class="tile-id">PROOF &middot; 01 &middot; OPEN SOURCE</p>
+          <p class="tile-num">The Adobe dbt package that didn&rsquo;t exist</p>
+          <p><code class="mono">dbt-adobe-events</code> turns AEP/Web SDK, CJA and Adobe Analytics Data Feed exports into tested sessions, page-views and users tables &mdash; the thing every other warehouse has and Adobe didn&rsquo;t. Apache-2.0, written by me. It is the fastest way to check whether I know this stack without taking my word for anything.</p>
+          <!-- TODO[PLACEHOLDER-DBT-REPO-URL]: verified 2026-11-09 that no public repo named
+               dbt-adobe-events exists (github.com/dbonomo/dbt-adobe-events -> 404, GitHub
+               search -> 0 results). Add the link here the day the repo is public, and only
+               then. Do not ship a dead link.
+          <a class="card-link" href="PLACEHOLDER_REPO_URL">Read the package &rarr;</a>
+          -->
         </article>
         <article class="tile">
-          <p class="tile-id">PROOF · 02 · SAMPLE</p>
-          <p class="tile-num">CJA/AEP drift audit</p>
-          <p>Clean-room demo on synthetic data: two verticals, stitching coverage at 61%, a silent reporting-timezone flip, an orphaned dimension.</p>
-          <a class="card-link" href="https://dbonomo.github.io/aep-audit-demo/">aep-audit-demo <span aria-hidden="true">→</span></a>
+          <p class="tile-id">PROOF &middot; 02 &middot; SAMPLE</p>
+          <p class="tile-num">A findings report, start to finish</p>
+          <p>A CJA/AEP drift audit on synthetic data, in the real format: two verticals, stitching coverage at 61%, a silent reporting-timezone flip, an orphaned dimension. Same depth you&rsquo;d get. Your data instead of invented data.</p>
+          <a class="card-link" href="https://dbonomo.github.io/aep-audit-demo/demo-index.html">Read the sample <span aria-hidden="true">&rarr;</span></a>
         </article>
         <article class="tile">
-          <p class="tile-id">PROOF · 03 · SAMPLE</p>
-          <p class="tile-num">Tracking teardown</p>
-          <p>A consent plugin defaulting <code class="mono">analytics_storage: denied</code> on a US blog with no consent banner, hiding every blog visitor from GA4 and Google Ads; four rogue Meta pixel IDs; a booking subdomain missing from the GA4 lookup table.</p>
-          <a class="card-link" href="content/sample-tracking-teardown.html">Anonymized report <span aria-hidden="true">→</span></a>
+          <p class="tile-id">PROOF &middot; 03 &middot; SAMPLE</p>
+          <p class="tile-num">What a single finding reads like</p>
+          <p>A consent plugin defaulting <code class="mono">analytics_storage: denied</code> on a US blog with no consent banner, hiding every blog visitor from Google Analytics and Google Ads. Plus four rogue Meta pixel IDs and a booking subdomain missing from the lookup table. Real findings, names and IDs removed.</p>
+          <a class="card-link" href="content/sample-tracking-teardown.html">Anonymized report <span aria-hidden="true">&rarr;</span></a>
         </article>
         <article class="tile">
-          <p class="tile-id">PROOF · 04 · IN PUBLIC</p>
-          <p class="tile-num">Why a teardown takes a day, not a week</p>
-          <p>The checks are automated — my own tooling, built over a year and documented in public at btf4e.com. The reading, and the fixes, are me.</p>
-          <a class="card-link" href="https://btf4e.com/notebook/operating-manual.html">Operating manual <span aria-hidden="true">→</span></a>
+          <p class="tile-id">PROOF &middot; 04 &middot; IN PUBLIC</p>
+          <p class="tile-num">How one person moves this fast</p>
+          <p>The checks are automated &mdash; my own tooling, built over a year and documented in public. The reading, the judgement and the fixes are me. You can watch me think in the open before you hire me.</p>
+          <a class="card-link" href="https://btf4e.com/notebook/operating-manual.html">Operating manual <span aria-hidden="true">&rarr;</span></a>
         </article>
-        <!-- TODO: un-comment once the dbt-adobe-events repo is public and set the href.
-        <article class="tile">
-          <p class="tile-id">PROOF · 05 · OPEN SOURCE</p>
-          <p class="tile-num">The Adobe dbt package that didn't exist</p>
-          <p>dbt-adobe-events: turns AEP/Web SDK, CJA, and Adobe Analytics Data Feed exports into tested sessions/page-views/users tables. Mine, Apache-2.0.</p>
-          <a class="card-link" href="TODO_REPO_URL">Repo <span aria-hidden="true">→</span></a>
-        </article>
-        -->
       </div>
 
       <p class="ballast">
+        <span>Enterprise Adobe Analytics, CJA and AEP</span>
         <span>UN disaster-data pipeline, 100+ countries (2025)</span>
-        <span>$10M+/yr PPC waste eliminated (Namecheap)</span>
+        <span>A web company&rsquo;s analytics built from zero</span>
       </p>
       <p class="case-line">
-        Local build, delivered: <a href="content/t25-case-study-draft.html">VendingVault4U site + QR machine-feedback loop <span aria-hidden="true">→</span></a>
+        A local build, delivered: <a href="content/t25-case-study-draft.html">VendingVault4U site + QR machine-feedback loop <span aria-hidden="true">&rarr;</span></a>
       </p>
     </div>
   </section>
 
-  <!-- ===================== 03 · FOR ADOBE PARTNERS ===================== -->
-  <section class="section partners" id="partners">
-    <div class="container">
-      <div class="partner-frame">
-        <span class="coord" aria-hidden="true">03 · FOR ADOBE PARTNERS</span>
-        <h2>Overflow migration delivery for Adobe partner practices.</h2>
-        <p>
-          Post-Aug-12 backlog, no bench? I take scoped AA→CJA slices — component mapping,
-          data-view configuration, parity QA — under your master subcontractor agreement and
-          NDA, asynchronously in your tooling, invisible to the client unless you say otherwise.
-        </p>
-        <p class="partner-terms">Fixed fee per property (typically $8,000) or $150/hr</p>
-        <p>
-          One property slice at a time; start date quoted with the scope; two scheduled
-          business-hours calls a week (US Mountain/Central). A slice = one report suite mapped
-          into one CJA data view: component mapping, data-view configuration, parity QA on an
-          agreed sample of reports. Scope in writing before I start; fixed fee; if I don't
-          finish the slice, you don't pay the balance. Work sample in ten minutes:
-          <a href="https://dbonomo.github.io/aep-audit-demo/" style="color:var(--cyan);text-decoration:underline;text-underline-offset:2px">the drift-audit demo above</a>.
-        </p>
-        <a class="btn btn-ghost" href="mailto:dan@desklessconsulting.com?subject=AA%E2%86%92CJA%20overflow%20%E2%80%94%20property%20scope">Email me the property <span aria-hidden="true">→</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== 04 · ABOUT ===================== -->
+  <!-- ===================== 03 · ABOUT ===================== -->
   <section class="section about section-light" id="about">
     <div class="container narrow">
       <div class="sec-head">
-        <span class="sec-num">04</span>
+        <span class="sec-num">03</span>
         <span class="sec-label">Principal / operator</span>
       </div>
       <h2 class="section-title" style="margin-bottom:2rem">About</h2>
       <div class="about-frame">
-        <span class="coord" aria-hidden="true">REF · DAN BONOMO</span>
+        <span class="coord" aria-hidden="true">REF &middot; DAN BONOMO</span>
         <p>
           <strong>Dan Bonomo, Fort Collins, Colorado.</strong> Fifteen years building and measuring
-          analytics systems — enterprise Adobe Analytics/CJA/AEP at a $2B software company, a UN
-          disaster-data pipeline across 100+ countries, Namecheap's analytics and SEO functions
-          from zero, and his own SMB consultancy before that.
+          data systems: enterprise Adobe Analytics, CJA and AEP at a large software company, a UN
+          disaster-data pipeline across 100+ countries, a web company&rsquo;s analytics built from
+          zero, and a small consultancy of my own before all of that.
         </p>
         <p>
-          Deskless is deliberately small — one senior operator, a handful of engagements at a
-          time. That's why everything is fixed-scope and written down: you get the person, not a
-          team, and you know what you're getting before you pay. Conference speaker when someone
-          hands him a microphone.
+          Deskless is deliberately small &mdash; one senior engineer, a few engagements at a time.
+          That&rsquo;s the reason everything here is fixed-scope and written down: you get the
+          person, not a team, and you know what you&rsquo;re buying before you pay for it. If I
+          think you don&rsquo;t need me, I will say so and you&rsquo;ll have it in writing.
+        </p>
+        <p>
+          I still have a day job, which I like, and I&rsquo;m not pretending otherwise. It&rsquo;s
+          why the work is sold in capped hours rather than heroic sprints. The hours you buy are
+          real hours, and they&rsquo;re mine.
         </p>
         <p class="emphasis">Deskless is the storefront. BTF4E is the lab.</p>
       </div>
     </div>
   </section>
 
-  <!-- ===================== 05 · FAQ ===================== -->
+  <!-- ===================== 04 · FAQ ===================== -->
   <section class="section faq" id="faq">
     <div class="container narrow">
       <div class="sec-head">
-        <span class="sec-num">05</span>
+        <span class="sec-num">04</span>
         <span class="sec-label">Frequently asked</span>
       </div>
       <h2 class="section-title" style="margin-bottom:2rem">Frequently asked</h2>
 
       <details>
         <summary><span class="q">Q1</span> What do you need access to? <span class="plus" aria-hidden="true">+</span></summary>
-        <p>For the Tracking Teardown: nothing to start — it's done from your public site; read-only ad-account access only if you want spend figures. For the CJA/AEP audit: exported snapshots or read-only; never production changes. I sign NDAs and delete what you send on delivery.</p>
+        <p>For the 90 minutes, nothing but a screen you&rsquo;re willing to share. For a fix or a build, the least access that does the job &mdash; read-only wherever read-only works, exported snapshots where those are enough, and no change to production that isn&rsquo;t in writing first. NDA on request, and I delete what you send me on delivery.</p>
       </details>
       <details>
-        <summary><span class="q">Q2</span> Can I see what I'd get before paying? <span class="plus" aria-hidden="true">+</span></summary>
-        <p>Yes — both sample reports are linked above. Same format, same depth, your data instead of synthetic.</p>
+        <summary><span class="q">Q2</span> Can I see what I&rsquo;d get before paying? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>Yes. The sample findings report and the anonymized finding are both linked above. Same format, same depth, your data instead of invented data.</p>
       </details>
       <details>
         <summary><span class="q">Q3</span> Who actually does the work? <span class="plus" aria-hidden="true">+</span></summary>
-        <p>I do the work myself. Automated checks run first; I read every finding and write every fix. Everything is written down, so nothing lives only in my head.</p>
+        <p>I do. There is no bench and no junior behind the curtain. Automated checks run first, then I read every finding and write every fix myself.</p>
       </details>
       <details>
-        <summary><span class="q">Q4</span> Who fixes the things you find? <span class="plus" aria-hidden="true">+</span></summary>
-        <p>Your team, with the ranked list — or me, in a Fix Sprint. I don't require either.</p>
+        <summary><span class="q">Q4</span> Does the $500 come off a bigger project? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>Yes &mdash; credited in full against any project you book. And if the answer after 90 minutes is &ldquo;this isn&rsquo;t worth paying for,&rdquo; you get that answer in writing and we both get on with our week.</p>
       </details>
       <details>
         <summary><span class="q">Q5</span> Is this a retainer? <span class="plus" aria-hidden="true">+</span></summary>
-        <p>No. Every offer is a fixed price with a written scope and an end date. If you want the audit re-run later, ask; it's priced as a one-off each time.</p>
+        <p>No. Every offer is a fixed price with a written scope and an end. If you want me again later, it gets quoted again. Most people just keep the number of the person who already knows where the bodies are buried.</p>
       </details>
       <details>
-        <summary><span class="q">Q6</span> What if the Fix Sprint turns out to be bigger than five days? <span class="plus" aria-hidden="true">+</span></summary>
-        <p>You find out on day one, in writing, and can stop at no charge. If we proceed, the price doesn't move.</p>
+        <summary><span class="q">Q6</span> What if the job turns out to be bigger than the box? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>You find out on day one, in writing, and you can stop at no charge. If we go ahead, the price doesn&rsquo;t move &mdash; going over the cap is my problem, which is the whole point of a fixed price.</p>
       </details>
       <details>
-        <summary><span class="q">Q7</span> Will this eat my engineers' time? <span class="plus" aria-hidden="true">+</span></summary>
-        <p>No. Teardowns need none. Fix Sprints need one person who can answer questions on day one and grant access.</p>
+        <summary><span class="q">Q7</span> Why hours instead of weeks? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>Because I have a day job and &ldquo;two weeks&rdquo; would be a promise about my calendar rather than your work. You buy a capped number of my hours &mdash; 22 or 45 &mdash; and I quote a start date and a finish date alongside the scope. Fewer impressive adjectives, more keeping my word.</p>
       </details>
       <details>
-        <summary><span class="q">Q8</span> Why "Deskless"? <span class="plus" aria-hidden="true">+</span></summary>
-        <p>Because the point is AI and measurement that work for the people doing the work — not more dashboards for the people watching them. It's the mission line in the footer.</p>
+        <summary><span class="q">Q8</span> Will this eat my team&rsquo;s time? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>The 90 minutes needs you and a screen. A fix or a build needs one person who can answer questions and grant access &mdash; not a working group.</p>
       </details>
       <details>
-        <summary><span class="q">Q9</span> Do you work locally? <span class="plus" aria-hidden="true">+</span></summary>
-        <p>Yes — Fort Collins / Front Range, in person when it helps. Most work is remote and asynchronous. Start dates are typically quoted within 2–3 weeks of booking; calls happen during US business hours (Mountain/Central).</p>
+        <summary><span class="q">Q9</span> Is the team day in person? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>In person anywhere on the Front Range, or remote if that&rsquo;s easier. Up to eight people, on your tools and your real work. No slides, no certificate, no trust falls.</p>
+      </details>
+      <details>
+        <summary><span class="q">Q10</span> Do you work locally? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>Yes &mdash; Fort Collins and the Front Range, in person when it helps. Most of the work is remote and asynchronous, and calls happen during US business hours, Mountain or Central.</p>
+      </details>
+      <details>
+        <summary><span class="q">Q11</span> Why &ldquo;Deskless&rdquo;? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>Because the point is technology that works for the people doing the work, not more dashboards for the people watching them. It&rsquo;s the line in the footer, and I did mean it.</p>
       </details>
     </div>
   </section>
@@ -721,9 +363,9 @@
   <section class="section cta-band">
     <div class="container narrow cta-inner">
       <i class="tick a"></i><i class="tick d"></i>
-      <h2>Ready to find out where your numbers are wrong?</h2>
-      <p class="mono" style="font-size:.9rem">Fixed prices. Written findings. No retainers.</p>
-      <a class="btn btn-primary" data-book href="mailto:dan@desklessconsulting.com?subject=Book%20a%20Call">Book a call <span aria-hidden="true">→</span></a>
+      <h2>So &mdash; what isn&rsquo;t working?</h2>
+      <p class="mono" style="font-size:.9rem">Ninety minutes, $500, one problem. You get a written plan and a straight answer, including the free one: don&rsquo;t pay anyone for this.</p>
+      <a class="btn btn-primary" data-book href="mailto:dan@desklessconsulting.com?subject=Bring%20Me%20a%20Problem%20%E2%80%94%20%24500">Bring me a problem <span aria-hidden="true">&rarr;</span></a>
       <p class="mono" style="margin-top:1.2rem;font-size:.85rem;margin-bottom:0"><a href="mailto:dan@desklessconsulting.com" style="color:var(--blue)">dan@desklessconsulting.com</a></p>
     </div>
   </section>
