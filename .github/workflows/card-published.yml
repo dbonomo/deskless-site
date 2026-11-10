@@ -1,0 +1,131 @@
+# Tells Dan's phone when a card page has finished publishing.
+#
+# Pairs with site/qr/ping.js, which pings the same ntfy topic when someone ARRIVES
+# at a card. This one fires at the other end of the loop: you double-tap the ring,
+# the webhook writes a custom page and commits it, and this says "it's live" once
+# GitHub Pages is actually serving the new bytes — not when the commit landed.
+#
+# Fires on any push that touches qr/<slug>/index.html, and can be run by hand from
+# the Actions tab (Run workflow -> slug) to test the chain without a commit.
+
+name: Card page published
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'qr/**/index.html'
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "Card slug to announce — use this to test the ring end to end"
+        required: true
+        default: ethics-gradient
+
+concurrency:
+  group: card-published
+  cancel-in-progress: false
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Work out which card pages changed
+        id: changed
+        env:
+          EVENT: ${{ github.event_name }}
+          INPUT_SLUG: ${{ github.event.inputs.slug }}
+          BEFORE: ${{ github.event.before }}
+          SHA: ${{ github.sha }}
+        run: |
+          set -uo pipefail
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            slugs="$INPUT_SLUG"
+          else
+            base="$BEFORE"
+            if [ -z "$base" ] || [ "$base" = "0000000000000000000000000000000000000000" ] \
+               || ! git cat-file -e "${base}^{commit}" 2>/dev/null; then
+              base="${SHA}^"
+            fi
+            slugs=$(git diff --name-only "$base" "$SHA" -- 'qr/*/index.html' \
+                    | awk -F/ '{print $2}' | sort -u)
+          fi
+          count=$(printf '%s\n' "$slugs" | grep -c . || true)
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+          {
+            echo "slugs<<SLUGEOF"
+            printf '%s\n' "$slugs"
+            echo "SLUGEOF"
+          } >> "$GITHUB_OUTPUT"
+          echo "Changed card pages ($count): $slugs"
+
+      - name: Wait for Pages to serve the new bytes, then ring the phone
+        if: steps.changed.outputs.count != '0'
+        env:
+          # Already public in every card page's source. Set a repo secret named
+          # NTFY_TOPIC to override it without touching this file.
+          TOPIC: ${{ secrets.NTFY_TOPIC || 'deskless-cards-ba9619dd7b165e61c2' }}
+          SLUGS: ${{ steps.changed.outputs.slugs }}
+          COUNT: ${{ steps.changed.outputs.count }}
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
+        run: |
+          set -uo pipefail
+          SITE="https://desklessconsulting.com"
+
+          ring() { # title, message, tags, priority, click
+            curl -sS --max-time 20 "https://ntfy.sh" \
+              -H "Content-Type: application/json" \
+              -d "$(jq -n --arg t "$TOPIC" --arg ti "$1" --arg m "$2" \
+                        --arg tg "$3" --argjson p "$4" --arg c "$5" \
+                    '{topic:$t,title:$ti,message:$m,tags:($tg|split(",")),priority:$p,click:$c}')" \
+              -o /dev/null -w "  ntfy HTTP %{http_code}\n"
+          }
+
+          # A bulk regeneration of the 50 defaults must not fire 50 notifications.
+          if [ "$COUNT" -gt 5 ]; then
+            ring "Card pages republished" \
+                 "$COUNT card pages changed in one push — that's a bulk rebuild, not a single card. First few: $(printf '%s' "$SLUGS" | head -5 | tr '\n' ' ')" \
+                 "recycle" 2 "$SITE/qr/"
+            exit 0
+          fi
+
+          fail=0
+          for slug in $SLUGS; do
+            [ -z "$slug" ] && continue
+            file="qr/$slug/index.html"
+            [ -f "$file" ] || { echo "$slug: deleted, skipping"; continue; }
+
+            want=$(md5sum "$file" | cut -d' ' -f1)
+            url="$SITE/qr/$slug/"
+            live=""
+            # GitHub Pages usually publishes in under a minute; the CDN caches for 10.
+            for i in $(seq 1 60); do
+              live=$(curl -sS --max-time 15 "$url?cb=$(date +%s)-$i" | md5sum | cut -d' ' -f1)
+              [ "$live" = "$want" ] && break
+              sleep 6
+            done
+
+            if grep -q "SOURCE OF TRUTH" "$file"; then
+              kind="Custom page"; tags="sparkles,white_check_mark"; prio=4
+            else
+              kind="Default page"; tags="white_check_mark"; prio=3
+            fi
+
+            subject=$(printf '%s' "$COMMIT_MSG" | head -1)
+
+            if [ "$live" = "$want" ]; then
+              ring "$kind live: $slug" \
+                   "$SITE/qr/$slug/ is serving the new version. Safe to hand the card over.$([ -n "$subject" ] && printf '\n\n%s' "$subject")" \
+                   "$tags" "$prio" "$url"
+            else
+              fail=1
+              ring "Card page NOT live yet: $slug" \
+                   "Committed, but after 6 minutes $SITE/qr/$slug/ is still serving the old version. Check the Pages build before handing this card out." \
+                   "warning" 4 "$url"
+            fi
+          done
+          exit $fail
