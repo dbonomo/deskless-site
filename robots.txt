@@ -1,6 +1,13 @@
-# PRE-LAUNCH: Deskless Consulting is not ready to be indexed yet.
-# When ready to go public, delete these two Disallow lines (or replace with a
-# normal allow) AND remove the <meta name="robots" content="noindex, nofollow">
-# tags from index.html and scorecard.html.
+# desklessconsulting.com
 User-agent: *
-Disallow: /
+Allow: /
+
+# Card pages are unlisted: one physical card, one person, 50 near-identical pages.
+# They carry a noindex meta tag as well. Keeping them out of the index avoids a
+# thin/duplicate-content footprint on a 2-page site, and keeps the scan-ping
+# topic in their source out of search results.
+Disallow: /qr/
+Disallow: /scorecard.html
+Disallow: /content/
+
+Sitemap: https://desklessconsulting.com/sitemap.xml
