@@ -47,6 +47,17 @@
     try{fetch(u,{method:"POST",body:body,keepalive:true,mode:"cors"})}catch(e){}
   }
 
+
+  /* ---- aggregate sink ----------------------------------------------------------
+     ntfy is real-time but keeps no history, so every event is ALSO emitted to the
+     pageview tool as a custom event. Feature-detected, so this is a no-op until a
+     tag is installed and it never breaks if one is removed. */
+  function record(name,props){
+    try{ if(window.plausible) window.plausible(name,{props:props}) }catch(e){}
+    try{ if(window.umami) window.umami.track(name,props) }catch(e){}
+    try{ if(window.gtag) window.gtag("event",name.toLowerCase().replace(/\\s+/g,"_"),props) }catch(e){}
+  }
+
   var t0=Date.now(),vis=0,lastVis=document.visibilityState==="visible"?t0:0,maxScroll=0,warmed=false;
   function seen(){return vis+(lastVis?Date.now()-lastVis:0)}
 
@@ -61,6 +72,7 @@
     send("Someone is contacting you — "+what+(subj?": "+subj:""),
          "From "+origin()+". On "+dev+", "+Math.round(seen()/1000)+"s into the visit, "+maxScroll+"% down the page. "+new Date().toLocaleString(),
          "fire,telephone_receiver",5);
+    record("Contact",{method:what,offer:subj||"(none)",source:origin(),device:dev});
   },true);
 
   /* ---- 2. one warm signal per session: read the offers properly ---- */
@@ -71,6 +83,7 @@
     if(!warmed&&maxScroll>=55&&seen()>=45000){
       warmed=true;
       send("Someone is reading properly","From "+origin()+". "+maxScroll+"% down, "+Math.round(seen()/1000)+"s so far, on "+dev+". No contact click yet.","eyes",2);
+      record("Serious read",{source:origin(),device:dev});
     }
   },{passive:true});
 
