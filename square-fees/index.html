@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Square fee calculator — what the January 2026 change costs you | Deskless Consulting</title>
+<meta name="description" content="Square raised its Free-plan online rate to 3.3% + 30¢ in January 2026. Enter your monthly sales and see what you pay on Free, Plus and Premium, and when upgrading pays for itself. Runs in your browser; nothing is sent anywhere." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://desklessconsulting.com/square-fees/" />
+<meta property="og:title" content="Square fee calculator — what the January 2026 change costs you" />
+<meta property="og:description" content="Free vs Plus vs Premium at your volume, and the break-even point for upgrading. Rates read from Square's pricing page." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://desklessconsulting.com/square-fees/" />
+<meta property="og:site_name" content="Deskless Consulting" />
+<link rel="icon" type="image/svg+xml" href="../assets/deskless-badge.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" />
+<link rel="stylesheet" href="../deskless.css" />
+<script src="/ping.js" defer></script>
+<style>
+  .calc-wrap{padding:clamp(28px,6vw,64px) 0 72px}
+  .calc-eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:.8rem}
+  .calc-h1{font-size:clamp(1.7rem,4.6vw,2.7rem);line-height:1.15;font-weight:800;margin-bottom:1rem;max-width:22ch}
+  .calc-lede{color:var(--ink-dim);max-width:62ch;font-size:1.05rem}
+  .prepared{display:none;margin:1.2rem 0 0;padding:.7rem 1rem;border:1px solid var(--line);border-left:3px solid var(--orange);font-family:var(--mono);font-size:.85rem;color:var(--off);background:rgba(5,15,34,.6)}
+  .grid{display:grid;grid-template-columns:1fr;gap:20px;margin-top:2rem}
+  @media(min-width:900px){.grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}}
+  .panel{border:1px solid var(--line);background:rgba(5,15,34,.72);padding:clamp(16px,3vw,26px);border-radius:4px}
+  .panel h2{font-size:1rem;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:1rem;font-weight:500}
+  .field{margin-bottom:1rem}
+  .field label{display:block;font-weight:600;font-size:.92rem;margin-bottom:.35rem}
+  .field .hint{display:block;font-size:.78rem;color:var(--ink-mute);margin-top:.25rem}
+  .money{display:flex;align-items:center;border:1px solid var(--line);background:var(--navy-deep);border-radius:3px}
+  .money span{padding:0 .6rem;color:var(--ink-mute);font-family:var(--mono)}
+  .money input,.field select{flex:1;width:100%;background:transparent;border:0;color:var(--off);font:500 1rem var(--mono);padding:.65rem .6rem .65rem 0;outline:none;min-width:0}
+  .field select{background:var(--navy-deep);border:1px solid var(--line);padding:.65rem .6rem;border-radius:3px}
+  .money:focus-within,.field select:focus{border-color:var(--blue);box-shadow:0 0 0 2px rgba(47,107,255,.25)}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .headline{font-size:clamp(1.25rem,3vw,1.6rem);font-weight:800;line-height:1.3;margin-bottom:.4rem}
+  .headline .num{color:var(--orange);font-family:var(--mono)}
+  .sub{color:var(--ink-dim);font-size:.95rem;margin-bottom:1.2rem}
+  table.plans{width:100%;border-collapse:collapse;font-size:.92rem;margin:.4rem 0 1rem}
+  table.plans th,table.plans td{padding:.55rem .5rem;border-bottom:1px solid var(--line-soft);text-align:right}
+  table.plans th:first-child,table.plans td:first-child{text-align:left}
+  table.plans th{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);font-weight:500}
+  table.plans td{font-family:var(--mono)}
+  table.plans tr.best td{color:var(--off);font-weight:700}
+  table.plans tr.best td:first-child::after{content:" ← lowest";color:var(--orange);font-weight:500;font-size:.75rem}
+  table.plans tr.current td:first-child{color:var(--cyan)}
+  .notes{list-style:none;margin:0 0 1.2rem;padding:0}
+  .notes li{padding:.5rem 0 .5rem 1.1rem;position:relative;color:var(--ink-dim);font-size:.93rem;border-bottom:1px dashed var(--line-soft)}
+  .notes li::before{content:"→";position:absolute;left:0;color:var(--blue)}
+  .notes strong{color:var(--off)}
+  .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:.6rem}
+  .btn-ghost{border:1px solid var(--line);padding:.7rem 1rem;border-radius:3px;font-weight:600;font-size:.92rem;background:transparent;color:var(--off);cursor:pointer;font-family:var(--sans)}
+  .btn-ghost:hover{border-color:var(--blue)}
+  .fine{margin-top:2rem;color:var(--ink-mute);font-size:.82rem;max-width:78ch}
+  .fine p{margin-bottom:.6rem}
+  .fine a{color:var(--ink-dim);text-decoration:underline}
+  .back{font-family:var(--mono);font-size:.8rem;color:var(--ink-dim)}
+  .back:hover{color:var(--off)}
+  .copied{font-family:var(--mono);font-size:.8rem;color:var(--cyan);align-self:center;min-height:1em}
+</style>
+</head>
+<body>
+<span class="reg tl" aria-hidden="true"></span><span class="reg tr" aria-hidden="true"></span>
+<span class="reg bl" aria-hidden="true"></span><span class="reg br" aria-hidden="true"></span>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../" aria-label="Deskless Consulting home">
+      <span class="brand-mark" aria-hidden="true"><img src="../assets/deskless-badge.svg" alt="" width="34" height="34" /></span>
+      <span class="brand-name">DESK<span class="lo">LESS</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="../">Home</a>
+      <a class="nav-cta" href="mailto:dan@desklessconsulting.com?subject=Square%20fees">Ask Dan</a>
+    </nav>
+  </div>
+</header>
+
+<main class="calc-wrap">
+  <div class="container">
+    <p class="calc-eyebrow">Free tool · runs in your browser</p>
+    <h1 class="calc-h1">What Square&rsquo;s January rate change costs you</h1>
+    <p class="calc-lede">On January 13, 2026, Square raised its Free-plan online rate from 2.9% + 30¢ to <strong>3.3% + 30¢</strong>. Put in your monthly sales and see what you pay on each plan, what the change cost you, and when upgrading pays for itself. Nothing you type leaves this page.</p>
+    <p class="prepared" id="prepared"></p>
+
+    <div class="grid">
+      <section class="panel" aria-labelledby="in-h">
+        <h2 id="in-h">Your numbers (per month)</h2>
+        <div class="field">
+          <label for="plan">Your Square plan today</label>
+          <select id="plan">
+            <option value="free">Square Free ($0/mo)</option>
+            <option value="plus">Square Plus ($49/mo per location)</option>
+            <option value="premium">Square Premium ($149/mo per location)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="loc">Locations</label>
+          <div class="money"><span>#</span><input id="loc" type="number" inputmode="numeric" min="1" step="1" value="1" /></div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="on">Online sales</label>
+            <div class="money"><span>$</span><input id="on" type="number" inputmode="decimal" min="0" step="100" value="5000" /></div>
+            <span class="hint">Online store, invoices, payment links</span>
+          </div>
+          <div class="field">
+            <label for="ont">Avg online order</label>
+            <div class="money"><span>$</span><input id="ont" type="number" inputmode="decimal" min="1" step="1" value="60" /></div>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="ip">In-person sales</label>
+            <div class="money"><span>$</span><input id="ip" type="number" inputmode="decimal" min="0" step="100" value="0" /></div>
+            <span class="hint">Tap, dip or swipe</span>
+          </div>
+          <div class="field">
+            <label for="ipt">Avg in-person sale</label>
+            <div class="money"><span>$</span><input id="ipt" type="number" inputmode="decimal" min="1" step="1" value="25" /></div>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="kd">Keyed-in / card on file</label>
+            <div class="money"><span>$</span><input id="kd" type="number" inputmode="decimal" min="0" step="100" value="0" /></div>
+          </div>
+          <div class="field">
+            <label for="kdt">Avg keyed sale</label>
+            <div class="money"><span>$</span><input id="kdt" type="number" inputmode="decimal" min="1" step="1" value="100" /></div>
+          </div>
+        </div>
+        <p class="hint" style="font-size:.8rem;color:var(--ink-mute)">Where to find these: Square Dashboard → Reports → Sales summary, last full month. Rough numbers are fine.</p>
+      </section>
+
+      <section class="panel" aria-labelledby="out-h" aria-live="polite">
+        <h2 id="out-h">What you pay</h2>
+        <p class="headline" id="headline"></p>
+        <p class="sub" id="subline"></p>
+        <table class="plans" aria-label="Monthly cost by Square plan">
+          <thead><tr><th scope="col">Plan</th><th scope="col">Per month</th><th scope="col">Per year</th><th scope="col">Effective rate</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+        <ul class="notes" id="notes"></ul>
+        <div class="actions">
+          <a class="btn btn-primary" id="mail" href="mailto:dan@desklessconsulting.com?subject=Square%20fees">Send these numbers to Dan <span aria-hidden="true">&rarr;</span></a>
+          <button class="btn-ghost" id="share" type="button">Copy a link to these numbers</button>
+          <span class="copied" id="copied" role="status"></span>
+        </div>
+      </section>
+    </div>
+
+    <div class="fine">
+      <p><strong>Where the rates come from.</strong> Current rates were read from <a href="https://squareup.com/us/en/pricing" rel="noopener">Square&rsquo;s US pricing page</a> on November 18, 2026: Free 2.6% + 15¢ in person, 3.3% + 30¢ online, 3.5% + 15¢ keyed; Plus ($49/mo) 2.5% + 15¢ and 2.9% + 30¢; Premium ($149/mo) 2.4% + 15¢ and 2.9% + 30¢. The &ldquo;before January&rdquo; Free-plan figures (2.9% + 30¢ online, 2.6% + 10¢ in person) come from third-party reporting, because Square&rsquo;s page shows only today&rsquo;s rates. Stripe&rsquo;s standard online rate, 2.9% + 30¢, was read from <a href="https://stripe.com/pricing" rel="noopener">stripe.com/pricing</a> the same day.</p>
+      <p><strong>What this leaves out.</strong> Custom or negotiated rates, hardware, instant-transfer fees, Afterpay, ACH, international cards, chargebacks, and everything a paid plan includes beyond its rates. It compares processing cost only, so it&rsquo;s a starting point, not advice to switch plans or providers. Not affiliated with Square or Stripe; nobody pays for a recommendation here.</p>
+      <p><a class="back" href="../">&larr; Deskless Consulting</a> · Built by Dan Bonomo, Fort Collins, Colorado.</p>
+    </div>
+  </div>
+</main>
+
+<script>
+(function(){
+  "use strict";
+  // Rates as read from squareup.com/us/en/pricing on 2026-11-18.
+  var PLANS = {
+    free:    {name:"Square Free",    sub:0,   ip:[0.026,0.15], on:[0.033,0.30], kd:[0.035,0.15]},
+    plus:    {name:"Square Plus",    sub:49,  ip:[0.025,0.15], on:[0.029,0.30], kd:[0.035,0.15]},
+    premium: {name:"Square Premium", sub:149, ip:[0.024,0.15], on:[0.029,0.30], kd:[0.035,0.15]}
+  };
+  // Free plan before 2026-01-13 (third-party reporting; see the note on the page).
+  var FREE_BEFORE = {ip:[0.026,0.10], on:[0.029,0.30], kd:[0.035,0.15]};
+  var ids = ["plan","loc","on","ont","ip","ipt","kd","kdt"];
+  var el = {}; ids.forEach(function(i){ el[i] = document.getElementById(i); });
+  var usd = new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0});
+  var usd2 = new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",minimumFractionDigits:2,maximumFractionDigits:2});
+
+  function num(id, min){ var v = parseFloat(el[id].value); return (isFinite(v) && v >= (min||0)) ? v : (min||0); }
+  function count(sales, ticket){ return ticket > 0 ? sales / ticket : 0; }
+  function cost(r, s){
+    var c = s.ip * r.ip[0] + count(s.ip, s.ipt) * r.ip[1]
+          + s.on * r.on[0] + count(s.on, s.ont) * r.on[1]
+          + s.kd * r.kd[0] + count(s.kd, s.kdt) * r.kd[1];
+    return c;
+  }
+  function read(){
+    return {plan: el.plan.value, loc: Math.max(1, Math.round(num("loc",1))),
+            on: num("on"), ont: Math.max(1,num("ont",1)), ip: num("ip"), ipt: Math.max(1,num("ipt",1)),
+            kd: num("kd"), kdt: Math.max(1,num("kdt",1))};
+  }
+  function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }
+
+  function render(){
+    var s = read(), total = s.on + s.ip + s.kd;
+    var res = {};
+    Object.keys(PLANS).forEach(function(k){ var p = PLANS[k]; res[k] = cost(p, s) + p.sub * s.loc; });
+    var best = Object.keys(res).reduce(function(a,b){ return res[a] <= res[b] ? a : b; });
+    var rows = "";
+    Object.keys(PLANS).forEach(function(k){
+      var cls = (k === best ? "best " : "") + (k === s.plan ? "current" : "");
+      var eff = total > 0 ? (res[k] / total * 100).toFixed(2) + "%" : "—";
+      rows += '<tr class="'+cls+'"><td>'+PLANS[k].name+(k===s.plan?" (yours)":"")+'</td><td>'+usd2.format(res[k])+'</td><td>'+usd.format(res[k]*12)+'</td><td>'+eff+'</td></tr>';
+    });
+    document.getElementById("rows").innerHTML = rows;
+
+    var mine = res[s.plan], saving = mine - res[best];
+    var change = (cost(PLANS.free, s) - cost(FREE_BEFORE, s)) * 12;
+    var h = document.getElementById("headline"), sl = document.getElementById("subline");
+    if (total <= 0) {
+      h.innerHTML = "Enter a month of sales to see your numbers.";
+      sl.textContent = "";
+    } else if (best !== s.plan && saving >= 1) {
+      h.innerHTML = 'At these numbers, <span class="num">'+PLANS[best].name+'</span> would cost you <span class="num">'+usd.format(saving*12)+'</span> less a year.';
+      sl.textContent = "Processing cost only. A paid plan also changes features; check those before switching.";
+    } else {
+      h.innerHTML = 'You&rsquo;re on the lowest-cost plan for these numbers: <span class="num">'+usd2.format(mine)+'</span> a month.';
+      sl.textContent = total > 0 ? "Effective rate " + (mine/total*100).toFixed(2) + "% of everything you take through Square." : "";
+    }
+
+    var notes = [];
+    if (s.on > 0 || s.ip > 0) {
+      notes.push("<strong>The January change</strong> costs a Free-plan seller at these numbers about <strong>"+usd.format(change)+" a year</strong> more than before (0.4% more on online sales, and 5¢ more per in-person sale).");
+    }
+    // Break-even for Plus vs Free: Plus saves 0.4% online + 0.1% in person, and costs $49 per location.
+    var monthlySub = 49 * s.loc;
+    var savedNow = s.on*0.004 + s.ip*0.001;
+    if (s.ip > 0 || s.on > 0) {
+      var onlineNeeded = Math.max(0, (monthlySub - s.ip*0.001) / 0.004);
+      notes.push("<strong>Plus pays for itself</strong> once it saves more than its "+usd.format(monthlySub)+"/month fee. With "+usd.format(s.ip)+" a month in person, that happens at about <strong>"+usd.format(onlineNeeded)+" a month online</strong>. You&rsquo;re at "+usd.format(s.on)+".");
+    }
+    if (s.on > 0) {
+      notes.push("<strong>Stripe&rsquo;s</strong> standard online rate (2.9% + 30¢) is the same as Square Plus&rsquo;s. Moving only online checkout to Stripe would save about <strong>"+usd.format(s.on*0.004*12)+" a year</strong> versus Square Free, but means running two payment systems.");
+    }
+    if (s.kd > 0) {
+      notes.push("<strong>Keyed-in and card-on-file</strong> payments cost 3.5% + 15¢ on every plan, the highest rate here. Moving those customers to a payment link or online checkout is usually the cheapest fix.");
+    }
+    document.getElementById("notes").innerHTML = notes.map(function(n){ return "<li>"+n+"</li>"; }).join("");
+
+    var body = "Hi Dan,\n\nHere are my Square numbers from the calculator:\n\n" +
+      "Plan: " + PLANS[s.plan].name + " (" + s.loc + " location" + (s.loc>1?"s":"") + ")\n" +
+      "Online: " + usd.format(s.on) + "/mo, avg " + usd.format(s.ont) + "\n" +
+      "In person: " + usd.format(s.ip) + "/mo, avg " + usd.format(s.ipt) + "\n" +
+      "Keyed / card on file: " + usd.format(s.kd) + "/mo\n" +
+      "Calculator says I pay about " + usd2.format(mine) + "/mo; lowest plan for me: " + PLANS[best].name + ".\n\n" +
+      "My question: ";
+    document.getElementById("mail").href = "mailto:dan@desklessconsulting.com?subject=" +
+      encodeURIComponent("Square fees" + (biz ? " — " + biz : "")) + "&body=" + encodeURIComponent(body);
+  }
+
+  // Personalised links: ?biz=Name pre-labels the page; any input can be pre-filled by its id.
+  var qs = new URLSearchParams(location.search);
+  var biz = (qs.get("biz") || "").slice(0, 80);
+  ids.forEach(function(i){ if (qs.has(i)) el[i].value = qs.get(i); });
+  if (biz) {
+    var p = document.getElementById("prepared");
+    p.innerHTML = "Prepared for <strong>" + esc(biz) + "</strong>. The numbers below are examples; put in your own.";
+    p.style.display = "block";
+  }
+
+  ids.forEach(function(i){ el[i].addEventListener("input", render); el[i].addEventListener("change", render); });
+  document.getElementById("share").addEventListener("click", function(){
+    var u = new URL(location.href); var s = read();
+    ["plan","loc","on","ont","ip","ipt","kd","kdt"].forEach(function(k){ u.searchParams.set(k, s[k]); });
+    var done = function(){ document.getElementById("copied").textContent = "Link copied"; };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(u.toString()).then(done, function(){ prompt("Copy this link:", u.toString()); });
+    } else { prompt("Copy this link:", u.toString()); }
+  });
+  render();
+})();
+</script>
+</body>
+</html>
