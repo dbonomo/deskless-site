@@ -60,6 +60,15 @@
   .fine a{color:var(--ink-dim);text-decoration:underline}
   .back{font-family:var(--mono);font-size:.8rem;color:var(--ink-dim)}
   .back:hover{color:var(--off)}
+  .ways{margin:0 0 1.2rem;padding:1rem 1rem .4rem;border:1px solid var(--line);border-left:3px solid var(--orange);border-radius:3px;background:rgba(5,15,34,.5)}
+  .ways h3{font-size:.85rem;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--orange);font-weight:500;margin-bottom:.4rem}
+  .ways ol{list-style:none;margin:0;padding:0}
+  .ways li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 14px;padding:.6rem 0;border-bottom:1px dashed var(--line-soft);font-size:.93rem;color:var(--ink-dim)}
+  .ways li:last-child{border-bottom:0}
+  .ways li strong{color:var(--off)}
+  .ways .save{font-family:var(--mono);color:var(--orange);font-weight:700;white-space:nowrap;text-align:right}
+  .ways .save small{display:block;font-weight:400;color:var(--ink-mute);font-size:.72rem}
+  .promise{font-size:.85rem;color:var(--ink-mute);margin-top:.7rem;max-width:62ch}
   .copied{font-family:var(--mono);font-size:.8rem;color:var(--cyan);align-self:center;min-height:1em}
 </style>
 </head>
@@ -146,17 +155,23 @@
           <tbody id="rows"></tbody>
         </table>
         <ul class="notes" id="notes"></ul>
+        <div class="ways" id="ways-box" aria-labelledby="ways-h">
+          <h3 id="ways-h">Ways to pay less</h3>
+          <ol id="ways"></ol>
+        </div>
         <div class="actions">
-          <a class="btn btn-primary" id="mail" href="mailto:dan@desklessconsulting.com?subject=Square%20fees">Send these numbers to Dan <span aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn-primary" id="mail" href="mailto:dan@desklessconsulting.com?subject=Square%20fee%20check">Get a free fee check from Dan <span aria-hidden="true">&rarr;</span></a>
           <button class="btn-ghost" id="share" type="button">Copy a link to these numbers</button>
           <span class="copied" id="copied" role="status"></span>
         </div>
+        <p class="promise">Free, no strings. The button opens an email with your numbers filled in. Dan reads them and replies within two business days with the changes worth making for your business, each with a dollar amount. If you like, attach a screenshot of your Square sales totals for the last three months; no customer details needed.</p>
       </section>
     </div>
 
     <div class="fine">
       <p><strong>Where the rates come from.</strong> Current rates were read from <a href="https://squareup.com/us/en/pricing" rel="noopener">Square&rsquo;s US pricing page</a> on November 18, 2026: Free 2.6% + 15¢ in person, 3.3% + 30¢ online, 3.5% + 15¢ keyed; Plus ($49/mo) 2.5% + 15¢ and 2.9% + 30¢; Premium ($149/mo) 2.4% + 15¢ and 2.9% + 30¢. The &ldquo;before January&rdquo; Free-plan figures (2.9% + 30¢ online, 2.6% + 10¢ in person) come from third-party reporting, because Square&rsquo;s page shows only today&rsquo;s rates. Stripe&rsquo;s standard online rate, 2.9% + 30¢, was read from <a href="https://stripe.com/pricing" rel="noopener">stripe.com/pricing</a> the same day.</p>
       <p><strong>What this leaves out.</strong> Custom or negotiated rates, hardware, instant-transfer fees, Afterpay, ACH, international cards, chargebacks, and everything a paid plan includes beyond its rates. It compares processing cost only, so it&rsquo;s a starting point, not advice to switch plans or providers. Not affiliated with Square or Stripe; nobody pays for a recommendation here.</p>
+      <p><strong>Privacy.</strong> The numbers you type stay in your browser and are never recorded. Page visits may be counted anonymously, with no cookies.</p>
       <p><a class="back" href="../">&larr; Deskless Consulting</a> · Built by Dan Bonomo, Fort Collins, Colorado.</p>
     </div>
   </div>
@@ -231,36 +246,88 @@
       var onlineNeeded = Math.max(0, (monthlySub - s.ip*0.001) / 0.004);
       notes.push("<strong>Plus pays for itself</strong> once it saves more than its "+usd.format(monthlySub)+"/month fee. With "+usd.format(s.ip)+" a month in person, that happens at about <strong>"+usd.format(onlineNeeded)+" a month online</strong>. You&rsquo;re at "+usd.format(s.on)+".");
     }
-    if (s.on > 0) {
-      notes.push("<strong>Stripe&rsquo;s</strong> standard online rate (2.9% + 30¢) is the same as Square Plus&rsquo;s. Moving only online checkout to Stripe would save about <strong>"+usd.format(s.on*0.004*12)+" a year</strong> versus Square Free, but means running two payment systems.");
-    }
-    if (s.kd > 0) {
-      notes.push("<strong>Keyed-in and card-on-file</strong> payments cost 3.5% + 15¢ on every plan, the highest rate here. Moving those customers to a payment link or online checkout is usually the cheapest fix.");
-    }
     document.getElementById("notes").innerHTML = notes.map(function(n){ return "<li>"+n+"</li>"; }).join("");
 
-    var body = "Hi Dan,\n\nHere are my Square numbers from the calculator:\n\n" +
+    // ---- Ways to pay less: each lever priced on the seller's own plan and numbers ----
+    var P = PLANS[s.plan], ways = [];
+    function way(save, html){ ways.push({save: save, html: html}); }
+    if (best !== s.plan && saving >= 1) {
+      way(saving*12, "<strong>Switch to "+PLANS[best].name+".</strong> Processing plus the monthly fee comes out lower at your numbers. Check that you won\u2019t lose a feature you use.");
+    }
+    if (s.kd > 0) {
+      var nk = count(s.kd, s.kdt);
+      var keyedCost = s.kd*P.kd[0] + nk*P.kd[1], linkCost = s.kd*P.on[0] + nk*P.on[1];
+      var cross = (P.on[1]-P.kd[1]) / (P.kd[0]-P.on[0]);
+      if (keyedCost - linkCost >= 1) {
+        way((keyedCost-linkCost)*12, "<strong>Send a payment link instead of typing in card numbers.</strong> Keyed-in costs "+(P.kd[0]*100).toFixed(1)+"% + "+Math.round(P.kd[1]*100)+"\u00a2; a link is charged as online, which is cheaper on sales over "+usd.format(cross)+" on your plan.");
+      } else {
+        way(0, "<strong>Keep keying in your sales.</strong> At your average of "+usd.format(s.kdt)+", a payment link would cost more. On your plan a link only wins on sales over "+usd.format(cross)+".");
+      }
+    }
+    if (s.on > 0 && P.on[0] > 0.029) {
+      way(s.on*(P.on[0]-0.029)*12, "<strong>Take online orders through Stripe</strong> (2.9% + 30\u00a2) and keep Square for the counter. Cheaper, but you\u2019d run two payment systems and two sets of reports.");
+    }
+    if (s.on > 0) {
+      var per1k = 1000*(P.on[0]-P.ip[0]) + (1000/s.ont)*(P.on[1]-P.ip[1]);
+      way(-1, "<strong>Pay at pickup.</strong> If customers collect in person, every "+usd.format(1000)+" of orders paid at the counter instead of online saves about <strong>"+usd2.format(per1k)+"</strong>. Only worth it if it doesn\u2019t cost you orders or no-shows.");
+    }
+    var nIp = count(s.ip, s.ipt), nOn = count(s.on, s.ont), nKd = count(s.kd, s.kdt);
+    var proc = cost(P, s), flat = nIp*P.ip[1] + nOn*P.on[1] + nKd*P.kd[1];
+    if (proc > 0 && flat/proc >= 0.25) {
+      var useIp = nIp >= nOn, t = useIp ? s.ipt : s.ont, r = useIp ? P.ip : P.on;
+      var effNow = (r[0] + r[1]/t)*100, effUp = (r[0] + r[1]/(t+5))*100;
+      way(-1, "<strong>Small sales carry a big flat fee.</strong> "+Math.round(flat/proc*100)+"% of what you pay is the "+Math.round(r[1]*100)+"\u00a2-per-sale charge. Raising your average "+(useIp?"in-person":"online")+" sale by $5 (bundles, add-ons) takes your rate on those from "+effNow.toFixed(2)+"% to "+effUp.toFixed(2)+"%.");
+    }
+    if ((s.on > 0 && s.ont >= 500) || (s.kd > 0 && s.kdt >= 500)) {
+      way(-1, "<strong>Offer bank transfer on big invoices.</strong> Square invoices can be paid by bank transfer (ACH), which isn\u2019t priced like a card payment. Check the rate in your invoice settings before your next large job.");
+    }
+    if (total*12 >= 250000) {
+      way(-1, "<strong>Ask for a better rate.</strong> At about "+usd.format(total*12)+" a year, it\u2019s worth asking Square\u2019s sales team about custom pricing, and getting one competing quote to bring to that call.");
+    }
+    ways.sort(function(a,b){ return b.save - a.save; });
+    document.getElementById("ways").innerHTML = ways.map(function(w){
+      var tag = w.save >= 1 ? usd.format(w.save)+"<small>a year</small>" : "";
+      return "<li><span>"+w.html+"</span><span class=\"save\">"+tag+"</span></li>";
+    }).join("");
+    document.getElementById("ways-box").style.display = (total > 0 && ways.length) ? "" : "none";
+    var topWays = ways.filter(function(w){ return w.save >= 1; }).slice(0,3).map(function(w){
+      var m = w.html.match(/<strong>(.*?)<\/strong>/); return "- " + (m ? m[1].replace(/\.$/,"") : "") + " (about " + usd.format(w.save) + "/yr)";
+    });
+
+    var body = "Hi Dan,\n\nI'd like a free fee check. Here are my Square numbers from the calculator:\n\n" +
       "Plan: " + PLANS[s.plan].name + " (" + s.loc + " location" + (s.loc>1?"s":"") + ")\n" +
       "Online: " + usd.format(s.on) + "/mo, avg " + usd.format(s.ont) + "\n" +
       "In person: " + usd.format(s.ip) + "/mo, avg " + usd.format(s.ipt) + "\n" +
       "Keyed / card on file: " + usd.format(s.kd) + "/mo\n" +
-      "Calculator says I pay about " + usd2.format(mine) + "/mo; lowest plan for me: " + PLANS[best].name + ".\n\n" +
-      "My question: ";
+      "Calculator says I pay about " + usd2.format(mine) + "/mo; lowest plan for me: " + PLANS[best].name + ".\n" +
+      (topWays.length ? "\nIt suggested:\n" + topWays.join("\n") + "\n" : "") +
+      "\nWhat I sell / anything unusual about how I take payments: \n\n" +
+      "(Optional: attach a screenshot of your Square sales totals for the last 3 months.)\n";
     document.getElementById("mail").href = "mailto:dan@desklessconsulting.com?subject=" +
-      encodeURIComponent("Square fees" + (biz ? " — " + biz : "")) + "&body=" + encodeURIComponent(body);
+      encodeURIComponent("Square fee check" + (biz ? " — " + biz : "")) + "&body=" + encodeURIComponent(body);
   }
 
   // Personalised links: ?biz=Name pre-labels the page; any input can be pre-filled by its id.
   var qs = new URLSearchParams(location.search);
   var biz = (qs.get("biz") || "").slice(0, 80);
   ids.forEach(function(i){ if (qs.has(i)) el[i].value = qs.get(i); });
+  // Shared links carry the sender's numbers. Take them out of the address bar once read, so page-visit
+  // counting (which records the URL) never sees them. Only the business name and utm_* tags stay.
+  if (ids.some(function(i){ return qs.has(i); }) && history.replaceState) {
+    var clean = new URL(location.href);
+    ids.forEach(function(i){ clean.searchParams.delete(i); });
+    history.replaceState(null, "", clean.pathname + clean.search + clean.hash);
+  }
   if (biz) {
     var p = document.getElementById("prepared");
     p.innerHTML = "Prepared for <strong>" + esc(biz) + "</strong>. The numbers below are examples; put in your own.";
     p.style.display = "block";
   }
 
-  ids.forEach(function(i){ el[i].addEventListener("input", render); el[i].addEventListener("change", render); });
+  var used = false;
+  function usedOnce(){ if (used) return; used = true;
+    try { if (window.umami) window.umami.track("Calculator used", {link: biz ? "personal" : "plain"}); } catch(e){} }
+  ids.forEach(function(i){ el[i].addEventListener("input", function(){ render(); usedOnce(); }); el[i].addEventListener("change", render); });
   document.getElementById("share").addEventListener("click", function(){
     var u = new URL(location.href); var s = read();
     ["plan","loc","on","ont","ip","ipt","kd","kdt"].forEach(function(k){ u.searchParams.set(k, s[k]); });

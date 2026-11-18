@@ -1,6 +1,6 @@
 /* desklessconsulting.com — conversion tracking. No cookies, no third-party script, nothing about the
-   visitor leaves their browser except what's below. Pageview VOLUME is handled by the privacy-first
-   analytics tag in <head>; this file exists for the thing a dashboard can't do — telling Dan the
+   visitor leaves their browser except what's below. Pageview VOLUME is handled by Umami, loaded
+   below; this file exists for the thing a dashboard can't do — telling Dan the
    moment somebody actually reaches out, and where they came from.
 
    Deliberately quiet: no ping on an ordinary pageview. Only (1) a contact click, and (2) one
@@ -15,6 +15,31 @@
   if(!/(^|\.)desklessconsulting\.com$/.test(L.hostname))return;   // never on localhost or previews
   if(ls&&ls.getItem("dl_me"))return;
   if(navigator.webdriver)return;
+
+  /* ---- pageview counting: Umami Cloud (free tier, no cookies) -------------------
+     Paste the Website ID from umami.is → Settings → Websites. Empty = off. Muted devices (?me) and
+     bots never load it (the returns above). The URL it records is cleaned first: only utm_* and the
+     calculator's ?biz= survive, so nothing a visitor typed can reach the counter. */
+  var UMAMI_ID="4e6d9d7b-3d58-4033-95fc-6333a7d1ceda";
+  if(UMAMI_ID){
+    window.__dlBeforeSend=function(type,p){
+      try{
+        if(p&&p.url){
+          var u=new URL(p.url,L.origin),k=new URLSearchParams();
+          u.searchParams.forEach(function(v,n){if(/^utm_/.test(n)||n==="biz")k.set(n,v)});
+          var q=k.toString();
+          p.url=(/^https?:/.test(p.url)?u.origin:"")+u.pathname+(q?"?"+q:"");
+        }
+      }catch(e){}
+      return p;
+    };
+    var us=document.createElement("script");
+    us.defer=true;us.src="https://cloud.umami.is/script.js";
+    us.setAttribute("data-website-id",UMAMI_ID);
+    us.setAttribute("data-before-send","__dlBeforeSend");
+    us.setAttribute("data-domains","desklessconsulting.com");
+    document.head.appendChild(us);
+  }
 
   /* ---- first-touch attribution -------------------------------------------------
      Store where someone FIRST arrived from and keep it. If they come back a week
