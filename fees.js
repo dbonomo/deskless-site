@@ -29,6 +29,22 @@
   };
   F.cloverRapid = 0.0175;                // Rapid Deposit (instant funding)
 
+  F.paypal = { // paypal.com/us/business/paypal-business-fees ("Last Updated: November 4, 2026"); research/payments-fees-toast-paypal-2026-11-25.md
+    checkout: {name:"PayPal Checkout / Venmo", r:[0.0349,0.49]},
+    card:     {name:"Card via PayPal (standard)", r:[0.0299,0.49]},
+    gs:       {name:"Goods & services (PayPal account to account)", r:[0.0299,0]},
+    paylater: {name:"PayPal Pay Later", r:[0.0499,0.49]},
+    advanced: {name:"Advanced card processing", r:[0.0289,0.29]},
+    qr:       {name:"QR code, in person", r:[0.0229,0.09]},
+    vt:       {name:"Virtual Terminal (keyed)", r:[0.0339,0.29]},
+    intl: 0.015, dispute: 15, invoiceAch:{pct:0.01, cap:10}
+  };
+
+  /* Toast publishes NO processing rates (pos.toasttab.com/pricing, read 2026-11-25): only "higher rate" for the
+     $0-hardware Starter Kit and software from $69/mo for Point of Sale. The figures below are third-party REPORTS
+     (NerdWallet, updated Aug 6 2026), used only as editable example defaults on /square-vs-toast/. */
+  F.toastReported = { payg:[0.0309,0.15], upfront:[0.0249,0.15], cnp:[0.035,0.15] };
+
   /* A "mix" is one month of sales: ip/ipt in person (total, average sale), on/ont online,
      kd/kdt keyed-in or card on file, ach/acht bank payments on invoices. Extras used by the Stripe page:
      intl (share of card sales on non-US cards), inv ("none"|"starter"|"plus", share invoiced = invShare),

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Credit Card Processing Fees Calculator (2026): What Are You Really Paying?</title>
+<meta name="description" content="Put in last month's card sales and the fees on your statement. See your real effective rate and what Square, Stripe and Clover would charge for the same sales. Free, runs in your browser." />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://desklessconsulting.com/credit-card-processing-fees/" />
+<meta property="og:title" content="Credit card processing fees calculator: what are you really paying?" />
+<meta property="og:description" content="Your real effective rate from one statement, next to what Square, Stripe and Clover would charge for the same sales." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://desklessconsulting.com/credit-card-processing-fees/" />
+<meta property="og:site_name" content="Deskless Consulting" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Credit Card Processing Fees Calculator (2026)",
+  "url": "https://desklessconsulting.com/credit-card-processing-fees/",
+  "description": "Work out your effective credit card processing rate from one monthly statement and compare it with Square, Stripe and Clover's published US rates. Runs in the browser.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any (web browser)",
+  "isAccessibleForFree": true,
+  "dateModified": "2026-11-25",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Person", "@id": "https://desklessconsulting.com/#dan", "name": "Dan Bonomo" },
+  "provider": { "@type": "ProfessionalService", "@id": "https://desklessconsulting.com/#business", "name": "Deskless Consulting", "url": "https://desklessconsulting.com/" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How do I calculate my credit card processing fees?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Add up every fee on one monthly statement (processing, monthly, statement, PCI, gateway, equipment) and divide by that month's card sales. That's your effective rate. Compare it with a flat-rate provider at the same sales mix." } },
+    { "@type": "Question", "name": "What is a normal effective rate for credit card processing?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Published flat rates from Square, Stripe and Clover run about 2.3% to 3.5% plus a per-sale fee, which works out to roughly 2.5% to 3.5% for most small businesses. If your effective rate is well above that, look for monthly and add-on fees." } },
+    { "@type": "Question", "name": "What is the difference between flat-rate and interchange-plus pricing?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Flat-rate charges the same percentage and fixed fee on every card. Interchange-plus passes through what the card networks and banks charge, which varies by card, plus a fixed markup. Interchange-plus can cost less at higher volume, but only the markup is negotiable and statements are harder to read." } }
+  ]
+}
+</script>
+<link rel="icon" type="image/svg+xml" href="/assets/deskless-badge.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" />
+<link rel="stylesheet" href="/deskless.css" />
+<link rel="stylesheet" href="/guide.css" />
+<script src="/ping.js" defer></script>
+<style>
+  table.plans tr.you td{color:var(--orange)}
+</style>
+</head>
+<body>
+<span class="reg tl" aria-hidden="true"></span><span class="reg tr" aria-hidden="true"></span>
+<span class="reg bl" aria-hidden="true"></span><span class="reg br" aria-hidden="true"></span>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="Deskless Consulting home">
+      <span class="brand-mark" aria-hidden="true"><img src="/assets/deskless-badge.svg" alt="" width="34" height="34" /></span>
+      <span class="brand-name">DESK<span class="lo">LESS</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a class="nav-cta" href="mailto:dan@desklessconsulting.com?subject=Card%20fee%20check">Ask Dan</a>
+    </nav>
+  </div>
+</header>
+
+<main class="calc-wrap">
+  <div class="container">
+    <p class="calc-eyebrow">Free calculator · runs in your browser</p>
+    <h1 class="calc-h1">Credit card processing fees: what are you really paying?</h1>
+    <p class="calc-lede">The rate on your contract isn&rsquo;t what you pay. Monthly fees, statement fees, PCI fees and higher rates on some cards all add up. Take one monthly statement, put in the sales and the total fees, and see your real rate next to what Square, Stripe and Clover would charge for the same month.</p>
+    <p class="byline">By <a href="/#about">Dan Bonomo</a>, Fort Collins, Colorado · Comparison rates read from the providers&rsquo; own pages on November 25, 2026</p>
+
+    <div class="grid">
+      <section class="panel" aria-labelledby="in-h">
+        <h2 id="in-h">One month from your statement</h2>
+        <div class="field">
+          <label for="paid">Total fees you paid that month</label>
+          <div class="money"><span>$</span><input id="paid" type="number" inputmode="decimal" min="0" step="1" value="310" /></div>
+          <span class="hint">Every fee: processing, monthly, statement, PCI, gateway, equipment rental. Usually a &ldquo;total fees&rdquo; or &ldquo;total charges&rdquo; line.</span>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="ip">In-person card sales</label>
+            <div class="money"><span>$</span><input id="ip" type="number" inputmode="decimal" min="0" step="100" value="8000" /></div>
+            <span class="hint">Tap, dip or swipe</span>
+          </div>
+          <div class="field">
+            <label for="ipt">Avg in-person sale</label>
+            <div class="money"><span>$</span><input id="ipt" type="number" inputmode="decimal" min="0" step="1" value="45" /></div>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="on">Online card sales</label>
+            <div class="money"><span>$</span><input id="on" type="number" inputmode="decimal" min="0" step="100" value="1500" /></div>
+            <span class="hint">Website, invoices, payment links</span>
+          </div>
+          <div class="field">
+            <label for="ont">Avg online order</label>
+            <div class="money"><span>$</span><input id="ont" type="number" inputmode="decimal" min="0" step="1" value="80" /></div>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="kd">Keyed-in / phone</label>
+            <div class="money"><span>$</span><input id="kd" type="number" inputmode="decimal" min="0" step="100" value="500" /></div>
+            <span class="hint">Card numbers typed in</span>
+          </div>
+          <div class="field">
+            <label for="kdt">Avg keyed sale</label>
+            <div class="money"><span>$</span><input id="kdt" type="number" inputmode="decimal" min="0" step="1" value="150" /></div>
+          </div>
+        </div>
+        <p class="hint">Not sure how it splits? Put it all in one box; the comparison gets rougher but your own rate stays exact.</p>
+      </section>
+
+      <section class="panel" aria-labelledby="out-h" aria-live="polite">
+        <h2 id="out-h">Your rate, and the alternatives</h2>
+        <p class="headline" id="headline"></p>
+        <p class="sub" id="subline"></p>
+        <table class="plans" aria-label="Monthly cost: you today and published flat-rate options">
+          <thead><tr><th scope="col">Option</th><th scope="col">Per month</th><th scope="col">Per year</th><th scope="col">Effective rate</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+        <ul class="notes" id="notes"></ul>
+        <div class="actions">
+          <a class="btn btn-primary" id="mail" href="mailto:dan@desklessconsulting.com?subject=Card%20fee%20check">Get a free fee check from Dan <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        <p class="promise">Free, no strings. The button opens an email with your numbers filled in; attach a statement with customer details cropped out if you like. Dan replies within two business days with what he&rsquo;d change and what each change is worth a year. Nothing you type here is recorded.</p>
+      </section>
+    </div>
+
+    <article class="prose">
+      <h2>How to read your number</h2>
+      <p>Your <strong>effective rate</strong> is total fees divided by card sales. It&rsquo;s the only number that lets you compare one processor with another, because it includes everything: the rate, the per-sale fee, and the monthly charges that don&rsquo;t show up in a sales pitch.</p>
+      <ul>
+        <li><strong>Close to the flat-rate options or below them:</strong> you&rsquo;re in good shape. Switching would save little and cost time.</li>
+        <li><strong>A few tenths of a percent above:</strong> worth a phone call. Ask your processor to remove monthly add-on fees or match a competitor&rsquo;s rate. That call costs nothing and sometimes works.</li>
+        <li><strong>A full point or more above:</strong> something is wrong. Usually it&rsquo;s monthly fees on low volume, old tiered pricing, or a rate that crept up after a promotional period.</li>
+      </ul>
+
+      <h2>The three ways processors price</h2>
+      <h3>Flat rate</h3>
+      <p>One rate for every card of a given type: Square, Stripe and Clover&rsquo;s published plans work this way. Easy to read and predict. You pay the same on a cheap debit card as on a premium rewards card, so the processor keeps more on the cheap ones.</p>
+      <h3>Interchange-plus</h3>
+      <p>The processor passes through what the card networks and issuing banks charge (interchange), which differs by card type, then adds a fixed markup, such as a fraction of a percent plus a few cents. At higher volume this is often the cheapest honest option. Only the markup is negotiable, and the statements are long.</p>
+      <h3>Tiered</h3>
+      <p>Sales are sorted into &ldquo;qualified&rdquo;, &ldquo;mid-qualified&rdquo; and &ldquo;non-qualified&rdquo; buckets, each with its own rate. The processor decides what goes in which bucket. The low &ldquo;qualified&rdquo; rate is what gets quoted; many of your sales land in the higher ones. If your statement uses these words, run the calculator.</p>
+
+      <h2>Fees worth looking for on a statement</h2>
+      <ul>
+        <li><strong>Monthly minimum:</strong> if your processing fees fall below a set amount, you pay the difference.</li>
+        <li><strong>PCI non-compliance fee:</strong> charged monthly until you complete a yearly security questionnaire. Often fixable in an afternoon.</li>
+        <li><strong>Statement, account or &ldquo;regulatory&rdquo; fees:</strong> small monthly lines that add up.</li>
+        <li><strong>Equipment lease:</strong> leased terminals can cost far more over the lease than buying one outright, and the lease is often non-cancellable.</li>
+        <li><strong>Early termination fee:</strong> check your contract before switching; sometimes the saving pays it off in a few months, sometimes it doesn&rsquo;t.</li>
+      </ul>
+
+      <h2>Before you switch</h2>
+      <p>Fees aren&rsquo;t the whole decision. Your point-of-sale system, hardware, payout speed, who answers the phone, and how your sales data connects to your books matter too. Moving processors usually means changing hardware and retraining staff. If the yearly saving in the calculator is small, the call to your current processor is the better move.</p>
+
+      <div class="offer-box">
+        <h2 class="headline">Want a second pair of eyes on your statement?</h2>
+        <p>Send me last month&rsquo;s statement with customer details cropped out. I&rsquo;ll reply within two business days with what I&rsquo;d change and what each change is worth a year. Free. If the honest answer is &ldquo;you&rsquo;re fine,&rdquo; that&rsquo;s what you&rsquo;ll hear.</p>
+        <p>Card fees are usually one symptom of a bigger question about how money and orders flow through a business. If that&rsquo;s the real problem, <a href="/#offers">Bring Me a Problem</a> is 90 minutes and $500, credited against any project.</p>
+      </div>
+    </article>
+
+    <nav class="related" aria-label="More free tools and guides">
+      <h2>More free tools and guides</h2>
+      <ul>
+        <li><a href="/square-fees/">Square fee calculator</a></li>
+        <li><a href="/stripe-fees/">Stripe fee calculator</a></li>
+        <li><a href="/clover-fees/">Clover fees, plans and hardware</a></li>
+        <li><a href="/square-vs-stripe/">Square vs Stripe</a> · <a href="/square-vs-clover/">Square vs Clover</a></li>
+        <li><a href="/square-vs-toast/">Square vs Toast</a> · <a href="/paypal-fee-calculator/">PayPal fee calculator</a></li>
+      </ul>
+    </nav>
+
+    <div class="fine">
+      <p><strong>Where the comparison rates come from.</strong> Square: <a href="https://squareup.com/us/en/pricing" rel="noopener">squareup.com/us/en/pricing</a>. Stripe: <a href="https://stripe.com/pricing" rel="noopener">stripe.com/pricing</a>. Clover: <a href="https://www.clover.com/pricing" rel="noopener">clover.com/pricing</a> (clover.com prices; banks and resellers differ). Standard US rates, read November 25, 2026. Clover is compared on its no-monthly-fee Starter plan; its paid plans are on the <a href="/square-vs-clover/">Square vs Clover</a> page.</p>
+      <p><strong>What this leaves out.</strong> Hardware, negotiated rates, chargebacks, and anything a provider includes beyond its rates. It compares fees only, so it&rsquo;s a starting point, not advice to switch. Not affiliated with any processor; nobody pays for a recommendation here.</p>
+      <p><strong>Privacy.</strong> The numbers you type stay in your browser. Page visits may be counted anonymously, with no cookies.</p>
+      <p><a class="back" href="/">&larr; Deskless Consulting</a> · Built by Dan Bonomo, Fort Collins, Colorado.</p>
+    </div>
+  </div>
+</main>
+
+<script src="/fees.js"></script>
+<script>
+(function(){
+  "use strict";
+  var F = window.FEES;
+  var ids = ["paid","ip","ipt","on","ont","kd","kdt"], el = {};
+  ids.forEach(function(i){ el[i] = document.getElementById(i); });
+  function v(i, d){ var x = parseFloat(el[i].value); return isFinite(x) && x >= 0 ? x : d; }
+  var KEYS = ["square:free", "square:plus", "stripe", "clover:starter"];
+
+  function render(){
+    var m = {ip:v("ip",0), ipt:Math.max(1,v("ipt",45)), on:v("on",0), ont:Math.max(1,v("ont",80)),
+             kd:v("kd",0), kdt:Math.max(1,v("kdt",150)), ach:0, acht:1000, intl:0, inv:"none", invShare:0, disp:0};
+    var paid = v("paid",0), sales = m.ip + m.on + m.kd;
+    var h = document.getElementById("headline"), s = document.getElementById("subline");
+    var opts = KEYS.map(function(k){ return F.cost(k, m); }).sort(function(a, b){ return a.total - b.total; });
+    var best = opts[0];
+    var rows = [{name:"You today", total:paid, you:true}].concat(opts)
+      .sort(function(a, b){ return a.total - b.total; });
+    document.getElementById("rows").innerHTML = rows.map(function(r){
+      var eff = sales > 0 ? (r.total / sales * 100).toFixed(2) + "%" : "—";
+      var cls = r.you ? "you" : (r === best ? "best" : "");
+      return '<tr class="' + cls + '"><td>' + r.name + '</td><td>' + F.usd2.format(r.total) + '</td><td>' +
+        F.usd.format(r.total * 12) + '</td><td>' + eff + '</td></tr>';
+    }).join("");
+
+    var notes = [];
+    if (sales <= 0) { h.textContent = "Enter a month of card sales to see your rate."; s.textContent = ""; }
+    else {
+      var eff = paid / sales * 100, gap = paid - best.total;
+      h.innerHTML = 'Your effective rate is <span class="num">' + eff.toFixed(2) + '%</span>' +
+        (paid > 0 ? ', about <span class="num">' + F.usd2.format(paid / Math.max(1, (m.ip/m.ipt + m.on/m.ont + m.kd/m.kdt))) + '</span> a sale.' : '.');
+      if (paid <= 0) s.textContent = "Put in the total fees from your statement to compare.";
+      else if (gap >= 1) s.innerHTML = best.name + " would cost about " + F.usd.format(gap) + " a month less at these numbers: <strong>" + F.usd.format(gap * 12) + " a year</strong>.";
+      else s.textContent = "You pay the same as or less than every published flat-rate option here. Switching likely isn't worth it on fees alone.";
+      if (paid > 0 && gap >= 1 && gap * 12 < 300) notes.push("<strong>Small gap.</strong> Under $300 a year usually isn't worth the hardware change and retraining. Call your processor and ask them to match it first.");
+      if (paid > 0 && eff > 4) notes.push("<strong>Above 4% is high</strong> for ordinary card sales. Look for monthly minimums, PCI non-compliance fees, or tiered &ldquo;non-qualified&rdquo; rates on the statement.");
+      if (sales < 5000 && paid > 0) notes.push("<strong>On lower volume, fixed monthly fees weigh more.</strong> $30 a month in fees is 1% of $3,000 in sales. A plan with no monthly fee often wins under about $5,000 a month.");
+      if (sales > 50000) notes.push("<strong>At this volume</strong>, interchange-plus pricing from a processor that will quote it is often cheaper than any flat rate. Get a written quote and run it here.");
+      notes.push("<strong>Flat-rate costs</strong> above use published standard rates, with Clover on its no-monthly-fee Starter plan. Hardware isn&rsquo;t included.");
+    }
+    document.getElementById("notes").innerHTML = notes.map(function(x){ return "<li>" + x + "</li>"; }).join("");
+
+    var body = "Hi Dan,\n\nI'd like a free fee check. Last month:\n\n" +
+      "Total fees: " + F.usd2.format(paid) + "\n" +
+      "In person: " + F.usd.format(m.ip) + " (avg " + F.usd.format(m.ipt) + ")\n" +
+      "Online: " + F.usd.format(m.on) + " (avg " + F.usd.format(m.ont) + ")\n" +
+      "Keyed / phone: " + F.usd.format(m.kd) + "\n" +
+      "\nWho I process with today (I can attach a statement with customer details cropped out): \n";
+    document.getElementById("mail").href = "mailto:dan@desklessconsulting.com?subject=" + encodeURIComponent("Card fee check") + "&body=" + encodeURIComponent(body);
+  }
+  var qs = new URLSearchParams(location.search), used = false;
+  ids.forEach(function(i){
+    if (qs.has(i)) el[i].value = qs.get(i);
+    el[i].addEventListener("input", function(){ render();
+      if (!used) { used = true; try { if (window.umami) window.umami.track("Calculator used", {page: location.pathname}); } catch(e){} } });
+    el[i].addEventListener("change", render);
+  });
+  render();
+})();
+</script>
+</body>
+</html>

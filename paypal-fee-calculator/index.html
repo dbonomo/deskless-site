@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PayPal Fee Calculator (2026): Fees, What You Receive, What to Charge</title>
+<meta name="description" content="PayPal fee calculator with PayPal's current US rates: 3.49% + 49¢ for PayPal Checkout and Venmo, 2.99% + 49¢ for cards, 2.99% for goods and services. See the fee, what you receive, and what to charge to receive an exact amount." />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://desklessconsulting.com/paypal-fee-calculator/" />
+<meta property="og:title" content="PayPal fee calculator (2026)" />
+<meta property="og:description" content="The fee, what you receive, and what to charge to receive an exact amount, with PayPal's current US rates and a comparison with Stripe and Square." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://desklessconsulting.com/paypal-fee-calculator/" />
+<meta property="og:site_name" content="Deskless Consulting" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PayPal Fee Calculator (2026)",
+  "url": "https://desklessconsulting.com/paypal-fee-calculator/",
+  "description": "Calculate PayPal's fee on a US payment, what you receive, and what to charge to receive an exact amount. PayPal Checkout, Venmo, cards, goods and services, Pay Later, QR codes and international payments.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any (web browser)",
+  "isAccessibleForFree": true,
+  "dateModified": "2026-11-25",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Person", "@id": "https://desklessconsulting.com/#dan", "name": "Dan Bonomo" },
+  "provider": { "@type": "ProfessionalService", "@id": "https://desklessconsulting.com/#business", "name": "Deskless Consulting", "url": "https://desklessconsulting.com/" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is PayPal's fee in 2026?",
+      "acceptedAnswer": { "@type": "Answer", "text": "For US businesses, PayPal Checkout and Pay with Venmo cost 3.49% + $0.49 per payment. Cards through PayPal cost 2.99% + $0.49, goods and services payments between PayPal accounts cost 2.99%, and Pay Later costs 4.99% + $0.49. International payments add 1.5%. Rates from PayPal's US business fees page, last updated November 4, 2026." } },
+    { "@type": "Question", "name": "How much do I charge to receive a set amount after PayPal fees?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Add the fixed fee to the amount you want, then divide by one minus the percentage. For PayPal Checkout: (amount + 0.49) / (1 - 0.0349). To receive $100, charge $104.13." } }
+  ]
+}
+</script>
+<link rel="icon" type="image/svg+xml" href="/assets/deskless-badge.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" />
+<link rel="stylesheet" href="/deskless.css" />
+<link rel="stylesheet" href="/guide.css" />
+<script src="/ping.js" defer></script>
+<style>table.plans tr.hi td{color:var(--off);font-weight:700}</style>
+</head>
+<body>
+<span class="reg tl" aria-hidden="true"></span><span class="reg tr" aria-hidden="true"></span>
+<span class="reg bl" aria-hidden="true"></span><span class="reg br" aria-hidden="true"></span>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="Deskless Consulting home">
+      <span class="brand-mark" aria-hidden="true"><img src="/assets/deskless-badge.svg" alt="" width="34" height="34" /></span>
+      <span class="brand-name">DESK<span class="lo">LESS</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a class="nav-cta" href="mailto:dan@desklessconsulting.com?subject=PayPal%20fee%20check">Ask Dan</a>
+    </nav>
+  </div>
+</header>
+
+<main class="calc-wrap">
+  <div class="container">
+    <p class="calc-eyebrow">Free calculator · runs in your browser</p>
+    <h1 class="calc-h1">PayPal fee calculator</h1>
+    <p class="calc-lede">Put in a payment and pick how your customer pays. You&rsquo;ll see PayPal&rsquo;s fee, what lands in your account, and what to charge if you need to receive an exact amount. Rates are PayPal&rsquo;s current US business rates.</p>
+    <p class="byline">By <a href="/#about">Dan Bonomo</a>, Fort Collins, Colorado · Rates read from PayPal&rsquo;s fee page (last updated November 4, 2026) on November 25, 2026</p>
+
+    <div class="grid">
+      <section class="panel" aria-labelledby="in-h">
+        <h2 id="in-h">The payment</h2>
+        <div class="field">
+          <label for="amt">Payment amount</label>
+          <div class="money"><span>$</span><input id="amt" type="number" inputmode="decimal" min="0" step="1" value="100" /></div>
+        </div>
+        <div class="field">
+          <label for="type">How the customer pays</label>
+          <select id="type">
+            <option value="checkout">PayPal or Venmo button (3.49% + 49&cent;)</option>
+            <option value="card">Card through PayPal checkout (2.99% + 49&cent;)</option>
+            <option value="gs">Goods &amp; services, PayPal to PayPal (2.99%)</option>
+            <option value="paylater">Pay Later (4.99% + 49&cent;)</option>
+            <option value="advanced">Advanced card processing (2.89% + 29&cent;)</option>
+            <option value="vt">Virtual Terminal, card typed in (3.39% + 29&cent;)</option>
+            <option value="qr">QR code, in person (2.29% + 9&cent;)</option>
+          </select>
+          <span class="hint">PayPal invoices charge the same as the way the customer pays. A bank (ACH) payment on an invoice is 1%, capped at $10.</span>
+        </div>
+        <label class="check"><input id="intl" type="checkbox" /> <span>Customer is outside the US (adds 1.5%)</span></label>
+        <div class="field">
+          <label for="per">Payments like this a month (optional)</label>
+          <div class="money"><span>#</span><input id="per" type="number" inputmode="decimal" min="0" step="1" value="0" /></div>
+          <span class="hint">Shows the yearly cost and compares Stripe and Square.</span>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="out-h" aria-live="polite">
+        <h2 id="out-h">What PayPal takes</h2>
+        <p class="headline" id="headline"></p>
+        <p class="sub" id="subline"></p>
+        <table class="plans" aria-label="PayPal fee breakdown">
+          <tbody id="rows"></tbody>
+        </table>
+        <ul class="notes" id="notes"></ul>
+        <div class="actions">
+          <a class="btn btn-primary" id="mail" href="mailto:dan@desklessconsulting.com?subject=PayPal%20fee%20check">Get a free fee check from Dan <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        <p class="promise">Free, no strings. Tell Dan how you get paid today and he&rsquo;ll reply within two business days with what he&rsquo;d change and what it&rsquo;s worth a year. Nothing you type here is recorded.</p>
+      </section>
+    </div>
+
+    <article class="prose">
+      <h2>PayPal&rsquo;s US fees at a glance</h2>
+      <div class="table-scroll"><table>
+        <thead><tr><th>How you&rsquo;re paid</th><th>Fee</th><th>On $100</th></tr></thead>
+        <tbody>
+          <tr><td>PayPal Checkout, Pay with Venmo, Guest Checkout</td><td class="n">3.49% + 49&cent;</td><td class="n">$3.98</td></tr>
+          <tr><td>Card or Apple Pay through PayPal checkout</td><td class="n">2.99% + 49&cent;</td><td class="n">$3.48</td></tr>
+          <tr><td>Goods &amp; services, PayPal account to account</td><td class="n">2.99%</td><td class="n">$2.99</td></tr>
+          <tr><td>Pay Later</td><td class="n">4.99% + 49&cent;</td><td class="n">$5.48</td></tr>
+          <tr><td>Advanced card processing (custom checkout)</td><td class="n">2.89% + 29&cent;</td><td class="n">$3.18</td></tr>
+          <tr><td>Virtual Terminal (card typed in)</td><td class="n">3.39% + 29&cent;</td><td class="n">$3.68</td></tr>
+          <tr><td>QR code in person (through an integrator)</td><td class="n">2.29% + 9&cent;</td><td class="n">$2.38</td></tr>
+          <tr><td>Bank payment (ACH) on an invoice</td><td class="n">1%, max $10</td><td class="n">$1.00</td></tr>
+          <tr><td>International customer</td><td class="n">+1.5%</td><td class="n">+$1.50</td></tr>
+          <tr><td>Dispute (standard)</td><td class="n">$15</td><td class="n">&mdash;</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2>How to receive an exact amount</h2>
+      <p>The fee comes out of what the customer pays, so adding the fee to your price isn&rsquo;t quite enough: the fee on the added amount is still missing. The right formula is <code>(amount you want + fixed fee) / (1 &minus; rate)</code>. For a PayPal button payment, to receive $100 you charge <code>(100 + 0.49) / (1 &minus; 0.0349) = $104.13</code>. The calculator does this for every payment type.</p>
+      <p>Check your state&rsquo;s rules and PayPal&rsquo;s terms before adding a fee to a customer&rsquo;s bill. Surcharging rules differ by state and by card network.</p>
+
+      <h2>When PayPal is worth it, and when it isn&rsquo;t</h2>
+      <ul>
+        <li><strong>Worth it:</strong> customers who trust the PayPal button, or who&rsquo;d rather not type a card number into a small business&rsquo;s site. For some online stores that alone lifts sales enough to cover the extra fee.</li>
+        <li><strong>Worth a second look:</strong> invoices for larger jobs. A $2,000 invoice paid with the PayPal button costs $70.29; paid by bank transfer through PayPal, $10. Contractors and service businesses can save real money by nudging customers to the bank option.</li>
+        <li><strong>Watch out:</strong> Pay Later at 4.99% on everything, and international customers at an extra 1.5% plus currency conversion.</li>
+      </ul>
+
+      <div class="offer-box">
+        <h2 class="headline">Paying more than you should to get paid?</h2>
+        <p>Tell me how your customers pay you today, roughly how much a month, and what you use. I&rsquo;ll reply within two business days with what I&rsquo;d change and what each change is worth a year. Free. If the honest answer is &ldquo;you&rsquo;re fine,&rdquo; that&rsquo;s what you&rsquo;ll hear.</p>
+        <p>Getting paid is usually one piece of a bigger question about how money and orders flow through a business. If that&rsquo;s the real problem, <a href="/#offers">Bring Me a Problem</a> is 90 minutes and $500, credited against any project.</p>
+      </div>
+    </article>
+
+    <nav class="related" aria-label="More free tools and guides">
+      <h2>More free tools and guides</h2>
+      <ul>
+        <li><a href="/credit-card-processing-fees/">Credit card fees calculator: your real rate</a></li>
+        <li><a href="/stripe-fees/">Stripe fee calculator</a></li>
+        <li><a href="/square-fees/">Square fee calculator</a></li>
+        <li><a href="/square-vs-stripe/">Square vs Stripe</a></li>
+      </ul>
+    </nav>
+
+    <div class="fine">
+      <p><strong>Where the rates come from.</strong> PayPal: <a href="https://www.paypal.com/us/business/paypal-business-fees" rel="noopener">paypal.com/us/business/paypal-business-fees</a> (page last updated November 4, 2026; read November 25, 2026). US-dollar payments to a US business account. The comparison uses Stripe&rsquo;s standard online rate (2.9% + 30&cent;) and Square Free&rsquo;s online rate (3.3% + 30&cent;).</p>
+      <p><strong>What this leaves out.</strong> Currency conversion (PayPal&rsquo;s spread is 3&ndash;4% when currencies differ), charity and micropayment rates, negotiated rates, and withdrawal fees. Not affiliated with PayPal; nobody pays for a recommendation here.</p>
+      <p><strong>Privacy.</strong> The numbers you type stay in your browser. Page visits may be counted anonymously, with no cookies.</p>
+      <p><a class="back" href="/">&larr; Deskless Consulting</a> · Built by Dan Bonomo, Fort Collins, Colorado.</p>
+    </div>
+  </div>
+</main>
+
+<script src="/fees.js"></script>
+<script>
+(function(){
+  "use strict";
+  var F = window.FEES, P = F.paypal;
+  var el = {}; ["amt","type","intl","per"].forEach(function(i){ el[i] = document.getElementById(i); });
+  function num(i, d){ var x = parseFloat(el[i].value); return isFinite(x) && x >= 0 ? x : d; }
+  function fee(r, a, extra){ return a * (r[0] + extra) + r[1]; }
+  function row(k, v, strong){ return '<tr' + (strong ? ' class="hi"' : '') + '><td>' + k + '</td><td>' + v + '</td></tr>'; }
+  function render(){
+    var a = num("amt", 0), t = el.type.value, r = P[t].r, x = el.intl.checked ? P.intl : 0, per = num("per", 0);
+    var f = a > 0 ? fee(r, a, x) : 0, net = a - f, want = a > 0 ? Math.ceil((a + r[1]) / (1 - r[0] - x) * 100 - 1e-9) / 100 : 0;
+    var h = document.getElementById("headline"), s = document.getElementById("subline");
+    if (a <= 0) { h.textContent = "Enter a payment amount."; s.textContent = ""; }
+    else {
+      h.innerHTML = 'PayPal takes <span class="num">' + F.usd2.format(f) + '</span>; you receive <span class="num">' + F.usd2.format(net) + '</span>.';
+      s.textContent = "That's " + (f / a * 100).toFixed(2) + "% of the payment.";
+    }
+    var rows = row("Fee rate", (r[0] * 100 + x * 100).toFixed(2) + "%" + (r[1] ? " + " + Math.round(r[1] * 100) + "¢" : "")) +
+      row("Fee", F.usd2.format(f)) + row("You receive", F.usd2.format(net), true) +
+      row("To receive " + F.usd2.format(a) + ", charge", F.usd2.format(want), true);
+    if (per > 0 && a > 0) rows += row("Fees a year (" + per + " a month)", F.usd.format(f * per * 12));
+    document.getElementById("rows").innerHTML = rows;
+
+    var notes = [];
+    if (per > 0 && a > 0 && t !== "qr") {
+      var st = fee(F.stripe.on, a, x ? F.stripe.intl : 0), sq = fee(F.square.free.on, a, x ? F.squareIntl : 0);
+      notes.push("<strong>Same payment on Stripe</strong> (2.9% + 30&cent;" + (x ? " + 1.5%" : "") + "): " + F.usd2.format(st) +
+        ". <strong>Square</strong> online (3.3% + 30&cent;" + (x ? " + 1.5%" : "") + "): " + F.usd2.format(sq) +
+        ". " + (Math.min(st, sq) < f - 0.005 ? "Over a year at " + per + " a month, the cheaper of those saves " +
+        F.usd.format((f - Math.min(st, sq)) * per * 12) + " against PayPal." : "PayPal is the cheapest of the three here."));
+    }
+    if (t === "checkout" && a >= 500) notes.push("<strong>Large invoice?</strong> A bank payment through a PayPal invoice is 1%, capped at $10: " + F.usd2.format(Math.min(10, a * 0.01)) + " here instead of " + F.usd2.format(f) + ".");
+    if (t === "paylater") notes.push("<strong>Pay Later costs 1.5 points more</strong> than the PayPal button. It can lift order sizes; check whether it does for you.");
+    if (t === "gs") notes.push("<strong>Goods &amp; services</strong> applies when someone sends money from their PayPal account and marks it as a purchase. It includes PayPal&rsquo;s purchase protection; &ldquo;friends and family&rdquo; payments don&rsquo;t have that protection and aren&rsquo;t meant for sales.");
+    if (x) notes.push("<strong>International:</strong> if your customer pays in another currency, PayPal&rsquo;s conversion spread (3&ndash;4%) applies on top. Not included here.");
+    document.getElementById("notes").innerHTML = notes.map(function(n){ return "<li>" + n + "</li>"; }).join("");
+    var body = "Hi Dan,\n\nI'd like a free fee check. How I get paid today:\n\nPayPal payments of about " + F.usd.format(a) +
+      (per ? ", about " + per + " a month" : "") + " (" + P[t].name + ")\n\nOther ways customers pay me, and roughly how much a month: \n";
+    document.getElementById("mail").href = "mailto:dan@desklessconsulting.com?subject=" + encodeURIComponent("PayPal fee check") + "&body=" + encodeURIComponent(body);
+  }
+  var qs = new URLSearchParams(location.search), used = false;
+  ["amt","type","per"].forEach(function(i){ if (qs.has(i)) el[i].value = qs.get(i); });
+  if (qs.get("intl") === "1") el.intl.checked = true;
+  Object.keys(el).forEach(function(i){
+    el[i].addEventListener("input", function(){ render();
+      if (!used) { used = true; try { if (window.umami) window.umami.track("Calculator used", {page: location.pathname}); } catch(e){} } });
+    el[i].addEventListener("change", render);
+  });
+  render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Square vs Toast Fees (2026): Check Your Toast Quote Against Square</title>
+<meta name="description" content="Toast doesn't publish its card rates. Put your Toast quote next to Square's published restaurant pricing at your own sales and see which costs less a year. Free, runs in your browser." />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://desklessconsulting.com/square-vs-toast/" />
+<meta property="og:title" content="Square vs Toast: check your Toast quote against Square" />
+<meta property="og:description" content="Toast doesn't publish its card rates. Put your quote next to Square's published pricing at your own sales." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://desklessconsulting.com/square-vs-toast/" />
+<meta property="og:site_name" content="Deskless Consulting" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Square vs Toast Fee Calculator (2026)",
+  "url": "https://desklessconsulting.com/square-vs-toast/",
+  "description": "Compare a Toast POS quote with Square Free, Plus and Premium at a restaurant's monthly in-person and online sales. Runs in the browser.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any (web browser)",
+  "isAccessibleForFree": true,
+  "dateModified": "2026-11-25",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Person", "@id": "https://desklessconsulting.com/#dan", "name": "Dan Bonomo" },
+  "provider": { "@type": "ProfessionalService", "@id": "https://desklessconsulting.com/#business", "name": "Deskless Consulting", "url": "https://desklessconsulting.com/" }
+}
+</script>
+<link rel="icon" type="image/svg+xml" href="/assets/deskless-badge.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" />
+<link rel="stylesheet" href="/deskless.css" />
+<link rel="stylesheet" href="/guide.css" />
+<script src="/ping.js" defer></script>
+<style>
+  .quote{border-top:1px dashed var(--line);margin-top:1.2rem;padding-top:1rem}
+  .quote h3{font-family:var(--mono);font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);font-weight:500;margin-bottom:.8rem}
+</style>
+</head>
+<body>
+<span class="reg tl" aria-hidden="true"></span><span class="reg tr" aria-hidden="true"></span>
+<span class="reg bl" aria-hidden="true"></span><span class="reg br" aria-hidden="true"></span>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="Deskless Consulting home">
+      <span class="brand-mark" aria-hidden="true"><img src="/assets/deskless-badge.svg" alt="" width="34" height="34" /></span>
+      <span class="brand-name">DESK<span class="lo">LESS</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a class="nav-cta" href="mailto:dan@desklessconsulting.com?subject=Square%20vs%20Toast%20check">Ask Dan</a>
+    </nav>
+  </div>
+</header>
+
+<main class="calc-wrap">
+  <div class="container">
+    <p class="calc-eyebrow">Free comparison · runs in your browser</p>
+    <h1 class="calc-h1">Square vs Toast: check your Toast quote against Square</h1>
+    <p class="calc-lede">Toast doesn&rsquo;t publish its card rates; you get them in a sales quote. Square does publish its rates. Put your restaurant&rsquo;s monthly sales and your Toast quote in below and see which costs less a year. No quote yet? The boxes start with rates reported by a review site, so you can get a rough answer now.</p>
+    <p class="byline">By <a href="/#about">Dan Bonomo</a>, Fort Collins, Colorado · Square and Toast pricing pages read November 25, 2026</p>
+
+    <div class="grid">
+      <section class="panel" aria-labelledby="in-h">
+        <h2 id="in-h">Your restaurant (per month)</h2>
+        <div class="row2">
+          <div class="field">
+            <label for="ip">In-person card sales</label>
+            <div class="money"><span>$</span><input id="ip" type="number" inputmode="decimal" min="0" step="500" value="40000" /></div>
+            <span class="hint">At the counter or table, tips included</span>
+          </div>
+          <div class="field">
+            <label for="ipt">Avg check</label>
+            <div class="money"><span>$</span><input id="ipt" type="number" inputmode="decimal" min="0" step="1" value="35" /></div>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="on">Online orders</label>
+            <div class="money"><span>$</span><input id="on" type="number" inputmode="decimal" min="0" step="500" value="6000" /></div>
+            <span class="hint">Your own online ordering, not DoorDash and the like</span>
+          </div>
+          <div class="field">
+            <label for="ont">Avg online order</label>
+            <div class="money"><span>$</span><input id="ont" type="number" inputmode="decimal" min="0" step="1" value="40" /></div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="loc">Locations</label>
+          <div class="money"><span>#</span><input id="loc" type="number" inputmode="numeric" min="1" step="1" value="1" /></div>
+          <span class="hint">Both charge monthly software per location. Sales above are for all locations together.</span>
+        </div>
+
+        <div class="quote">
+          <h3>Your Toast quote</h3>
+          <div class="field">
+            <label for="preset">Start from</label>
+            <select id="preset">
+              <option value="upfront">Point of Sale, hardware paid upfront (reported 2.49% + 15&cent;, $69/mo)</option>
+              <option value="payg">Starter Kit, $0 hardware (reported 3.09% + 15&cent;, $0/mo)</option>
+              <option value="mine">My own quote (type it below)</option>
+            </select>
+          </div>
+          <div class="row2">
+            <div class="field">
+              <label for="tp">In-person rate %</label>
+              <div class="money"><span>%</span><input id="tp" type="number" inputmode="decimal" min="0" step="0.01" value="2.49" /></div>
+            </div>
+            <div class="field">
+              <label for="tf">+ per sale</label>
+              <div class="money"><span>&cent;</span><input id="tf" type="number" inputmode="decimal" min="0" step="1" value="15" /></div>
+            </div>
+          </div>
+          <div class="row2">
+            <div class="field">
+              <label for="top">Online rate %</label>
+              <div class="money"><span>%</span><input id="top" type="number" inputmode="decimal" min="0" step="0.01" value="3.5" /></div>
+            </div>
+            <div class="field">
+              <label for="tof">+ per order</label>
+              <div class="money"><span>&cent;</span><input id="tof" type="number" inputmode="decimal" min="0" step="1" value="15" /></div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="ts">Toast software per location, per month</label>
+            <div class="money"><span>$</span><input id="ts" type="number" inputmode="decimal" min="0" step="1" value="69" /></div>
+            <span class="hint">Add any monthly add-ons in your quote (online ordering, payroll, loyalty).</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="out-h" aria-live="polite">
+        <h2 id="out-h">What you&rsquo;d pay</h2>
+        <p class="headline" id="headline"></p>
+        <p class="sub" id="subline"></p>
+        <table class="plans" aria-label="Monthly cost by option">
+          <thead><tr><th scope="col">Option</th><th scope="col">Per month</th><th scope="col">Per year</th><th scope="col">Effective rate</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+        <ul class="notes" id="notes"></ul>
+        <div class="actions">
+          <a class="btn btn-primary" id="mail" href="mailto:dan@desklessconsulting.com?subject=Square%20vs%20Toast%20check">Get a free quote check from Dan <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        <p class="promise">Free, no strings. Send your Toast quote (or Square&rsquo;s) and Dan replies within two business days with what to ask for and what it&rsquo;s worth a year. Nothing you type here is recorded.</p>
+      </section>
+    </div>
+
+    <article class="prose">
+      <h2>The short answer</h2>
+      <ul>
+        <li><strong>Toast</strong> is built only for restaurants, and runs on its own hardware. Its card rates are quoted per restaurant, so the number that matters is the one in your quote. Rates and contract length are often negotiable before you sign.</li>
+        <li><strong>Square</strong> publishes its rates, has a free plan, and has no long-term contract. It works for restaurants and for most other kinds of business, on Square hardware or an iPad.</li>
+        <li><strong>The biggest swing</strong> is usually Toast&rsquo;s $0-hardware Starter Kit: no upfront cost, but a higher card rate on every sale for as long as you stay. On a busy restaurant, that difference can outgrow the hardware price in months. Run both options above.</li>
+      </ul>
+
+      <h2>What each one publishes</h2>
+      <div class="table-scroll"><table>
+        <thead><tr><th></th><th>Square</th><th>Toast</th></tr></thead>
+        <tbody>
+          <tr><td>Monthly software</td><td>Free $0, Plus $49, Premium $149 per location</td><td>Starter Kit from $0; Point of Sale from $69 per location; larger setups quoted</td></tr>
+          <tr><td>In-person rate</td><td class="n">2.6% + 15&cent; (Free); 2.5% + 15&cent; (Plus); 2.4% + 15&cent; (Premium)</td><td>Not published. Starter Kit has a &ldquo;higher card processing rate&rdquo;</td></tr>
+          <tr><td>Online rate</td><td class="n">3.3% + 30&cent; (Free); 2.9% + 30&cent; (Plus, Premium)</td><td>Not published</td></tr>
+          <tr><td>Hardware</td><td>Bought from Square; free app runs on an iPad or phone</td><td>Toast devices only; prices not published; $0 upfront on Starter Kit in exchange for the higher rate</td></tr>
+          <tr><td>Contract</td><td>None</td><td>Typically 12 to 36 months, renewing yearly; early termination fee may apply</td></tr>
+        </tbody>
+      </table></div>
+      <p>Toast&rsquo;s contract and Starter Kit terms are from its pricing page&rsquo;s FAQ. The example Toast rates in the calculator come from <a href="https://www.nerdwallet.com/business/software/reviews/toast-pos" rel="noopener">NerdWallet&rsquo;s Toast review</a> (updated August 2026), which reports 2.49% + 15&cent; with hardware bought upfront, 3.09% to 3.69% + 15&cent; on pay-as-you-go, and 3.5% + 15&cent; for online orders. They aren&rsquo;t Toast&rsquo;s numbers, and your quote may differ.</p>
+
+      <h2>Questions to ask before you sign with Toast</h2>
+      <ol>
+        <li>What are my in-person, online and keyed-in rates, in writing?</li>
+        <li>How long is the contract, does it auto-renew, and what does it cost to leave early?</li>
+        <li>If I take the $0 hardware option, what&rsquo;s the rate, and can I buy out the hardware later and drop to the lower rate?</li>
+        <li>Which add-ons (online ordering, payroll, loyalty, gift cards) are in the monthly price, and which raise my card rate?</li>
+        <li>What happens to my menu, sales history and customer list if I leave?</li>
+      </ol>
+
+      <div class="offer-box">
+        <h2 class="headline">Want a second pair of eyes on a quote?</h2>
+        <p>Send me your Toast or Square quote with your monthly sales. I&rsquo;ll reply within two business days with what I&rsquo;d push back on and what each change is worth a year. Free. If the honest answer is &ldquo;sign it,&rdquo; that&rsquo;s what you&rsquo;ll hear.</p>
+        <p>The point-of-sale system is usually one piece of a bigger question about how orders, staff and money flow through a restaurant. If that&rsquo;s the real problem, <a href="/#offers">Bring Me a Problem</a> is 90 minutes and $500, credited against any project.</p>
+      </div>
+    </article>
+
+    <nav class="related" aria-label="More free tools and guides">
+      <h2>More free tools and guides</h2>
+      <ul>
+        <li><a href="/square-fees/">Square fee calculator: Free vs Plus vs Premium</a></li>
+        <li><a href="/square-vs-clover/">Square vs Clover</a></li>
+        <li><a href="/credit-card-processing-fees/">Credit card fees calculator: your real rate</a></li>
+      </ul>
+    </nav>
+
+    <div class="fine">
+      <p><strong>Where the rates come from.</strong> Square: <a href="https://squareup.com/us/en/pricing" rel="noopener">squareup.com/us/en/pricing</a>. Toast: <a href="https://pos.toasttab.com/pricing" rel="noopener">pos.toasttab.com/pricing</a> (plans, software prices, contract terms; no card rates). Example Toast card rates: NerdWallet, reported, not Toast-published. All read November 25, 2026.</p>
+      <p><strong>What this leaves out.</strong> Hardware, add-ons, payroll, delivery-app fees, chargebacks and negotiated rates. It compares fees only, so it&rsquo;s a starting point, not advice to switch. Not affiliated with Square or Toast; nobody pays for a recommendation here.</p>
+      <p><strong>Privacy.</strong> The numbers you type stay in your browser. Page visits may be counted anonymously, with no cookies.</p>
+      <p><a class="back" href="/">&larr; Deskless Consulting</a> · Built by Dan Bonomo, Fort Collins, Colorado.</p>
+    </div>
+  </div>
+</main>
+
+<script src="/fees.js"></script>
+<script>
+(function(){
+  "use strict";
+  var F = window.FEES, R = F.toastReported;
+  var ids = ["ip","ipt","on","ont","loc","preset","tp","tf","top","tof","ts"], el = {};
+  ids.forEach(function(i){ el[i] = document.getElementById(i); });
+  function v(i, d){ var x = parseFloat(el[i].value); return isFinite(x) && x >= 0 ? x : d; }
+  var PRESETS = {
+    upfront: {tp:R.upfront[0]*100, tf:R.upfront[1]*100, top:R.cnp[0]*100, tof:R.cnp[1]*100, ts:69},
+    payg:    {tp:R.payg[0]*100,    tf:R.payg[1]*100,    top:R.cnp[0]*100, tof:R.cnp[1]*100, ts:0}
+  };
+  function applyPreset(){
+    var p = PRESETS[el.preset.value]; if (!p) return;
+    Object.keys(p).forEach(function(k){ el[k].value = +p[k].toFixed(2); });
+  }
+  function render(){
+    var loc = Math.max(1, Math.round(v("loc",1)));
+    var m = {ip:v("ip",0), ipt:Math.max(1,v("ipt",35)), on:v("on",0), ont:Math.max(1,v("ont",40)), kd:0, kdt:100, ach:0, acht:1000};
+    var total = m.ip + m.on, res = [];
+    ["square:free","square:plus","square:premium"].forEach(function(k){
+      var c = F.cost(k, m); c.total += c.sub * (loc - 1); res.push(c);
+    });
+    var tIp = m.ip * v("tp",0)/100 + (m.ip/m.ipt) * v("tf",0)/100;
+    var tOn = m.on * v("top",0)/100 + (m.on/m.ont) * v("tof",0)/100;
+    var toast = {name: el.preset.value === "mine" ? "Toast (your quote)" : "Toast (example rates)", total: tIp + tOn + v("ts",0) * loc, toast: true};
+    res.push(toast);
+    res.sort(function(a, b){ return a.total - b.total; });
+    var best = res[0];
+    document.getElementById("rows").innerHTML = res.map(function(r){
+      var eff = total > 0 ? (r.total / total * 100).toFixed(2) + "%" : "—";
+      return '<tr class="' + (r === best ? "best" : "") + '"><td>' + r.name + '</td><td>' + F.usd2.format(r.total) + '</td><td>' +
+        F.usd.format(r.total * 12) + '</td><td>' + eff + '</td></tr>';
+    }).join("");
+    var h = document.getElementById("headline"), s = document.getElementById("subline");
+    if (total <= 0) { h.textContent = "Enter a month of sales to see your numbers."; s.textContent = ""; }
+    else {
+      var gap = res[1].total - best.total;
+      h.innerHTML = '<span class="num">' + best.name + '</span> is lowest at these numbers: <span class="num">' + F.usd2.format(best.total) +
+        '</span> a month' + (gap >= 1 ? ', ' + F.usd.format(gap * 12) + ' a year less than ' + res[1].name : '') + '.';
+      s.textContent = "Card processing and monthly software only. Hardware and add-ons are covered below.";
+    }
+    var notes = [];
+    if (el.preset.value !== "mine") notes.push("<strong>Toast&rsquo;s numbers here are examples</strong> reported by NerdWallet, not Toast&rsquo;s own. Choose &ldquo;My own quote&rdquo; and type in yours for a real answer.");
+    if (total > 0) {
+      var up = m.ip * (R.payg[0] - R.upfront[0]), net = up - 69 * loc;
+      notes.push("<strong>The $0-hardware trade:</strong> at the reported rates, the Starter Kit&rsquo;s higher in-person rate costs about " + F.usd.format(up) +
+        " a month more on your in-person sales. After the $69 a month software it waives, that&rsquo;s " +
+        (net > 0 ? "about " + F.usd.format(net * 12) + " a year more. Compare that with the hardware price in your quote." : "no extra cost at your volume, so $0 hardware may be the better deal."));
+    }
+    notes.push("<strong>Hardware isn&rsquo;t in the totals.</strong> Toast requires its own devices; Square sells its own and runs on an iPad.");
+    document.getElementById("notes").innerHTML = notes.map(function(x){ return "<li>" + x + "</li>"; }).join("");
+    var body = "Hi Dan,\n\nI'd like a free quote check. My rough monthly numbers:\n\n" +
+      "In person: " + F.usd.format(m.ip) + " (avg check " + F.usd.format(m.ipt) + ")\n" +
+      "Online orders: " + F.usd.format(m.on) + "\nLocations: " + loc + "\n" +
+      "Toast quote: " + el.tp.value + "% + " + el.tf.value + "c in person, " + el.top.value + "% + " + el.tof.value + "c online, $" + el.ts.value + "/mo software\n" +
+      "\nWhat I use today and anything else in the quote: \n";
+    document.getElementById("mail").href = "mailto:dan@desklessconsulting.com?subject=" + encodeURIComponent("Square vs Toast check") + "&body=" + encodeURIComponent(body);
+  }
+  var qs = new URLSearchParams(location.search), used = false;
+  ids.forEach(function(i){ if (qs.has(i)) el[i].value = qs.get(i); });
+  ids.forEach(function(i){
+    el[i].addEventListener("input", function(){
+      if (["tp","tf","top","tof","ts"].indexOf(i) >= 0) el.preset.value = "mine";
+      if (i === "preset") applyPreset();
+      render();
+      if (!used) { used = true; try { if (window.umami) window.umami.track("Calculator used", {page: location.pathname}); } catch(e){} } });
+    el[i].addEventListener("change", function(){ if (i === "preset") applyPreset(); render(); });
+  });
+  render();
+})();
+</script>
+</body>
+</html>

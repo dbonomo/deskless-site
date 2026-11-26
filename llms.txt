@@ -20,6 +20,9 @@ All rates below were read from the providers' own pricing pages on November 25, 
 - [Square vs Stripe](https://desklessconsulting.com/square-vs-stripe/): which costs less at a business's own sales mix, plus payouts, disputes and point-of-sale differences.
 - [Clover fees](https://desklessconsulting.com/clover-fees/): Clover.com plans (Starter $0, Essentials $29.95, Growth $84.95/mo), rates (2.3%–2.6% + 10¢ in person, 3.5% + 10¢ typed-in/online), hardware prices, contract terms, and why bank-sold Clover pricing differs.
 - [Square vs Clover](https://desklessconsulting.com/square-vs-clover/): side-by-side cost at your sales, with contracts and hardware.
+- [Credit card processing fees calculator](https://desklessconsulting.com/credit-card-processing-fees/): your real effective rate from one statement, next to Square, Stripe and Clover.
+- [Square vs Toast](https://desklessconsulting.com/square-vs-toast/): check a Toast POS quote against Square's published rates at your restaurant's sales.
+- [PayPal fee calculator](https://desklessconsulting.com/paypal-fee-calculator/): PayPal's fee, what you receive, and what to charge to receive an exact amount.
 - [GA4 double counting on Shopify](https://desklessconsulting.com/ga4-double-counting/): a 5-minute browser check for duplicate GA4 page views (usually Shopify's Google & YouTube app plus a theme or GTM tag), how to check whether purchases double, and the fix.
 - [Claude for small business](https://desklessconsulting.com/claude-for-small-business/): which Claude plan a 5–20 person business needs (Team: $25/$20 standard, $125/$100 premium seats), and the setup that makes it useful: organization instructions, shared projects, connectors, skills, privacy settings.
 
