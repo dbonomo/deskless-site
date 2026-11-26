@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GA4 Double Counting on Shopify: a 5-Minute Check and the Fix</title>
+<meta name="description" content="Is GA4 counting every page view twice on your Shopify store? A 5-minute browser check, how to see if purchases double too, why it happens, and how to fix it." />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://desklessconsulting.com/ga4-double-counting/" />
+<meta property="og:title" content="Is GA4 counting every page twice on your Shopify store?" />
+<meta property="og:description" content="A 5-minute check you can do in your browser, what it does and doesn't break, and how to fix it." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://desklessconsulting.com/ga4-double-counting/" />
+<meta property="og:site_name" content="Deskless Consulting" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "GA4 double counting on Shopify: a 5-minute check and the fix",
+  "description": "How to tell whether Google Analytics 4 counts each page view twice on a Shopify store, whether purchases double too, why it happens (two GA4 installs), and how to fix it.",
+  "url": "https://desklessconsulting.com/ga4-double-counting/",
+  "datePublished": "2026-11-25",
+  "dateModified": "2026-11-25",
+  "author": { "@type": "Person", "@id": "https://desklessconsulting.com/#dan", "name": "Dan Bonomo", "url": "https://desklessconsulting.com/#about" },
+  "publisher": { "@type": "ProfessionalService", "@id": "https://desklessconsulting.com/#business", "name": "Deskless Consulting", "url": "https://desklessconsulting.com/" },
+  "about": ["Google Analytics 4", "Shopify", "Web analytics data quality"]
+}
+</script>
+<link rel="icon" type="image/svg+xml" href="/assets/deskless-badge.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" />
+<link rel="stylesheet" href="/deskless.css" />
+<link rel="stylesheet" href="/guide.css" />
+<script src="/ping.js" defer></script>
+</head>
+<body>
+<span class="reg tl" aria-hidden="true"></span><span class="reg tr" aria-hidden="true"></span>
+<span class="reg bl" aria-hidden="true"></span><span class="reg br" aria-hidden="true"></span>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="Deskless Consulting home">
+      <span class="brand-mark" aria-hidden="true"><img src="/assets/deskless-badge.svg" alt="" width="34" height="34" /></span>
+      <span class="brand-name">DESK<span class="lo">LESS</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a class="nav-cta" href="mailto:dan@desklessconsulting.com?subject=GA4%20double-count%20check">Ask Dan</a>
+    </nav>
+  </div>
+</header>
+
+<main class="calc-wrap">
+  <div class="container">
+    <p class="calc-eyebrow">Free guide · Shopify + Google Analytics 4</p>
+    <h1 class="calc-h1">Is GA4 counting every page twice on your Shopify store?</h1>
+    <p class="calc-lede">The usual cause is two copies of Google Analytics: Shopify&rsquo;s Google &amp; YouTube app, plus an older tag in your theme or Google Tag Manager. Both report every page. You can check in five minutes with nothing but a browser, and the fix is usually removing one of them.</p>
+    <p class="byline">By <a href="/#about">Dan Bonomo</a>, Fort Collins, Colorado · Updated November 25, 2026</p>
+
+    <nav class="toc" aria-label="On this page">
+      <strong>On this page</strong>
+      <ol>
+        <li><a href="#breaks">What doubles and what doesn&rsquo;t</a></li>
+        <li><a href="#check">The 5-minute check</a></li>
+        <li><a href="#purchases">Are your purchases doubled too?</a></li>
+        <li><a href="#why">Why it happens on Shopify</a></li>
+        <li><a href="#fix">How to fix it</a></li>
+        <li><a href="#after">After the fix</a></li>
+      </ol>
+    </nav>
+
+    <article class="prose">
+      <p>In November 2026 I loaded 24 Shopify stores in a real browser and counted what each one sent to Google Analytics. My scanner had flagged them as likely to have two copies installed. 13 of the 24 sent every page view to the same GA4 property two to five times. These were good stores with good teams. Nothing on the site looks broken, which is why it goes unnoticed for years.</p>
+
+      <h2 id="breaks">What doubles and what doesn&rsquo;t</h2>
+      <p>The duplicate hits carry the same visitor ID and the same session ID as the real one, so GA4 doesn&rsquo;t invent extra people. It invents extra pages.</p>
+      <div class="table-scroll">
+      <table>
+        <thead><tr><th>Number in GA4</th><th>With a double install</th></tr></thead>
+        <tbody>
+          <tr><td>Views (page views), views per session, views per user</td><td><strong>Doubled</strong> (or worse: I saw up to 5 per page)</td></tr>
+          <tr><td>Page-level reports, &ldquo;most viewed pages&rdquo;, engagement per page</td><td><strong>Wrong</strong>: every page inflated, not always evenly</td></tr>
+          <tr><td>Key events built on <code>page_view</code> (e.g. &ldquo;reached the thank-you page&rdquo;)</td><td><strong>Doubled</strong></td></tr>
+          <tr><td>Funnel explorations that count page steps</td><td><strong>Wrong</strong></td></tr>
+          <tr><td>Users, sessions, session conversion rate</td><td>Not doubled</td></tr>
+          <tr><td>Purchases, revenue, and anything imported into Google Ads</td><td><strong>Check it</strong> (next section). Sometimes doubled, sometimes not, depending on what each copy sends.</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>The practical damage: any decision made from page views is made on inflated numbers, and if purchases double, every revenue and return-on-ad-spend figure is too high. That last one costs real money, because ad budgets get set from it.</p>
+
+      <h2 id="check">The 5-minute check (no login needed)</h2>
+      <p>You can do this on your own store, or on anyone&rsquo;s. It uses Chrome, but any desktop browser&rsquo;s developer tools work the same way.</p>
+      <ol>
+        <li>Open your store&rsquo;s home page in Chrome. Turn off ad blockers for the site; they block Google Analytics and you&rsquo;ll see nothing.</li>
+        <li>Open developer tools (<code>F12</code>, or <code>Cmd+Option+I</code> on a Mac) and click the <strong>Network</strong> tab.</li>
+        <li>In the filter box, type <code>collect?v=2</code>. That&rsquo;s the address GA4 hits are sent to.</li>
+        <li>Reload the page and wait ten seconds. If a cookie banner appears, accept it so analytics can run.</li>
+        <li>Look for rows whose address contains <code>en=page_view</code>. Click each one; under <strong>Payload</strong>, note the <code>tid</code> value (your measurement ID, starting <code>G-</code>).</li>
+      </ol>
+      <div class="callout">
+        <span class="tag">How to read it</span>
+        <p><strong>One <code>page_view</code> per measurement ID per page load:</strong> you&rsquo;re fine.</p>
+        <p><strong>Two or more for the same <code>G-</code> ID:</strong> you&rsquo;re double counting. If one of them carries parameters that start with <code>shopify_</code>, that copy comes from Shopify&rsquo;s Google &amp; YouTube app, and the other comes from your theme or Tag Manager.</p>
+        <p><strong>Two different <code>G-</code> IDs:</strong> not a double count. Two separate properties are each getting one hit, which may be on purpose (an agency&rsquo;s property, an old one). Worth knowing who reads the second one.</p>
+      </div>
+      <p>Do it on a product page too. One harmless look-alike: on a product page, choosing a variant changes the address to <code>?variant=&hellip;</code>, and GA4 can log that as a second page view. If the second hit has a different address, that&rsquo;s the cause, not a second install.</p>
+      <p>Prefer clicking to reading network rows? Google&rsquo;s free <a href="https://tagassistant.google.com/" rel="noopener">Tag Assistant</a> shows the same thing: connect your store, load a page, and count the <code>page_view</code> events under your measurement ID.</p>
+
+      <h2 id="purchases">Are your purchases doubled too?</h2>
+      <p>This one needs access to your GA4 property. Two checks, five minutes together:</p>
+      <h3>1. Compare the order count with Shopify</h3>
+      <p>Get GA4&rsquo;s purchase count for the last 30 days (the Explore table in the next step shows the total at the top). In Shopify, look at the order count for the same 30 days. GA4 usually reads <em>lower</em> than Shopify, because ad blockers and consent choices keep some visits out of it. <strong>If GA4 shows more purchases than Shopify has orders, something is counting twice.</strong></p>
+      <h3>2. Look for the same order ID twice</h3>
+      <p>In GA4, go to <strong>Explore &rarr; Free form</strong>. Add the dimension <strong>Transaction ID</strong> and the metric <strong>Ecommerce purchases</strong> (or Transactions). Drag them into the table and sort by the metric, highest first. Every order should show 1. Any order ID showing 2 or more is a duplicated purchase, and the revenue for it is counted twice.</p>
+      <p>If both look clean, your page views are wrong but your money numbers are fine, and the fix is lower stakes. If either fails, check Google Ads too: if it imports GA4 purchases as conversions, it&rsquo;s been optimizing toward doubled numbers.</p>
+
+      <h2 id="why">Why it happens on Shopify</h2>
+      <p>Most stores end up with two copies the same way. Someone added Google Analytics years ago, by pasting Google&rsquo;s tag into the theme or through Google Tag Manager. Later, someone installed Shopify&rsquo;s <strong>Google &amp; YouTube</strong> app for Merchant Center or Shopping ads and connected a GA4 property while setting it up. The app doesn&rsquo;t know about the older tag, and the older tag doesn&rsquo;t know about the app. Both send everything.</p>
+      <p>The places a GA4 tag can hide on a Shopify store:</p>
+      <ul>
+        <li><strong>Shopify&rsquo;s Google &amp; YouTube app</strong>: Apps &rarr; Google &amp; YouTube &rarr; settings, look for a connected Google Analytics property.</li>
+        <li><strong>The theme</strong>: Online Store &rarr; Themes &rarr; &hellip; &rarr; Edit code. Open <code>theme.liquid</code> and search for <code>G-</code> and <code>gtag</code>. Snippets included from it can carry one too.</li>
+        <li><strong>Google Tag Manager</strong>: a container snippet in the theme, with a Google tag (or older &ldquo;GA4 Configuration&rdquo; tag) inside using your measurement ID.</li>
+        <li><strong>Custom pixels</strong>: Settings &rarr; Customer events. Agencies and tracking apps add GA4 here.</li>
+        <li><strong>Other apps</strong>: some review, tracking and marketing apps install their own GA4 code.</li>
+      </ul>
+
+      <h2 id="fix">How to fix it</h2>
+      <p>Pick <strong>one</strong> source for GA4 and remove it from everywhere else. There are two sensible choices:</p>
+      <ul>
+        <li><strong>Keep the Shopify app</strong> if you don&rsquo;t need custom tracking. It sends page views and the standard ecommerce events, including purchases, without anyone maintaining it. Remove the GA4 tag from the theme, and in Tag Manager pause the Google tag for that measurement ID (keep the container if it runs other tags).</li>
+        <li><strong>Keep Tag Manager</strong> if someone actively maintains it and you rely on custom events. Then disconnect Google Analytics inside the Google &amp; YouTube app. You can keep the app itself for Merchant Center and Shopping.</li>
+      </ul>
+      <p>Before deleting anything, write down what each tag does. A tag that looks like a duplicate sometimes also fires a Google Ads conversion or a remarketing list someone depends on. Remove the GA4 part, keep the rest. Then run the 5-minute check again and confirm one <code>page_view</code> per load, and put through a test order to confirm one purchase.</p>
+
+      <h2 id="after">After the fix</h2>
+      <ul>
+        <li><strong>Add an annotation</strong> in GA4 on the day you fixed it. Page views will drop by roughly half overnight, and in six months nobody will remember why.</li>
+        <li><strong>Your old data stays doubled.</strong> GA4 can&rsquo;t correct past data. For year-over-year comparisons, use users and sessions, which weren&rsquo;t inflated.</li>
+        <li><strong>If purchases were doubled</strong>, tell whoever runs your ads. Their reported return on ad spend was inflated, and budgets set from it may need another look.</li>
+      </ul>
+    </article>
+
+    <section class="offer-box" aria-labelledby="offer-h">
+      <h2 id="offer-h" class="headline">Want me to look at yours?</h2>
+      <p>Send me your store&rsquo;s address and I&rsquo;ll run the browser check and tell you, free, whether GA4 double counts and where the second copy comes from. If you&rsquo;d like it fixed, I&rsquo;ll quote a fixed price in writing first.</p>
+      <p>If the question is bigger (&ldquo;which of our numbers can we trust?&rdquo;), that&rsquo;s what <a href="/#offers">Bring Me a Problem</a> is for: 90 minutes, $500, a written plan.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="mailto:dan@desklessconsulting.com?subject=GA4%20double-count%20check&amp;body=Hi%20Dan%2C%0A%0ACould%20you%20check%20whether%20GA4%20double%20counts%20on%20our%20store%3F%0A%0AStore%20address%3A%20%0A">Check my store <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </section>
+
+    <nav class="related" aria-label="More free tools and guides">
+      <h2>More free tools and guides</h2>
+      <ul>
+        <li><a href="/square-fees/">Square fee calculator: Free vs Plus vs Premium</a></li>
+        <li><a href="/stripe-fees/">Stripe fee calculator</a></li>
+        <li><a href="/claude-for-small-business/">Claude for small business: how to set it up for a team</a></li>
+      </ul>
+    </nav>
+
+    <div class="fine">
+      <p><strong>Where the numbers come from.</strong> The 24-store check ran on November 21, 2026, in a headless Chrome browser from a US address, loading each store&rsquo;s home page and one product page with no clicks. A store counted as double only when the same measurement ID sent <code>page_view</code> two or more times from two different sources, on two pages or two runs. The stores were picked because a scan of their page code suggested two installs, so 13 of 24 is not a rate for Shopify stores in general. Not affiliated with Google or Shopify.</p>
+      <p><a class="back" href="/">&larr; Deskless Consulting</a> · Written by Dan Bonomo, Fort Collins, Colorado.</p>
+    </div>
+  </div>
+</main>
+</body>
+</html>

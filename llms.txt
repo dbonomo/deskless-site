@@ -1,0 +1,32 @@
+# Deskless Consulting
+
+> Deskless Consulting is Dan Bonomo, a senior engineer in Fort Collins, Colorado, who helps small and mid-size businesses with AI, data and custom software. Point him at the thing that isn't working (a process eating your week, a report that disagrees with itself, an AI tool giving confident wrong answers) and he finds out what's actually true, writes it down, and fixes it or builds what was needed. Fixed prices, written findings, and he does the work himself. Serves Fort Collins and Northern Colorado in person, and anywhere in the US remotely.
+
+Contact: dan@desklessconsulting.com. Deskless Consulting is a trade name of BTF4E LLC (Colorado).
+
+## Services
+
+- [Get Your Team Using AI](https://desklessconsulting.com/#offers): a half day ($2,500) or full day ($4,000) with a team of up to 8, on their own tools and real work. Everyone leaves with one thing that runs on Monday. In person on the Front Range, or remote.
+- [Bring Me a Problem](https://desklessconsulting.com/#offers): $500 for 90 minutes on one problem. A recording, a one-page written plan, and a straight answer about whether it is worth paying anyone to fix. Credited in full against any project booked.
+- [Fix It / Build It](https://desklessconsulting.com/#offers): $4,000 (up to 22 hours) or $9,000 (up to 45 hours). Scoped in writing on day one; documentation, two weeks of support, and the client keeps the code.
+- [Adobe Analytics, CJA and AEP](https://desklessconsulting.com/adobe/): Adobe Analytics to Customer Journey Analytics migration work, AEP schema and data-view configuration, parity QA, and a fixed-price config health and drift audit.
+
+## Free tools and guides
+
+All rates below were read from the providers' own pricing pages on November 25, 2026.
+
+- [Square fee calculator (2026)](https://desklessconsulting.com/square-fees/): what Square's January 13, 2026 online-rate change (Free plan 2.9% + 30¢ to 3.3% + 30¢) costs a business, Free vs Plus vs Premium at its monthly sales, and when upgrading pays for itself. Runs in the browser.
+- [Stripe fee calculator](https://desklessconsulting.com/stripe-fees/): total monthly Stripe fees (2.9% + 30¢ online, 2.7% + 5¢ in person, +0.5% keyed, +1.5% international, ACH 0.8% capped at $5, Invoicing 0.4%/0.5%, $15 disputes) and the same month on Square.
+- [Square vs Stripe](https://desklessconsulting.com/square-vs-stripe/): which costs less at a business's own sales mix, plus payouts, disputes and point-of-sale differences.
+- [Clover fees](https://desklessconsulting.com/clover-fees/): Clover.com plans (Starter $0, Essentials $29.95, Growth $84.95/mo), rates (2.3%–2.6% + 10¢ in person, 3.5% + 10¢ typed-in/online), hardware prices, contract terms, and why bank-sold Clover pricing differs.
+- [Square vs Clover](https://desklessconsulting.com/square-vs-clover/): side-by-side cost at your sales, with contracts and hardware.
+- [GA4 double counting on Shopify](https://desklessconsulting.com/ga4-double-counting/): a 5-minute browser check for duplicate GA4 page views (usually Shopify's Google & YouTube app plus a theme or GTM tag), how to check whether purchases double, and the fix.
+- [Claude for small business](https://desklessconsulting.com/claude-for-small-business/): which Claude plan a 5–20 person business needs (Team: $25/$20 standard, $125/$100 premium seats), and the setup that makes it useful: organization instructions, shared projects, connectors, skills, privacy settings.
+
+## Work
+
+- [Case study: Vending Vault](https://desklessconsulting.com/case-studies/vendingvault/): a Northern Colorado vending provider's site rebuilt on Astro and Tailwind with a CMS the owner runs himself (29 pages trimmed to 15), plus a per-machine QR code that sends customer reports straight to the owner.
+
+## Background
+
+Fifteen years of analytics and data systems work: enterprise analytics at a large software company, a UN disaster-data pipeline across 100+ countries, and a web company's analytics built from zero. Author of a dbt package for Adobe Analytics data.

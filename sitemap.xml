@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://desklessconsulting.com/</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -14,8 +14,50 @@
   </url>
   <url>
     <loc>https://desklessconsulting.com/square-fees/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desklessconsulting.com/stripe-fees/</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desklessconsulting.com/square-vs-stripe/</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desklessconsulting.com/clover-fees/</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desklessconsulting.com/square-vs-clover/</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desklessconsulting.com/claude-for-small-business/</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desklessconsulting.com/ga4-double-counting/</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://desklessconsulting.com/case-studies/vendingvault/</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>

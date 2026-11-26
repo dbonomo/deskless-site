@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Stripe Fee Calculator (2026): What Stripe Actually Costs You</title>
+<meta name="description" content="Stripe charges 2.9% + 30¢ online and 2.7% + 5¢ in person, plus extras. Enter your monthly sales to see your total Stripe fees, effective rate, and the same month on Square." />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://desklessconsulting.com/stripe-fees/" />
+<meta property="og:title" content="Stripe fee calculator: your real monthly cost" />
+<meta property="og:description" content="Stripe charges 2.9% + 30¢ online and 2.7% + 5¢ in person, plus extras. Enter your monthly sales to see your total Stripe fees, effective rate, and the same month on Square." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://desklessconsulting.com/stripe-fees/" />
+<meta property="og:site_name" content="Deskless Consulting" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Stripe Fee Calculator (2026)",
+  "url": "https://desklessconsulting.com/stripe-fees/",
+  "description": "Calculate total monthly Stripe processing fees (online, keyed-in, in person, ACH, international, Invoicing, disputes) and compare with Square. Runs in the browser.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any (web browser)",
+  "isAccessibleForFree": true,
+  "dateModified": "2026-11-25",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Person", "@id": "https://desklessconsulting.com/#dan", "name": "Dan Bonomo" },
+  "provider": { "@type": "ProfessionalService", "@id": "https://desklessconsulting.com/#business", "name": "Deskless Consulting", "url": "https://desklessconsulting.com/" }
+}
+</script>
+<link rel="icon" type="image/svg+xml" href="/assets/deskless-badge.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" />
+<link rel="stylesheet" href="/deskless.css" />
+<link rel="stylesheet" href="/guide.css" />
+<script src="/ping.js" defer></script>
+</head>
+<body>
+<span class="reg tl" aria-hidden="true"></span><span class="reg tr" aria-hidden="true"></span>
+<span class="reg bl" aria-hidden="true"></span><span class="reg br" aria-hidden="true"></span>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="Deskless Consulting home">
+      <span class="brand-mark" aria-hidden="true"><img src="/assets/deskless-badge.svg" alt="" width="34" height="34" /></span>
+      <span class="brand-name">DESK<span class="lo">LESS</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a class="nav-cta" href="mailto:dan@desklessconsulting.com?subject=Stripe%20fee%20check">Ask Dan</a>
+    </nav>
+  </div>
+</header>
+
+<main class="calc-wrap">
+  <div class="container">
+    <p class="calc-eyebrow">Free tool · runs in your browser</p>
+    <h1 class="calc-h1">Stripe fee calculator: what you&rsquo;ll actually pay</h1>
+    <p class="calc-lede">Stripe has no monthly fee. It charges 2.9% + 30&cent; per online card payment, plus extras for keyed-in cards, international cards, invoices and faster payouts. Put in a month of sales to see the total, your effective rate, and what the same month costs on Square.</p>
+    <p class="byline">By <a href="/#about">Dan Bonomo</a>, Fort Collins, Colorado · Rates read from the providers&rsquo; own pages on November 25, 2026</p>
+
+    <div class="grid">
+      <section class="panel" aria-labelledby="in-h">
+        <h2 id="in-h">Your numbers (per month)</h2>
+        <div class="row2">
+          <div class="field">
+            <label for="on">Online sales</label>
+            <div class="money"><span>$</span><input id="on" type="number" inputmode="decimal" min="0" step="100" value="4000" /></div>
+            <span class="hint">Online store, invoices, payment links</span>
+          </div>
+          <div class="field">
+            <label for="ont">Avg online order</label>
+            <div class="money"><span>$</span><input id="ont" type="number" inputmode="decimal" min="0" step="1" value="75" /></div>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="kd">Keyed-in / card on file</label>
+            <div class="money"><span>$</span><input id="kd" type="number" inputmode="decimal" min="0" step="100" value="1000" /></div>
+            <span class="hint">Card numbers typed in, phone orders</span>
+          </div>
+          <div class="field">
+            <label for="kdt">Avg keyed sale</label>
+            <div class="money"><span>$</span><input id="kdt" type="number" inputmode="decimal" min="0" step="1" value="150" /></div>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="ip">In-person sales</label>
+            <div class="money"><span>$</span><input id="ip" type="number" inputmode="decimal" min="0" step="100" value="3000" /></div>
+            <span class="hint">Tap, dip or swipe</span>
+          </div>
+          <div class="field">
+            <label for="ipt">Avg in-person sale</label>
+            <div class="money"><span>$</span><input id="ipt" type="number" inputmode="decimal" min="0" step="1" value="40" /></div>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="ach">Bank payments (ACH)</label>
+            <div class="money"><span>$</span><input id="ach" type="number" inputmode="decimal" min="0" step="100" value="0" /></div>
+            <span class="hint">Invoices paid from a bank account</span>
+          </div>
+          <div class="field">
+            <label for="acht">Avg bank payment</label>
+            <div class="money"><span>$</span><input id="acht" type="number" inputmode="decimal" min="0" step="50" value="1500" /></div>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="intl">Share on non-US cards</label>
+            <div class="money"><span>%</span><input id="intl" type="number" inputmode="decimal" min="0" step="1" value="0" /></div>
+            <span class="hint">Percent of card sales</span>
+          </div>
+          <div class="field">
+            <label for="disp">Disputes a month</label>
+            <div class="money"><span>#</span><input id="disp" type="number" inputmode="decimal" min="0" step="1" value="0" /></div>
+            <span class="hint">Chargebacks</span>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="inv">Stripe Invoicing plan</label>
+            <select id="inv"><option value="none">Not using it</option><option value="starter">Starter (0.4% per paid invoice)</option><option value="plus">Plus (0.5%)</option></select>
+          </div>
+          <div class="field">
+            <label for="invShare">Online sales via invoices</label>
+            <div class="money"><span>%</span><input id="invShare" type="number" inputmode="decimal" min="0" step="5" value="0" /></div>
+            <span class="hint">Percent of online sales</span>
+          </div>
+        </div>
+        <p class="hint">Rough numbers are fine. Last month&rsquo;s sales report has them.</p>
+      </section>
+
+      <section class="panel" aria-labelledby="out-h" aria-live="polite">
+        <h2 id="out-h">What you&rsquo;d pay</h2>
+        <p class="headline" id="headline"></p>
+        <p class="sub" id="subline"></p>
+        <table class="plans" aria-label="Monthly cost by option">
+          <thead><tr><th scope="col">Option</th><th scope="col">Per month</th><th scope="col">Per year</th><th scope="col">Effective rate</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+        <ul class="notes" id="notes"></ul>
+        <div class="actions">
+          <a class="btn btn-primary" id="mail" href="mailto:dan@desklessconsulting.com?subject=Stripe%20fee%20check">Get a free fee check from Dan <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        <p class="promise">Free, no strings. The button opens an email with your numbers filled in. Dan reads them and replies within two business days with the changes worth making, each with a dollar amount. Nothing you type here is recorded.</p>
+      </section>
+    </div>
+
+    <article class="prose">
+      <h2>Every Stripe fee, in one table</h2>
+      <p>Stripe&rsquo;s standard US pricing has no monthly fee, setup fee or cancellation fee. You pay per payment, plus extras for some kinds of payment and some services.</p>
+      <div class="table-scroll"><table>
+        <thead><tr><th>What</th><th>Stripe charges</th></tr></thead>
+        <tbody>
+          <tr><td>Online card payment (domestic)</td><td class="n">2.9% + 30&cent;</td></tr>
+          <tr><td>Manually entered card</td><td class="n">+0.5%</td></tr>
+          <tr><td>International card</td><td class="n">+1.5%</td></tr>
+          <tr><td>Currency conversion</td><td class="n">+1%</td></tr>
+          <tr><td>In person, Stripe Terminal</td><td class="n">2.7% + 5&cent;</td></tr>
+          <tr><td>Tap to Pay on a phone</td><td class="n">+10&cent; per payment</td></tr>
+          <tr><td>ACH Direct Debit (bank payment)</td><td class="n">0.8%, max $5</td></tr>
+          <tr><td>Stripe Invoicing</td><td class="n">0.4% per paid invoice (Starter), 0.5% (Plus)</td></tr>
+          <tr><td>Payment Links</td><td class="n">No extra fee</td></tr>
+          <tr><td>Standard payout to your bank</td><td class="n">Free, about 2 business days</td></tr>
+          <tr><td>Instant Payouts</td><td class="n">1.5%, 50&cent; minimum</td></tr>
+          <tr><td>Dispute (chargeback)</td><td class="n">$15, plus $15 more if you contest it (returned if you win)</td></tr>
+        </tbody>
+      </table></div>
+      <h2>Three things that surprise people</h2>
+      <ul>
+        <li><strong>Invoices cost twice.</strong> A card payment on a Stripe invoice pays the card rate <em>and</em> the Invoicing fee. On a $2,000 invoice, that&rsquo;s $58.30 for the card plus $8 for Invoicing Starter. If you&rsquo;re only sending a bill, a Payment Link avoids the Invoicing fee.</li>
+        <li><strong>The first payout takes a while.</strong> After your first live payment, Stripe&rsquo;s first payout typically arrives 7 to 14 days later. After that it&rsquo;s about two business days.</li>
+        <li><strong>Losing a dispute you fought costs $30.</strong> $15 when it arrives, and another $15 if you submit evidence; that second $15 comes back only if you win. Square, by comparison, charges no dispute fee.</li>
+      </ul>
+      <h2>Is Stripe cheaper than Square?</h2>
+      <p>Online, usually yes, since Square raised its Free-plan online rate to 3.3% + 30&cent; in January 2026. At the counter, Square is the simpler choice: its point-of-sale app is free, and Stripe needs a separate one. The calculator above shows both for your own numbers, and <a href="/square-vs-stripe/">Square vs Stripe</a> goes through the differences beyond price.</p>
+      <div class="offer-box">
+        <h2 class="headline">Want a second pair of eyes on your fees?</h2>
+        <p>Send me your numbers, or a screenshot of last month&rsquo;s statement with customer details cropped out. I&rsquo;ll reply within two business days with what I&rsquo;d change and what each change is worth a year. Free. If the honest answer is &ldquo;you&rsquo;re fine,&rdquo; that&rsquo;s what you&rsquo;ll hear.</p>
+        <p>Card fees are usually one symptom of a bigger question about how money and orders flow through a business. If that&rsquo;s the real problem, <a href="/#offers">Bring Me a Problem</a> is 90 minutes and $500, credited against any project.</p>
+      </div>
+    </article>
+
+    <nav class="related" aria-label="More free tools and guides">
+      <h2>More free tools and guides</h2>
+      <ul>
+        <li><a href="/square-vs-stripe/">Square vs Stripe: which costs less at your sales</a></li>
+        <li><a href="/square-fees/">Square fee calculator: Free vs Plus vs Premium</a></li>
+        <li><a href="/clover-fees/">Clover fees, plans and hardware</a></li>
+      </ul>
+    </nav>
+
+    <div class="fine">
+      <p><strong>Where the rates come from.</strong> Stripe: <a href="https://stripe.com/pricing" rel="noopener">stripe.com/pricing</a> and its sub-pages. Square: <a href="https://squareup.com/us/en/pricing" rel="noopener">squareup.com/us/en/pricing</a> and Square&rsquo;s help center. All read November 25, 2026.</p>
+      <p><strong>What this leaves out.</strong> Negotiated or custom rates, taxes, and everything a provider includes beyond its rates. It compares fees only, so it&rsquo;s a starting point, not advice to switch. Not affiliated with Square, Stripe or Clover; nobody pays for a recommendation here.</p>
+      <p><strong>Privacy.</strong> The numbers you type stay in your browser. Page visits may be counted anonymously, with no cookies.</p>
+      <p><a class="back" href="/">&larr; Deskless Consulting</a> · Built by Dan Bonomo, Fort Collins, Colorado.</p>
+    </div>
+  </div>
+</main>
+
+<script src="/fees.js"></script>
+<script>
+(function(){
+  "use strict";
+  var F = window.FEES;
+  var breakdown = "stripe";
+  function after(m, res){
+    var out = [], sq = F.cost("square:free", m).total, sp = F.cost("square:plus", m).total, st = res.stripe.total;
+    out.push("<strong>Same month on Square:</strong> " + F.usd2.format(sq) + " on Free, " + F.usd2.format(sp) + " on Plus ($49/mo). <a href=\"/square-vs-stripe/\">Compare them side by side &rarr;</a>");
+    if (m.kd > 0) out.push("<strong>Send a payment link instead of typing card numbers</strong> and the 0.5% keyed-in surcharge goes away: about " + F.usd.format(m.kd * F.stripe.keyedExtra * 12) + " a year.");
+    if (m.ont >= 300 && m.on > 0) {
+      var cardEach = m.ont * F.stripe.on[0] + F.stripe.on[1], achEach = Math.min(F.stripe.achCap, m.ont * F.stripe.achPct);
+      out.push("<strong>Offer bank payment (ACH) on big orders.</strong> On a " + F.usd.format(m.ont) + " payment, a card costs " + F.usd2.format(cardEach) + " and ACH " + F.usd2.format(achEach) + ". If half your online customers paid by bank, you&rsquo;d save about " + F.usd.format((m.on / m.ont) * 0.5 * (cardEach - achEach) * 12) + " a year.");
+    }
+    if (m.ipt < 100 && m.ip > 0) out.push("<strong>In person:</strong> Stripe Terminal&rsquo;s 2.7% + 5&cent; beats Square Free&rsquo;s 2.6% + 15&cent; on sales under $100, but Stripe needs a point-of-sale app that supports Terminal, and Tap to Pay on a phone adds 10&cent; a payment.");
+    return out;
+  }
+  F.mount({rows: ["stripe"], after: typeof after === "function" ? after : null, breakdown: typeof breakdown === "string" ? breakdown : null, subject: "Stripe fee check"});
+})();
+</script>
+</body>
+</html>
